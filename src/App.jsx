@@ -6,6 +6,7 @@ import  exam  from "./data/teemat/exam";
 import perehtyjaImg from "./assets/perehtyja_temp.png";
 import osaajaImg from "./assets/osaaja_temp.png";
 import mestariImg from "./assets/mestari_temp.png";
+import taustaImg from "./assets/tausta.png";
 
 
 // ===== CONFIG =====
@@ -405,17 +406,17 @@ function validateBeforeSubmit(q) {
 
   {/* ===== START SCREEN (FULL WIDTH HERO) ===== */}
  {screen === "start" && (
-  <section
-    className="coverHero"
-    style={{ backgroundImage: "url(src/assets/tausta.png)" }}
-    onMouseMove={(e) => {
-      const r = e.currentTarget.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width) * 100;
-      const y = ((e.clientY - r.top) / r.height) * 100;
-      e.currentTarget.style.setProperty("--mx", `${x}%`);
-      e.currentTarget.style.setProperty("--my", `${y}%`);
-    }}
-  >
+ <section
+  className="coverHero"
+  style={{ backgroundImage: `url(${taustaImg})` }}
+  onMouseMove={(e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top) / r.height) * 100;
+    e.currentTarget.style.setProperty("--mx", `${x}%`);
+    e.currentTarget.style.setProperty("--my", `${y}%`);
+  }}
+>
     <div className="coverHeroOverlay" />
 
     {/* EKG taustakoriste */}
@@ -1025,7 +1026,7 @@ function validateBeforeSubmit(q) {
 
 <footer className="footer">
   <div className="container muted small">
-    Turvallinen työvuoro · React + Vite
+    © 2026 Ingrid Aalto ja Piia Suhonen · Turvallinen työvuoro – opinnäytetyö
   </div>
 </footer>
 
