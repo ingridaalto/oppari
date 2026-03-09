@@ -998,7 +998,7 @@ function validateBeforeSubmit(q) {
     </div>
 
     <div className="feedbackBoxDesc">
-      Haluaisitko auttaa kehittämään koulutusta? Vastaa lyhyeen käyttäjätestauksen kyselyyn.
+      Vastaathan lyhyeen käyttäjäkyselyyn. Vastauksesi auttavat kehittämään koulutusta osana opinnäytetyötä.
     </div>
   </div>
 
@@ -1095,6 +1095,18 @@ function DragDropOrder({ items, value, onChange }) {
     e.preventDefault();
   }
 
+  function dropIntoPool(e) {
+  e.preventDefault();
+  const data = JSON.parse(e.dataTransfer.getData("text/plain") || "{}");
+
+  // Jos vedetään laatikosta takaisin pooliin -> poista placed-listasta
+  if (data.from === "drop") {
+    const next = [...placed];
+    next.splice(data.positionIndex, 1);
+    onChange(next);
+  }
+}
+
   function dropIntoBox(e) {
     e.preventDefault();
     const data = JSON.parse(e.dataTransfer.getData("text/plain") || "{}");
@@ -1147,7 +1159,7 @@ function DragDropOrder({ items, value, onChange }) {
         {/* POOL */}
         <div className="ddPanel">
           <div className="ddTitle">Kortit</div>
-          <div className="ddPool">
+          <div className="ddPool" onDragOver={allowDrop} onDrop={dropIntoPool}>
             {available.length === 0 && (
               <div className="muted small">Kaikki kortit on siirretty.</div>
             )}

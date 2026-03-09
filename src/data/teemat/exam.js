@@ -80,7 +80,7 @@ const exam = [
       "Fyysinen sosiaalinen manipulointi on yleistä. Pääsy suojattuihin tiloihin vaatii tunnistamisen ja luvan varmistamisen."
   },
 
- /* {
+  {
     id: "ex6",
     type: "single",
     question:
@@ -222,7 +222,7 @@ const exam = [
     correct: [1],
     explanation:
       "Haitallinen liite + tiedostojen avautumattomuus viittaa kiristyshaittaohjelmaan, joka voi levitä ja häiritä verkkoa."
-  } */
+  } 
 ];
 
 export default exam;

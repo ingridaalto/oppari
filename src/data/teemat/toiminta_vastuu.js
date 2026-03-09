@@ -110,10 +110,11 @@ const toiminta_vastuu = {
       type: "drag_order",
       question: "Järjestä vaiheet oikeaan järjestykseen kun epäilet phishing-viestiä:",
       items: [
+        "Poista viesti ohjeen mukaan",
         "Älä klikkaa linkkejä tai avaa liitteitä",
         "Tarkista lähettäjä ja osoite huolellisesti",
-        "Raportoi viesti organisaation ohjeen mukaan",
-        "Poista viesti ohjeen mukaan"
+        "Raportoi viesti organisaation ohjeen mukaan"
+        
       ],
       correctOrder: [0, 1, 2, 3],
       explanation:
