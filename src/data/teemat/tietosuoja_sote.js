@@ -20,10 +20,32 @@ const tietosuoja_sote = {
     },
 
     {
-      title: "Tietovuoto ja tietomurto – mitä eroa?",
-      text:
-        "Tietovuoto tarkoittaa tilannetta, jossa henkilötietoja päätyy vääriin käsiin tai tulee julki ilman lupaa. Tietomurto on luvaton tunkeutuminen tietojärjestelmään. Tietomurto voi johtaa tietovuotoon, mutta tietovuoto voi syntyä myös inhimillisen virheen seurauksena, esimerkiksi väärälle vastaanottajalle lähetetystä viestistä. Siksi kaikki tietosuojaongelmat eivät johdu hakkeroinnista, vaan myös arjen huolimattomuus voi aiheuttaa vakavan tilanteen."
-    },
+  title: "Tietovuoto ja tietomurto – mitä eroa?",
+  text:
+    "Tietovuoto tarkoittaa tilannetta, jossa henkilötietoja päätyy vääriin käsiin tai tulee julki ilman lupaa. Tietomurto on luvaton tunkeutuminen tietojärjestelmään. Tietomurto voi johtaa tietovuotoon, mutta tietovuoto voi syntyä myös inhimillisen virheen seurauksena, esimerkiksi väärälle vastaanottajalle lähetetystä viestistä. Siksi kaikki tietosuojaongelmat eivät johdu hakkeroinnista, vaan myös arjen huolimattomuus voi aiheuttaa vakavan tilanteen.",
+  interactive: {
+    type: "choice_reveal",
+    prompt: "Työntekijä lähettää vahingossa potilastietoja väärälle vastaanottajalle. Mistä on kyse?",
+    options: [
+      {
+        label: "Tietovuoto",
+        feedback:
+          "Kyllä. Tässä tiedot päätyvät vääriin käsiin ilman lupaa, mutta kyse ei välttämättä ole tietojärjestelmään kohdistuneesta murrosta."
+      },
+      {
+        label: "Tietomurto",
+        feedback:
+          "Ei suoraan. Tietomurto tarkoittaa luvatonta tunkeutumista tietojärjestelmään. Tässä kyse on inhimillisestä virheestä."
+      },
+      {
+        label: "Ei kumpikaan",
+        feedback:
+          "Ei. Tilanne on tietosuojaongelma, koska henkilötietoja on päätynyt väärälle vastaanottajalle."
+      }
+    ],
+    highlight: 0
+  }
+},
 
     {
       title: "Miten tietovuoto voi vaikuttaa sote-alalla?",
@@ -33,12 +55,7 @@ const tietosuoja_sote = {
         "⚠️ Virheelliset tai puuttuvat tiedot voivat vaikuttaa hoitopäätöksiin.",
         "⚠️ Organisaatiolle ja sen työntekijöille voi seurata oikeudellisia ja taloudellisia seuraamuksia."
       ],
-      callout: {
-        label: "Huomio",
-        icon: "📘",
-        text:
-          "GDPR:n mukaan organisaation on ilmoitettava vakavasta henkilötietojen tietoturvaloukkauksesta viranomaiselle 72 tunnin kuluessa sen havaitsemisesta."
-      }
+     
     },
 
     {

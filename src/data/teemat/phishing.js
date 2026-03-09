@@ -7,8 +7,39 @@ const phishing = {
     // 1 — Roskaposti + peruskäsite
     {
       title: "Roskaposti ja tietojenkalastelu",
-      text:
-        "Roskaposti tarkoittaa häiritsevää tai ei-toivottua viestintää, jota lähetetään usein suurelle joukolle vastaanottajia. Kaikki roskaposti ei ole vaarallista, mutta osa siitä toimii huijausten välineenä. Tietojenkalastelu on tällainen huijausyritys: sen tarkoitus on saada käyttäjä luovuttamaan tietojaan, kuten salasanoja, kirjautumiskoodeja tai muita luottamuksellisia tietoja. Hyökkääjä esiintyy usein luotettavana tahona, esimerkiksi IT-tukena, viranomaisena tai organisaation sisäisenä toimijana."
+      text:"Roskaposti tarkoittaa häiritsevää tai ei-toivottua viestintää, jota lähetetään usein suurelle joukolle vastaanottajia. Kaikki roskaposti ei ole vaarallista, mutta osa siitä toimii huijausten välineenä. Tietojenkalastelu on tällainen huijausyritys: sen tarkoitus on saada käyttäjä luovuttamaan tietojaan, kuten salasanoja, kirjautumiskoodeja tai muita luottamuksellisia tietoja. Hyökkääjä esiintyy usein luotettavana tahona, esimerkiksi IT-tukena, viranomaisena tai organisaation sisäisenä toimijana. Viesteissä voidaan myös korostaa kiirettä tai uhata käyttöoikeuden vanhenemisella, jotta vastaanottaja toimisi nopeasti ilman tarkistamista.",
+
+interactive: {
+  type: "warning_spots",
+  prompt: "Paina viestistä kohtaa, joka herättää epäilyä.",
+  message: {
+    subject: "Tilisi vahvistus",
+    lines: [
+      "Hei,",
+      "organisaation käyttöoikeus vanhenee tänään.",
+      "Kirjaudu heti alla olevasta linkistä ja vahvista tunnuksesi.",
+      "Vahvista tästä"
+    ]
+  },
+  spots: [
+    {
+      label: "vanhenee tänään",
+      feedback: "Kiireellinen määräaika voi olla painostuskeino, jolla käyttäjä yritetään saada toimimaan nopeasti."
+    },
+    {
+      label: "Kirjaudu heti",
+      feedback: "Nopea toiminta ilman tarkistusta on juuri se, mitä huijausviestissä usein tavoitellaan."
+    },
+    {
+      label: "vahvista tunnuksesi",
+      feedback: "Tunnusten tai kirjautumistietojen pyytäminen viestissä tai linkin kautta on selvä varoitusmerkki."
+    },
+    {
+      label: "Vahvista tästä",
+      feedback: "Linkki kannattaa aina tarkistaa huolellisesti ennen avaamista. Huijauksissa juuri linkki ohjaa usein väärälle sivulle."
+    }
+  ]
+}
     },
 
     // 2 — Muodot

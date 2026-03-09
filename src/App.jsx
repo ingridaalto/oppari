@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./styles.css";
 import { themes } from "./data/teemat"; // <-- sinun polku
 import  exam  from "./data/teemat/exam";
@@ -97,17 +97,43 @@ export default function App() {
 
   const [examAnswered, setExamAnswered] = useState(0);
   const [examCorrect, setExamCorrect] = useState(0);
+
+  const [popMessage, setPopMessage] = useState("");
  
 
   // feedback state
   const [lastCorrect, setLastCorrect] = useState(null);
+  const [activeMatchLeft, setActiveMatchLeft] = useState(null);
+  const [matchedPairs, setMatchedPairs] = useState([]);
+  const [matchFeedback, setMatchFeedback] = useState(null);
+  const [interactiveChoice, setInteractiveChoice] = useState(null);
+  const [activeWarningSpot, setActiveWarningSpot] = useState(null);
+
+ useEffect(() => {
+  setInteractiveChoice(null);
+  setActiveWarningSpot(null);
+}, [themeIndex, slideIndex, screen]);
 
   const theme = themes[themeIndex];
   const slides = theme?.slides ?? [];
   const studyQuestionsInTheme = theme?.questions ?? [];
   const studyQ = studyQuestionsInTheme[themeQuestionIndex];
+  const currentSlide = slides[slideIndex];
+  const currentInteractive = currentSlide?.interactive;
 
   const examQ = exam[examIndex];
+
+  const shuffledMatchRights = useMemo(() => {
+  if (currentInteractive?.type !== "match") return [];
+
+  const arr = currentInteractive.pairs.map((pair, index) => ({
+    id: index,
+    text: pair.right
+  }));
+
+  return [...arr].sort(() => Math.random() - 0.5);
+}, [themeIndex, slideIndex]);
+
 
   const overallPct = percent(correctAll, totalAllQuestions);
   const overallProgressPct = totalAllQuestions
@@ -129,6 +155,12 @@ export default function App() {
   const doneCount = useMemo(() => {
     return moduleProgress.filter(moduleDone).length;
   }, [moduleProgress]);
+
+  useEffect(() => {
+  setActiveMatchLeft(null);
+  setMatchedPairs([]);
+  setMatchFeedback(null);
+}, [themeIndex, slideIndex, screen]);
 
   // missä asti moduulit ovat "auki" (lineaarinen eteneminen):
   // - kaikki indeksit <= themeIndex ovat auki
@@ -223,10 +255,43 @@ function prevSlide() {
   );
 }
 
+function triggerPopMessage(message) {
+  setPopMessage(message);
+
+  setTimeout(() => {
+    setPopMessage("");
+  }, 1400);
+}
+
 function resetAnswersForNext() {
   setSelected([]);
   setDragOrder([]);
   setLastCorrect(null);
+  setInteractiveChoice(null);
+  setActiveWarningSpot(null);
+  setPopMessage("");
+}
+
+function handleMatchLeftClick(index) {
+  if (matchedPairs.includes(index)) return;
+  setActiveMatchLeft(index);
+  setMatchFeedback(null);
+}
+
+function handleMatchRightClick(index) {
+  if (currentInteractive?.type !== "match") return;
+  if (activeMatchLeft === null) return;
+  if (matchedPairs.includes(index)) return;
+
+  if (activeMatchLeft === index) {
+    setMatchedPairs((prev) => [...prev, index]);
+    setMatchFeedback("correct");
+    triggerPopMessage("✨ Hyvä havainto");
+  } else {
+    setMatchFeedback("wrong");
+  }
+
+  setActiveMatchLeft(null);
 }
 
 function isOrderEqual(a, b) {
@@ -451,12 +516,10 @@ function validateBeforeSubmit(q) {
         <h1 className="coverTitle">Kyberturvaopas</h1>
 
         <p className="coverLead">
-          <p className="coverLead">
   Tämä kyberturvaopas on suunnattu sote-työntekijöille. Ensin käydään läpi
   tärkeimmät aiheet teoriaosuuksien ja kysymysten avulla. Lopuksi tehdään testi,
   josta tulee saada vähintään 80 % oikein.
 </p>
-        </p>
 
         <div className="coverActions">
           <button className="btn primary" onClick={startGame}>
@@ -622,9 +685,181 @@ function validateBeforeSubmit(q) {
               <div className="calloutText">{slides[slideIndex].callout.text}</div>
             </div>
           )}
+
+          {/* INTERACTIVE INFO BLOCK */}
+{currentInteractive?.type === "choice_reveal" && (
+  <div className="infoInteractive">
+    {popMessage && (
+      <div className="popToast">
+        {popMessage}
+      </div>
+    )}
+    <div className="infoInteractiveTop">
+      <div className="infoInteractiveTitle">{currentInteractive.prompt}</div>
+      {currentInteractive.helper && (
+        <div className="infoInteractiveHelper">{currentInteractive.helper}</div>
+      )}
+    </div>
+
+    <div className="infoInteractiveOptions">
+      {currentInteractive.options.map((option, idx) => {
+        const selected = interactiveChoice === idx;
+        const highlight = currentInteractive.highlight === idx && interactiveChoice !== null;
+
+        return (
+          <button
+  key={idx}
+  type="button"
+  className={`infoChoiceBtn ${selected ? "selected" : ""} ${highlight ? "highlight" : ""}`}
+  onClick={() => {
+    setInteractiveChoice(idx);
+    if (currentInteractive.highlight === idx) {
+      triggerPopMessage("✨ Hyvä havainto");
+    }
+  }}
+>
+  {option.label}
+</button>
+        );
+      })}
+    </div>
+
+    {interactiveChoice !== null && (
+      <div className="infoChoiceFeedback">
+        {currentInteractive.options[interactiveChoice].feedback}
+      </div>
+    )}
+  </div>
+)}
+
+          {/* INTERACTIVE: MATCH */}
+{currentInteractive?.type === "match" && (
+  <div className="matchCard">
+    {popMessage && (
+      <div className="popToast">
+        {popMessage}
+      </div>
+    )}
+    <div className="matchTop">
+      <div className="matchTitle">{currentInteractive.prompt}</div>
+      <div className="matchMeta">
+        Yhdistetty {matchedPairs.length}/{currentInteractive.pairs.length}
+      </div>
+    </div>
+
+    <div className="matchGrid">
+      <div className="matchCol">
+        {currentInteractive.pairs.map((pair, index) => {
+          const isMatched = matchedPairs.includes(index);
+          const isActive = activeMatchLeft === index;
+
+          return (
+            <button
+              key={`left-${index}`}
+              type="button"
+              className={`matchItem left ${isMatched ? "matched" : ""} ${isActive ? "active" : ""}`}
+              onClick={() => handleMatchLeftClick(index)}
+              disabled={isMatched}
+            >
+              {pair.left}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="matchCol">
+        {shuffledMatchRights.map((item) => {
+          const isMatched = matchedPairs.includes(item.id);
+
+          return (
+            <button
+              key={`right-${item.id}`}
+              type="button"
+              className={`matchItem right ${isMatched ? "matched" : ""}`}
+              onClick={() => handleMatchRightClick(item.id)}
+              disabled={isMatched}
+            >
+              {item.text}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+
+   
+
+    {matchFeedback === "wrong" && (
+      <div className="matchFeedback no">Ei aivan, kokeile uudelleen.</div>
+    )}
+
+  
+  </div>
+)}
+
+
+
+{/* INTERACTIVE: WARNING SPOTS */}
+{currentInteractive?.type === "warning_spots" &&
+  currentInteractive?.message?.subject &&
+  Array.isArray(currentInteractive?.message?.lines) &&
+  Array.isArray(currentInteractive?.spots) && (
+    <div className="warningCard">
+      {popMessage && (
+  <div className="popToast">
+    {popMessage}
+  </div>
+)}
+      <div className="warningTop">
+        <div className="warningTitle">{currentInteractive.prompt}</div>
+      </div>
+
+      <div className="warningMessage">
+        <div className="warningSubject">
+          <span className="warningLabel">Aihe:</span> {currentInteractive.message.subject}
+        </div>
+
+        <div className="warningBody">
+          {currentInteractive.message.lines.map((line, i) => (
+            <div key={i} className="warningLine">
+              {line}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="warningSpots">
+        {currentInteractive.spots.map((spot, idx) => {
+          const selected = activeWarningSpot === idx;
+
+          return (
+            <button
+              key={idx}
+              type="button"
+              className={`warningSpotBtn ${selected ? "selected" : ""}`}
+              onClick={() => {
+  setActiveWarningSpot(idx);
+  triggerPopMessage("");
+}}
+            >
+              {spot.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {activeWarningSpot !== null && currentInteractive.spots[activeWarningSpot] && (
+        <div className="warningFeedback">
+          {currentInteractive.spots[activeWarningSpot].feedback}
+        </div>
+      )}
+    </div>
+)}
+
         </section>
       </div>
     </div>
+
+  
 
     <div className="cardFooter">
   {slideIndex > 0 ? (
@@ -1029,6 +1264,7 @@ function validateBeforeSubmit(q) {
     © 2026 Ingrid Aalto ja Piia Suhonen · Turvallinen työvuoro – opinnäytetyö
   </div>
 </footer>
+
 
 </div>
 );

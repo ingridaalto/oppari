@@ -21,12 +21,30 @@ const yleinen = {
     },
 
     // 3) y2 + y5 + y4
-    {
-      title: "Kyberuhka, haavoittuvuus ja päivitykset",
-      text:
-        "Kyberuhka on mahdollinen haitallinen tapahtuma, kuten kalasteluviesti, haittaohjelma tai luvaton kirjautumisyritys. Haavoittuvuus taas on järjestelmässä, ohjelmistossa tai toimintatavassa oleva heikkous, jota uhka voi hyödyntää. Säännölliset päivitykset ovat tärkeä perussuoja, koska ne korjaavat tunnettuja tietoturva-aukkoja ennen kuin niitä ehditään käyttää väärin."
-    },
+   {
+  title: "Kyberuhka, haavoittuvuus ja päivitykset",
+  text:
+    "Kyberuhka on mahdollinen haitallinen tapahtuma, kuten kalasteluviesti, haittaohjelma tai luvaton kirjautumisyritys. Haavoittuvuus taas on järjestelmässä, ohjelmistossa tai toimintatavassa oleva heikkous, jota uhka voi hyödyntää. Säännölliset päivitykset ovat tärkeä perussuoja, koska ne korjaavat tunnettuja tietoturva-aukkoja ennen kuin niitä ehditään käyttää väärin.",
 
+  interactive: {
+    type: "match",
+    prompt: "Yhdistä käsite oikeaan kuvaukseen",
+    pairs: [
+      {
+        left: "Kyberuhka",
+        right: "Mahdollinen haitallinen tapahtuma"
+      },
+      {
+        left: "Haavoittuvuus",
+        right: "Järjestelmän heikkous"
+      },
+      {
+        left: "Päivitys",
+        right: "Korjaus tunnettuun tietoturva-aukkoon"
+      }
+    ]
+  }
+},
     // 4) y6
     {
       title: "Ihmisten toiminta on keskeinen osa kyberturvaa",

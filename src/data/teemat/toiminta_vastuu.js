@@ -116,7 +116,7 @@ const toiminta_vastuu = {
         "Raportoi viesti organisaation ohjeen mukaan"
         
       ],
-      correctOrder: [0, 1, 2, 3],
+      correctOrder: [1, 2, 3, 0],
       explanation:
         "Ensimmäinen ja tärkein vaihe on olla klikkaamatta linkkejä tai liitteitä. Sen jälkeen tarkistetaan lähettäjä, raportoidaan viesti organisaation ohjeen mukaisesti ja lopuksi poistetaan viesti ohjeiden mukaan."
     }

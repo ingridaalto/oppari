@@ -16,8 +16,28 @@ const salasanat = {
     "✅ Käytä eri salasanaa eri palveluissa – näin estät ketjuvuodot, jos yksi palvelu vaarantuu.",
     "⚠️ Älä käytä henkilötietoja, työpaikan nimeä tai syntymävuosia.",
     "⚠️ Älä kirjoita salasanaa näkyville tai säilytä sitä helposti löydettävässä paikassa."
-  ]
-},
+  ],
+  interactive: {
+  type: "choice_reveal",
+  prompt: "Mikä näistä on vahvin vaihtoehto työympäristössä?",
+  helper: "Paina esimerkkiä ja katso, miksi se on heikompi tai vahvempi.",
+  options: [
+    {
+      label: "Ingrid1991!",
+      feedback: "Tämä on heikko valinta, koska siinä käytetään henkilötietoa ja helposti arvattavaa rakennetta. Nimi ja syntymävuosi ovat juuri sellaisia tietoja, joita ei kannata käyttää salasanassa."
+    },
+    {
+      label: "Sairaala1234",
+      feedback: "Tämäkin on heikko valinta. Työpaikkaan liittyvä sana ja yksinkertainen numerosarja tekevät salasanasta ennustettavan, vaikka se olisi melko pitkä."
+    },
+    {
+      label: "Kuu!Joki7-Lasi?Metsä92",
+      feedback: "Tämä on selvästi vahvempi vaihtoehto. Se on pitkä, siinä on vaihtelua, eikä se perustu henkilötietoihin tai helposti arvattavaan sanaan. Tällainen pitkä ja ainutlaatuinen salasana tai salalause tukee paremmin turvallista tunnistautumista."
+    }
+  ],
+  highlight: 2
+}
+  },
 
   {
     title: "Milloin salasana vaihdetaan?",
@@ -31,10 +51,26 @@ const salasanat = {
   },
 
   {
-    title: "Monivaiheinen tunnistautuminen (MFA)",
-    text:
-      "MFA tarkoittaa, että kirjautuminen varmistetaan kahdella tai useammalla tekijällä (esim. salasana + kertakäyttökoodi tai hyväksyntä sovelluksessa). Tämä vähentää riskiä, että pelkkä vuotanut salasana riittäisi kirjautumiseen. Hyväksy vahvistus vain silloin, kun itse olet kirjautumassa – odottamaton hyväksyntäpyyntö voi olla merkki hyökkäyksestä."
-  },
+  title: "Monivaiheinen tunnistautuminen (MFA)",
+  text:
+    "MFA tarkoittaa, että kirjautuminen varmistetaan kahdella tai useammalla tekijällä (esim. salasana + kertakäyttökoodi tai hyväksyntä sovelluksessa). Tämä vähentää riskiä, että pelkkä vuotanut salasana riittäisi kirjautumiseen. Hyväksy vahvistus vain silloin, kun itse olet kirjautumassa – odottamaton hyväksyntäpyyntö voi olla merkki hyökkäyksestä.",
+  interactive: {
+    type: "choice_reveal",
+    prompt: "Saat puhelimeesi kirjautumisen hyväksyntäpyynnön, vaikka et itse ole kirjautumassa.",
+    helper: "Mitä tekisit?",
+    options: [
+      {
+        label: "Hyväksyn pyynnön nopeasti",
+        feedback: "Tämä on riskialtista. Odottamaton MFA-pyyntö voi tarkoittaa, että joku muu yrittää kirjautua tunnuksillasi."
+      },
+      {
+        label: "En hyväksy pyyntöä",
+        feedback: "Tämä on turvallinen toimintatapa. Hyväksy vahvistus vain silloin, kun tiedät itse kirjautuvasi."
+      }
+    ],
+    highlight: 1
+  }
+},
 
   {
     title: "Biometria ja jaetut työasemat",
