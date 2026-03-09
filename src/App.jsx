@@ -3,9 +3,9 @@ import "./styles.css";
 import { themes } from "./data/teemat"; // <-- sinun polku
 import  exam  from "./data/teemat/exam";
 
-import perehtyjaImg from "./assets/perehtyja.png";
-import osaajaImg from "./assets/osaaja.png";
-import mestariImg from "./assets/mestari.png";
+import perehtyjaImg from "src/assets/perehtyja.png";
+import osaajaImg from "src/assets/osaaja.png";
+import mestariImg from "src/assets/mestari.png";
 
 
 // ===== CONFIG =====
