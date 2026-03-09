@@ -6,15 +6,16 @@ const verkot_laitteet = {
   {
     title: "Verkkoturvallisuus on osa toiminnan jatkuvuutta",
     text:
-      "Sote-ympäristössä verkko mahdollistaa potilastietojen käsittelyn, ajanvaraukset, viestinnän ja laitteiden välisen tiedonsiirron. Verkkoturvallisuus ei ole vain tekninen asia, vaan osa hoidon jatkuvuutta ja tietosuojan toteutumista. Häiriö tai väärinkäyttö voi vaikuttaa suoraan palvelun saatavuuteen."
+      "Sote-ympäristössä verkko mahdollistaa potilastietojen käsittelyn, ajanvaraukset, viestinnän ja laitteiden välisen tiedonsiirron. Verkkoturvallisuus ei ole vain tekninen asia, vaan osa hoidon jatkuvuutta ja tietosuojan toteutumista. Häiriö tai väärinkäyttö voi vaikuttaa suoraan palvelun saatavuuteen. Turvallinen verkkoyhteys tarkoittaa käytännössä sitä, että tiedot liikkuvat hallitusti ja suojatusti oikeiden osapuolten välillä."
   },
 
   {
-    title: "Palomuuri ja VPN – eri tarkoitukset",
+    title: "Palomuuri, VPN ja HTTPS – eri tarkoitukset",
     bullets: [
       "Palomuuri valvoo ja rajoittaa verkkoliikennettä ennalta määriteltyjen sääntöjen mukaan.",
       "Se estää luvattomia yhteyksiä organisaation verkkoon.",
       "VPN luo salatun yhteyden käyttäjän ja organisaation verkon välille.",
+      "HTTPS suojaa selaimen ja verkkopalvelun välistä yhteyttä.",
       "VPN on erityisen tärkeä etätyössä ja julkisissa verkoissa."
     ]
   },
@@ -22,7 +23,8 @@ const verkot_laitteet = {
  {
   title: "Julkiset Wi-Fi-verkot – mitä riskejä?",
   text:
-    "Avoimissa Wi-Fi-verkoissa (esim. kahviloissa, hotelleissa tai lentoasemilla) liikenne voi olla suojaamatonta. Hyökkääjä voi yrittää kaapata tietoliikennettä, ohjata käyttäjän huijaussivulle tai esiintyä valheellisena verkon tarjoajana. Arkaluonteisia potilas- tai asiakastietoja ei tule käsitellä julkisessa verkossa ilman organisaation hyväksymää suojattua yhteyttä. Etätyötilanteissa on erityisen tärkeää varmistaa, että käytössä on suojattu ja organisaation ohjeistuksen mukainen verkkoyhteys.",
+    "Avoimissa Wi-Fi-verkoissa (esim. kahviloissa, hotelleissa tai lentoasemilla) liikenne voi olla suojaamatonta. Hyökkääjä voi yrittää kaapata tietoliikennettä, ohjata käyttäjän huijaussivulle tai esiintyä valheellisena verkon tarjoajana. Arkaluonteisia potilas- tai asiakastietoja ei tule käsitellä julkisessa verkossa ilman organisaation hyväksymää suojattua yhteyttä. Etätyötilanteissa on erityisen tärkeää varmistaa, että käytössä on suojattu ja organisaation ohjeistuksen mukainen verkkoyhteys. Jos verkkosivulla käytetään HTTPS-yhteyttä, selaimen ja palvelun välinen liikenne on suojatumpaa, mutta se ei yksin tee julkisesta verkosta täysin turvallista."
+  ,
   callout: {
     label: "Ilmiö",
     icon: "📡",
@@ -36,6 +38,7 @@ const verkot_laitteet = {
     lines: [
       "✅ Käytä organisaation hyväksymiä verkkoja ja yhteyksiä.",
       "✅ Käytä VPN-yhteyttä etätyössä ohjeiden mukaisesti.",
+      "✅ Tarkista selaimesta, että yhteys on HTTPS, kun käytät verkkopalveluita.",
       "⚠️ Älä käsittele potilas- tai asiakastietoja avoimessa Wi-Fi-verkossa.",
       "⚠️ Älä yhdistä laitetta tuntemattomiin verkkoihin ilman tarvetta."
     ]
@@ -43,6 +46,21 @@ const verkot_laitteet = {
 
 ],
  questions: [
+  {
+    id: "v0",
+    type: "single",
+    question: "Mitä HTTPS tarkoittaa?",
+    options: [
+      "Avoin huijareiden käyttämä yhteys",
+      "Suojattu verkkoyhteys",
+      "Haittaohjelma verkkoselaimeen",
+      "Palomuurin fyysinen osa"
+    ],
+    correct: [1],
+    explanation:
+      "HTTPS tarkoittaa suojattua verkkoyhteyttä selaimen ja verkkopalvelun välillä. Se auttaa suojaamaan tietoja, joita käyttäjä lähettää tai vastaanottaa verkkosivulla. HTTPS ei kuitenkaan yksin takaa, että sivusto tai verkko olisi muuten täysin turvallinen."
+  },
+
   {
     id: "v1",
     type: "single",

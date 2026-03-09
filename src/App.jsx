@@ -9,7 +9,7 @@ import mestariImg from "./assets/mestari.png";
 
 
 // ===== CONFIG =====
-const STUDY_QUESTION_LIMIT = 50; // opiskeluosion kysymykset
+
 const EXAM_PASS_PERCENT = 80;    // testissä vaadittu läpäisy
 
 // ===== helpers =====
@@ -61,9 +61,8 @@ export default function App() {
   }, []);
 
   const totalStudyQuestions = useMemo(() => {
-    const total = themes.reduce((sum, t) => sum + (t.questions?.length ?? 0), 0);
-    return Math.min(total, STUDY_QUESTION_LIMIT);
-  }, []);
+  return themes.reduce((sum, t) => sum + (t.questions?.length ?? 0), 0);
+}, []);
 
   const totalExamQuestions = exam.length;
 
@@ -177,27 +176,13 @@ export default function App() {
   }
 
   
-     function prevSlide() {
-    // siirry edelliselle slidelle tai jos ei ole, palaa edelliseen teemaan (viimeiselle slidelle)
-    if (slideIndex > 0) {
-      setSlideIndex((s) => s - 1);
-      resetAnswersForNext();
-      return;
-    }
-    if (themeIndex > 0) {
-      const prevTheme = themeIndex - 1;
-      const prevSlides = themes[prevTheme]?.slides ?? [];
-      setThemeIndex(prevTheme);
-      setSlideIndex(Math.max(0, prevSlides.length - 1));
-      setThemeQuestionIndex(0);
-      setScreen("slides");
-      resetAnswersForNext();
-      return;
-    }
-    // muuten palauta aloitus
-    setScreen("start");
+function prevSlide() {
+  // saa mennä vain saman moduulin info-slideissa taaksepäin
+  if (slideIndex > 0) {
+    setSlideIndex((s) => s - 1);
+    resetAnswersForNext();
   }
-
+}
   function prevStudy() {
     // paluu edelliseen opiskelu-kysymykseen tai infoon
     resetAnswersForNext();
@@ -465,8 +450,11 @@ function validateBeforeSubmit(q) {
         <h1 className="coverTitle">Kyberturvaopas</h1>
 
         <p className="coverLead">
-          Opiskele työvuorossa tärkeimmät tietoturvakäytännöt ja testaa osaamisesi.
-          Suojaa potilastiedot ja toimi turvallisesti arjessa.
+          <p className="coverLead">
+  Tämä kyberturvaopas on suunnattu sote-työntekijöille. Ensin käydään läpi
+  tärkeimmät aiheet teoriaosuuksien ja kysymysten avulla. Lopuksi tehdään testi,
+  josta tulee saada vähintään 80 % oikein.
+</p>
         </p>
 
         <div className="coverActions">
@@ -638,12 +626,19 @@ function validateBeforeSubmit(q) {
     </div>
 
     <div className="cardFooter">
-      <button className="btn ghost" onClick={prevSlide}>Edellinen</button>
-      <button className="btn primary" onClick={nextSlide}>
-        {slideIndex + 1 >= slides.length ? "Siirry kysymyksiin" : "Seuraava"}
-      </button>
-    </div>
-  </Card>
+  {slideIndex > 0 ? (
+    <button className="btn ghost" onClick={prevSlide}>
+      Edellinen
+    </button>
+  ) : (
+    <div />
+  )}
+
+  <button className="btn primary" onClick={nextSlide}>
+    {slideIndex + 1 >= slides.length ? "Siirry kysymyksiin" : "Seuraava"}
+  </button>
+</div>
+</Card>
 )}
     {/* ===== STUDY QUIZ ===== */}
 {screen === "studyQuiz" && studyQ && (

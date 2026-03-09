@@ -6,8 +6,8 @@ import theme3 from "./phishing";
 import theme4 from "./haittaohjelmat";
 import theme5 from "./verkot_laitteet";
 import theme6 from "./tietosuoja_sote";
-import theme7 from "./toiminta_vastuu";
 import theme13 from "./uhat_laitteet_ulkoiset";
+import theme7 from "./toiminta_vastuu";
 /*
 import theme8 from "./pelillistaminen";
 import theme9 from "./soveltavat";
@@ -31,8 +31,8 @@ export const themes = [
   theme4,
   theme5,
   theme6,
-  theme7,
   theme13, 
+  theme7,
   /* 
   theme7,
   theme8,

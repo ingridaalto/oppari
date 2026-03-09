@@ -2,19 +2,18 @@ const salasanat = {
   id: "salasanat",
   title: "Salasanat ja tunnistautuminen",
   slides: [
-    // 1) Bullet: vahva salasana / salalause — enemmän sisältöä, formaalimpi
 
   {
     title: "Tunnistautuminen on osa ammatillista vastuuta",
     text:
-      "Sote-ympäristössä tunnuksilla ei vain 'kirjauduta sisään'. Niillä avataan pääsy potilastietoihin ja tehdään kirjauksia, jotka yhdistyvät yksilöityyn käyttäjään. Jokainen katselu ja muutos lokitetaan. Tunnusten suojaaminen on osa potilasturvallisuutta ja omaa oikeusturvaa."
+      "Sote-ympäristössä tunnuksilla ei vain 'kirjauduta sisään'. Niillä avataan pääsy potilastietoihin ja tehdään kirjauksia, jotka yhdistyvät yksilöityyn käyttäjään. Jokainen katselu ja muutos lokitetaan. Tunnusten suojaaminen on osa potilasturvallisuutta ja myös työntekijän omaa oikeusturvaa, koska lokitietojen avulla voidaan nähdä kuka on käyttänyt järjestelmää ja milloin."
   },
 
   {
   title: "Vahva salasana: pituus ja ainutlaatuisuus",
   lines: [
     "✅ Suosi pitkää salasanaa tai useasta sanasta muodostettua lausetta (vähintään 14–16 merkkiä).",
-    "✅ Käytä eri salasanaa eri palveluissa – näin estät ketjuvuodot.",
+    "✅ Käytä eri salasanaa eri palveluissa – näin estät ketjuvuodot, jos yksi palvelu vaarantuu.",
     "⚠️ Älä käytä henkilötietoja, työpaikan nimeä tai syntymävuosia.",
     "⚠️ Älä kirjoita salasanaa näkyville tai säilytä sitä helposti löydettävässä paikassa."
   ]
@@ -23,23 +22,24 @@ const salasanat = {
   {
     title: "Milloin salasana vaihdetaan?",
     bullets: [
-      "Jos epäilet kirjautuneesi huijaussivulle.",
+      "Jos epäilet kirjautuneesi huijaussivulle tai kalasteluviestiin.",
       "Jos saat odottamattoman kirjautumisvahvistuksen.",
       "Jos laite katoaa tai varastetaan.",
-      "Kun organisaation ohjeistus sitä edellyttää."
+      "Kun organisaation ohjeistus sitä edellyttää.",
+      "Jos huomaat tilillä toimintaa, jota et tunnista."
     ]
   },
 
   {
     title: "Monivaiheinen tunnistautuminen (MFA)",
     text:
-      "MFA tarkoittaa, että kirjautuminen varmistetaan kahdella tai useammalla tekijällä (esim. salasana + kertakäyttökoodi tai hyväksyntä). Jos salasana vuotaa, pelkkä tieto ei riitä kirjautumiseen. Hyväksy vahvistus vain silloin, kun itse olet kirjautumassa."
+      "MFA tarkoittaa, että kirjautuminen varmistetaan kahdella tai useammalla tekijällä (esim. salasana + kertakäyttökoodi tai hyväksyntä sovelluksessa). Tämä vähentää riskiä, että pelkkä vuotanut salasana riittäisi kirjautumiseen. Hyväksy vahvistus vain silloin, kun itse olet kirjautumassa – odottamaton hyväksyntäpyyntö voi olla merkki hyökkäyksestä."
   },
 
   {
     title: "Biometria ja jaetut työasemat",
     text:
-      "Biometrinen tunnistautuminen (esim. sormenjälki tai kasvojentunnistus) voi nopeuttaa kirjautumista, mutta se ei poista vastuuta laitteen lukitsemisesta. Sote-ympäristössä jaetut työasemat ovat erityinen riski: jos laite jää auki, seuraava käyttäjä toimii edellisen tunnuksilla."
+      "Biometrinen tunnistautuminen (esim. sormenjälki tai kasvojentunnistus) voi nopeuttaa kirjautumista ja helpottaa turvallista käyttöä. Se ei kuitenkaan poista vastuuta laitteen lukitsemisesta. Sote-ympäristössä jaetut työasemat ovat erityinen riski: jos laite jää auki, seuraava käyttäjä voi toimia edellisen tunnuksilla ja tehdä kirjauksia hänen nimissään."
   }
 
 ],

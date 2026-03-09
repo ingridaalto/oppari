@@ -5,7 +5,7 @@ const uhat_laitteet_ulkoiset = {
     {
       title: "Ulkoiset uhat – miksi tämä koskee myös sote-alaa?",
       text:
-        "Ulkoiset uhat ovat hyökkäyksiä, jotka tulevat organisaation ulkopuolelta: verkon kautta, huijausten avulla tai fyysisten laitteiden kautta. Sote-ympäristössä vaikutus voi näkyä nopeasti palvelun saatavuudessa (ajanvaraus, potilastietojärjestelmät) ja tietosuojassa. Hyvä uutinen: käyttäjän perustoiminta ja selkeät toimintamallit vähentävät riskiä merkittävästi."
+        "Ulkoiset uhat ovat hyökkäyksiä, jotka tulevat organisaation ulkopuolelta: verkon kautta, huijausten avulla tai fyysisten laitteiden kautta. Hyökkääjät voivat yrittää häiritä palveluita, päästä käsiksi tietoihin tai hyödyntää järjestelmiä muihin hyökkäyksiin. Sote-ympäristössä vaikutus voi näkyä nopeasti palvelun saatavuudessa, esimerkiksi ajanvarauksen, viestinnän tai potilastietojärjestelmien toiminnassa. Ulkoiset uhat eivät aina kohdistu suoraan yksittäiseen työntekijään, mutta käyttäjän huolellinen toiminta – kuten epäilyttävien laitteiden välttäminen ja ohjeiden noudattaminen – vähentää riskiä merkittävästi."
     },
 
    {
@@ -17,10 +17,11 @@ const uhat_laitteet_ulkoiset = {
     "Jos kriittiset järjestelmät eivät ole saatavilla, hoitoprosessit voivat viivästyä ja potilasturvallisuus heikentyä."
   ]
 },
+
     {
       title: "Identiteettivarkaus – luottamuksen väärinkäyttöä",
       text:
-        "Identiteettivarkaudessa rikollinen käyttää toisen henkilöllisyyttä tai henkilötietoja esimerkiksi kirjautumiseen, tilausten tekemiseen tai huijauksiin. Työympäristössä se voi tarkoittaa myös sitä, että hyökkääjä esiintyy työntekijänä tai yhteistyökumppanina ja yrittää saada käyttöoikeuksia, tietoja tai rahansiirtoja."
+        "Identiteettivarkaudessa rikollinen käyttää toisen henkilöllisyyttä tai henkilötietoja esimerkiksi kirjautumiseen, tilausten tekemiseen tai huijauksiin. Työympäristössä tämä voi tarkoittaa myös sitä, että hyökkääjä esiintyy työntekijänä, IT-tukena tai yhteistyökumppanina ja yrittää saada käyttöoikeuksia, tietoja tai rahansiirtoja. Tällaisissa tilanteissa hyökkääjä pyrkii usein hyödyntämään luottamusta tai kiirettä. Siksi on tärkeää tarkistaa poikkeavat pyynnöt ja varmistaa henkilöllisyys ennen kuin luovuttaa tietoja tai tekee muutoksia järjestelmiin."
     },
 
     {
@@ -35,7 +36,8 @@ const uhat_laitteet_ulkoiset = {
 
    {
      title: "IoT-laitteet sairaalaympäristössä",
-     text: "IoT (Internet of Things) tarkoittaa verkkoon liitettyjä fyysisiä laitteita. Sairaalassa tällaisia voivat olla esimerkiksi potilasmonitorit, infuusiopumput, kuvantamislaitteet, kulunvalvontajärjestelmät ja älykkäät kiinteistöjärjestelmät. Monet näistä laitteista ovat yhteydessä verkkoon huollon, etävalvonnan ja tiedonsiirron vuoksi. Jos laitteiden ohjelmistot eivät ole ajan tasalla tai etähallinta on heikosti suojattu, laitteita voidaan yrittää käyttää hyökkäyksissä tai häiriön aiheuttamiseen. Sairaalaympäristössä kyse ei ole vain tietosuojasta, vaan myös fyysisen ympäristön ja hoitoprosessien toimivuudesta. Siksi laitteiden verkottaminen, päivitykset ja käyttöoikeuksien hallinta ovat osa potilasturvallisuutta.",
+     text:
+       "IoT (Internet of Things) tarkoittaa verkkoon liitettyjä fyysisiä laitteita. Sairaalassa tällaisia voivat olla esimerkiksi potilasmonitorit, infuusiopumput, kuvantamislaitteet, kulunvalvontajärjestelmät ja älykkäät kiinteistöjärjestelmät. Monet näistä laitteista ovat yhteydessä verkkoon huollon, etävalvonnan ja tiedonsiirron vuoksi. Jos laitteiden ohjelmistot eivät ole ajan tasalla tai etähallinta on heikosti suojattu, laitteita voidaan yrittää käyttää hyökkäyksissä tai häiriön aiheuttamiseen. Verkkoon liitettyjä laitteita voidaan myös käyttää bottiverkoissa esimerkiksi palvelunestohyökkäysten toteuttamiseen. Sairaalaympäristössä kyse ei ole vain tietosuojasta, vaan myös fyysisen ympäristön ja hoitoprosessien toimivuudesta. Siksi laitteiden verkottaminen, päivitykset ja käyttöoikeuksien hallinta ovat osa potilasturvallisuutta.",
       callout: {
         label: "Tapausesimerkki",
         icon: "🚰",
