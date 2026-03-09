@@ -1,0 +1,129 @@
+// src/data/themes/theme_phishing.js
+const phishing = {
+  id: "phishing",
+  title: "Huijaukset ja tietojenkalastelu",
+  slides: [
+
+  // 1 — Peruskäsite
+  {
+    title: "Tietojenkalastelu (phishing)",
+    text:
+      "Tietojenkalastelu tarkoittaa huijausyritystä, jossa pyritään saamaan käyttäjä luovuttamaan tietojaan, kuten salasanoja, kirjautumiskoodeja tai potilastietoja. Hyökkääjä esiintyy usein luotettavana tahona – esimerkiksi IT-tukena, viranomaisena tai organisaation sisäisenä toimijana."
+  },
+
+  // 2 — Muodot (phishing, spear phishing)
+  {
+    title: "Huijausten eri muodot",
+    bullets: [
+      "Phishing: laajalle joukolle lähetetty yleinen huijausviesti.",
+      "Spear phishing: kohdennettu huijaus tietylle henkilölle tai yksikölle.",
+      "Huijaukset voivat tulla sähköpostilla, tekstiviestillä, puheluna tai viestisovelluksissa."
+    ]
+  },
+
+  // 3 — Sote-konteksti
+  {
+    title: "Miksi sote-ympäristö on erityinen kohde?",
+    text:
+      "Sosiaali- ja terveydenhuollossa käsitellään arkaluonteisia henkilötietoja. Kiireinen työympäristö ja luottamukseen perustuva viestintäkulttuuri voivat lisätä riskiä reagoida nopeasti ilman tarkistusta. Hyökkääjä voi vedota potilasturvallisuuteen, kiireeseen tai organisaation sisäiseen auktoriteettiin."
+  },
+
+  // 4 — Deepfake
+  {
+    title: "Deepfake ja tekoälypohjaiset huijaukset",
+    text:
+      "Deepfake tarkoittaa tekoälyn avulla tuotettua väärennettyä ääni- tai videomateriaalia. Työympäristössä tämä voi tarkoittaa esimerkiksi esihenkilöltä vaikuttavaa puhelua tai videoviestiä, jossa pyydetään kiireellisesti toimimaan. Tekninen laatu voi olla uskottava, vaikka sisältö on väärennös."
+  },
+
+  // 5 — Käytännön toimintatapa
+  {
+    title: "Miten toimia epäilyttävässä tilanteessa?",
+    lines: [
+      "✅ Tarkista lähettäjä ja viestin sisältö ennen linkkien avaamista.",
+      "✅ Varmista poikkeava pyyntö esihenkilöltä tai IT-tuelta.",
+      "⚠️ Älä luovuta salasanoja tai kertakäyttökoodeja sähköpostitse tai puhelimitse.",
+      "⚠️ Älä toimi kiireen painostamana ilman varmistusta."
+    ]
+  }
+
+],
+  
+  questions: [
+  {
+    id: "phi1",
+    type: "single",
+    question: "Mitä tietojenkalastelu tarkoittaa?",
+    options: [
+      "Tiedon varmuuskopiointia",
+      "Huijausyritystä tiedon saamiseksi",
+      "Verkon suojaamista",
+      "Keskustelua kalastusharrastuksesta"
+    ],
+    correct: [1],
+    explanation:
+      "Tietojenkalastelu on huijausyritys, jossa pyritään saamaan käyttäjä luovuttamaan luottamuksellisia tietoja, kuten salasanoja tai kirjautumiskoodeja. Hyökkääjä esiintyy usein luotettavana tahona, esimerkiksi IT-tukena tai organisaation sisäisenä toimijana."
+  },
+
+  {
+    id: "phi2",
+    type: "single",
+    question: "Mikä on phishing?",
+    options: [
+      "Haittaohjelma",
+      "Tietojenkalastelun muoto",
+      "VPN-yhteys",
+      "Palvelunestohyökkäys"
+    ],
+    correct: [1],
+    explanation:
+      "Phishing on tietojenkalastelun muoto, jossa viesti lähetetään laajalle joukolle vastaanottajia. Tavoitteena on saada osa käyttäjistä klikkaamaan linkkiä tai luovuttamaan tietojaan."
+  },
+
+  {
+    id: "phi3",
+    type: "single",
+    question: "Mitä spear phishing tarkoittaa?",
+    options: [
+      "Palvelunestohyökkäystä",
+      "Kohdennettua huijausta",
+      "Virustorjuntaohjelmaa",
+      "Roskapostin suodatusta"
+    ],
+    correct: [1],
+    explanation:
+      "Spear phishing on kohdennettu huijaus, jossa viesti suunnataan tietylle henkilölle, yksikölle tai organisaatiolle. Viesti voi sisältää uskottavia yksityiskohtia, kuten nimen tai työtehtävän, mikä tekee siitä vaikeammin tunnistettavan."
+  },
+
+  {
+    id: "phi4",
+    type: "single",
+    question: "Mikä on deepfake?",
+    options: [
+      "Haittaohjelma",
+      "Tekoälyllä luotu väärennös",
+      "VPN",
+      "Varmuuskopiointi"
+    ],
+    correct: [1],
+    explanation:
+      "Deepfake on tekoälyn avulla tuotettu väärennetty ääni-, kuva- tai videomateriaali. Se voi näyttää tai kuulostaa aidolta henkilöltä, vaikka sisältö on manipuloitu tai täysin keksitty."
+  },
+
+  {
+    id: "phi5",
+    type: "single",
+    question: "Miksi deepfake on riski työympäristössä?",
+    options: [
+      "Se voi huijata työntekijää luottamaan väärennettyyn viestiin",
+      "Se parantaa videon laatua",
+      "Se estää kirjautumisen",
+      "Se nopeuttaa yhteyksiä"
+    ],
+    correct: [0],
+    explanation:
+      "Deepfake voi saada työntekijän uskomaan, että viesti tai puhelu tulee luotettavalta henkilöltä, kuten esihenkilöltä tai IT-tuelta. Tämä voi johtaa tietojen luovuttamiseen tai kiireellisiin toimenpiteisiin ilman asianmukaista varmistusta."
+  }
+]
+};
+
+export default phishing;

@@ -1,0 +1,1246 @@
+import { useMemo, useState } from "react";
+import "./styles.css";
+import { themes } from "./data/teemat"; // <-- sinun polku
+import  exam  from "./data/teemat/exam";
+
+import perehtyjaImg from "./assets/perehtyja.png";
+import osaajaImg from "./assets/osaaja.png";
+import mestariImg from "./assets/mestari.png";
+
+
+// ===== CONFIG =====
+const STUDY_QUESTION_LIMIT = 50; // opiskeluosion kysymykset
+const EXAM_PASS_PERCENT = 80;    // testissä vaadittu läpäisy
+
+// ===== helpers =====
+function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
+}
+
+function percent(correct, total) {
+  if (!total) return 0;
+  return Math.round((correct / total) * 100);
+}
+function arraysEqualAsSets(a, b) {
+  const aa = [...a].sort((x, y) => x - y);
+  const bb = [...b].sort((x, y) => x - y);
+  if (aa.length !== bb.length) return false;
+  for (let i = 0; i < aa.length; i++) if (aa[i] !== bb[i]) return false;
+  return true;
+}
+function getEnding(pct) {
+  if (pct === 100) {
+    return {
+      level: "Tietoturvamestari",
+      image: mestariImg,
+      text: "Erinomaista työtä. Hallitset keskeiset tietoturvakäytännöt erittäin hyvin ja osaat tehdä turvallisia valintoja myös käytännön tilanteissa. Osaamisesi tukee sekä potilasturvallisuutta että luottamuksellisten tietojen suojaa."
+    };
+  }
+
+  if (pct >= 80) {
+    return {
+      level: "Vastuullinen osaaja",
+      image: osaajaImg,
+      text: "Hyvä suoritus. Tunnet tärkeimmät tietoturvan periaatteet ja osaat toimia vastuullisesti tavallisissa työtilanteissa. Osaamisesi on hyvällä tasolla, ja pieni lisäkertaus vahvistaa varmuutta entisestään."
+    };
+  }
+
+  return {
+    level: "Perehtyjä",
+    image: perehtyjaImg,
+    text: "Olet ottanut hyvän ensimmäisen askeleen tietoturvaosaamisen kehittämisessä. Keskeiset periaatteet ovat jo tulleet tutuiksi, mutta osaamista kannattaa vielä vahvistaa harjoittelemalla ja kertaamalla sisältöjä. Näin toimintasi muuttuu yhä varmemmaksi arjen tilanteissa."
+  };
+}
+export default function App() {
+  // ===== Flatten opiskeluosion kysymykset teemoista (järjestyksessä) =====
+  const studyFlow = useMemo(() => {
+    // luo lista "askelista": slide-step tai question-step
+    // Mutta koska haluat: info → teeman kysymykset → seuraava teema,
+    // me pidämme teemaindeksit erikseen kuten ennen, ja vain rajoitamme study-kysymysten määrän 50:een.
+    return null;
+  }, []);
+
+  const totalStudyQuestions = useMemo(() => {
+    const total = themes.reduce((sum, t) => sum + (t.questions?.length ?? 0), 0);
+    return Math.min(total, STUDY_QUESTION_LIMIT);
+  }, []);
+
+  const totalExamQuestions = exam.length;
+
+  const totalAllQuestions = totalStudyQuestions + totalExamQuestions;
+
+
+  // ===== game state =====
+  // screens:
+  // start | slides | studyQuiz | studyFeedback | studyDone | examQuiz | examFeedback | result
+  const [screen, setScreen] = useState("start");
+
+  // opiskelu: teema/slide/kysymys
+  const [themeIndex, setThemeIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [themeQuestionIndex, setThemeQuestionIndex] = useState(0);
+
+  // exam: index
+  const [examIndex, setExamIndex] = useState(0);
+
+  // selections
+  const [selected, setSelected] = useState([]);
+  const [dragOrder, setDragOrder] = useState([]); // sisältää item-indeksit järjestyksessä
+
+
+  // counters
+  const [answeredAll, setAnsweredAll] = useState(0);
+  const [correctAll, setCorrectAll] = useState(0);
+
+  const [studyAnswered, setStudyAnswered] = useState(0);
+  const [studyCorrect, setStudyCorrect] = useState(0);
+
+  const [examAnswered, setExamAnswered] = useState(0);
+  const [examCorrect, setExamCorrect] = useState(0);
+ 
+
+  // feedback state
+  const [lastCorrect, setLastCorrect] = useState(null);
+
+  const theme = themes[themeIndex];
+  const slides = theme?.slides ?? [];
+  const studyQuestionsInTheme = theme?.questions ?? [];
+  const studyQ = studyQuestionsInTheme[themeQuestionIndex];
+
+  const examQ = exam[examIndex];
+
+  const overallPct = percent(correctAll, totalAllQuestions);
+  const overallProgressPct = totalAllQuestions
+    ? Math.round((answeredAll / totalAllQuestions) * 100)
+    : 0;
+
+  const [moduleProgress, setModuleProgress] = useState(() => themes.map((t) => ({ id: t.id, answered: 0, total: t.questions?.length ?? 0 })) );
+  
+    const [showModulesDone, setShowModulesDone] = useState(false);
+
+  function modulePct(m) {
+    return m.total ? Math.round((m.answered / m.total) * 100) : 0;
+  }
+
+  function moduleDone(m) {
+    return m.total > 0 && m.answered >= m.total;
+  }
+
+  const doneCount = useMemo(() => {
+    return moduleProgress.filter(moduleDone).length;
+  }, [moduleProgress]);
+
+  // missä asti moduulit ovat "auki" (lineaarinen eteneminen):
+  // - kaikki indeksit <= themeIndex ovat auki
+  const unlockedIndex = themeIndex;
+  // ===== actions =====
+  function startGame() {
+    // reset everything
+    setScreen("slides");
+    setThemeIndex(0);
+    setSlideIndex(0);
+    setThemeQuestionIndex(0);
+    setExamIndex(0);
+    setSelected([]);
+
+    setAnsweredAll(0);
+    setCorrectAll(0);
+
+    setStudyAnswered(0);
+    setStudyCorrect(0);
+
+    setExamAnswered(0);
+    setExamCorrect(0);
+
+    setLastCorrect(null);
+    setDragOrder([]);
+
+    setModuleProgress(
+  themes.map((t) => ({
+    id: t.id,
+    answered: 0,
+    total: t.questions?.length ?? 0
+  }))
+);
+
+  }
+
+
+
+    function nextSlide() {
+    const next = slideIndex + 1;
+    if (next >= slides.length) {
+      setScreen("studyQuiz");
+      return;
+    }
+    setSlideIndex(next);
+  }
+
+  
+     function prevSlide() {
+    // siirry edelliselle slidelle tai jos ei ole, palaa edelliseen teemaan (viimeiselle slidelle)
+    if (slideIndex > 0) {
+      setSlideIndex((s) => s - 1);
+      resetAnswersForNext();
+      return;
+    }
+    if (themeIndex > 0) {
+      const prevTheme = themeIndex - 1;
+      const prevSlides = themes[prevTheme]?.slides ?? [];
+      setThemeIndex(prevTheme);
+      setSlideIndex(Math.max(0, prevSlides.length - 1));
+      setThemeQuestionIndex(0);
+      setScreen("slides");
+      resetAnswersForNext();
+      return;
+    }
+    // muuten palauta aloitus
+    setScreen("start");
+  }
+
+  function prevStudy() {
+    // paluu edelliseen opiskelu-kysymykseen tai infoon
+    resetAnswersForNext();
+
+    if (themeQuestionIndex > 0) {
+      setThemeQuestionIndex((q) => q - 1);
+      setScreen("studyQuiz");
+      return;
+    }
+
+    // jos ollaan teeman ensimmäisessä kysymyksessä -> palaa teeman infoslidelle
+    setSlideIndex(Math.max(0, slides.length - 1));
+    setScreen("slides");
+  }
+
+  function prevExam() {
+    // paluu edelliseen testikysymykseen (tai testin aloitukseen jos index 0)
+    resetAnswersForNext();
+
+    if (examIndex > 0) {
+      setExamIndex((n) => n - 1);
+      setScreen("examQuiz");
+      return;
+    }
+
+    // jos testin ensimmäinen, palaa opiskeluvalikkoon (studyDone)
+    setScreen("studyDone");
+  }
+
+  function selectSingle(idx) {
+    setSelected([idx]);
+  }
+
+  function toggleMulti(idx) {
+  setSelected((prev) =>
+    prev.includes(idx) ? prev.filter((x) => x !== idx) : [...prev, idx]
+  );
+}
+
+function resetAnswersForNext() {
+  setSelected([]);
+  setDragOrder([]);
+  setLastCorrect(null);
+}
+
+function isOrderEqual(a, b) {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+  return true;
+}
+
+function gradeQuestion(q) {
+  if (!q) return false;
+
+  if (q.type === "single" || q.type === "multi") {
+    return arraysEqualAsSets(selected, q.correct);
+  }
+
+  if (q.type === "drag_order") {
+    return isOrderEqual(dragOrder, q.correctOrder);
+  }
+
+  // tulevaisuudessa: drag_drop matching tms
+  return false;
+}
+
+function validateBeforeSubmit(q) {
+  if (!q) return false;
+
+  if (q.type === "single") {
+    if (selected.length !== 1) {
+      alert("Valitse yksi vaihtoehto.");
+      return false;
+    }
+  }
+
+  if (q.type === "multi") {
+    if (selected.length === 0) {
+      alert("Valitse vähintään yksi vaihtoehto.");
+      return false;
+    }
+  }
+
+  if (q.type === "drag_order") {
+    if (!dragOrder || dragOrder.length !== q.items.length) {
+      alert("Järjestä kaikki kohdat ennen vastaamista.");
+      return false;
+    }
+  }
+
+  return true;
+}
+
+
+  function submitStudyAnswer() {
+  if (!studyQ) return;
+
+  if (!validateBeforeSubmit(studyQ)) return;
+
+  const correct = gradeQuestion(studyQ);
+  setLastCorrect(correct);
+
+  setAnsweredAll((n) => n + 1);
+  setStudyAnswered((n) => n + 1);
+
+  if (correct) {
+    setCorrectAll((n) => n + 1);
+    setStudyCorrect((n) => n + 1);
+  }
+
+  setModuleProgress((prev) =>
+  prev.map((m, i) =>
+    i === themeIndex
+      ? { ...m, answered: Math.min(m.total, m.answered + 1) }
+      : m
+  )
+);
+
+  setScreen("studyFeedback");
+}
+
+
+  function nextAfterStudyFeedback() {
+    resetAnswersForNext();
+
+
+    // Jos opiskeluosio jo täynnä (50), lopeta siihen
+  if (studyAnswered >= totalStudyQuestions) {
+  setScreen("studyDone");
+  return;
+}
+
+    // siirry seuraavaan kysymykseen teemassa, tai seuraavaan teemaan (infoon)
+    const nextQ = themeQuestionIndex + 1;
+    if (nextQ < studyQuestionsInTheme.length) {
+      setThemeQuestionIndex(nextQ);
+      setScreen("studyQuiz");
+      return;
+    }
+
+    // teema loppui → seuraava teema → info-slidet
+        const nextTheme = themeIndex + 1;
+    if (nextTheme < themes.length) {
+      setThemeIndex(nextTheme);
+      setSlideIndex(0);
+      setThemeQuestionIndex(0);
+      setScreen("slides");
+      return;
+    }
+    // jos teemat loppuivat ennen 50, mennään silti studyDone
+    setScreen("studyDone");
+  }
+
+  function beginExam() {
+    setSelected([]);
+    setLastCorrect(null);
+    setExamIndex(0);
+    setScreen("examQuiz");
+    setDragOrder([]);
+
+  }
+
+  function submitExamAnswer() {
+  if (!examQ) return;
+
+  if (!validateBeforeSubmit(examQ)) return;
+
+  const correct = gradeQuestion(examQ);
+  setLastCorrect(correct);
+
+  setAnsweredAll((n) => n + 1);
+  setExamAnswered((n) => n + 1);
+
+  if (correct) {
+    setCorrectAll((n) => n + 1);
+    setExamCorrect((n) => n + 1);
+  }
+
+  setScreen("examFeedback");
+}
+
+  function nextAfterExamFeedback() {
+    resetAnswersForNext();
+
+
+    const next = examIndex + 1;
+    if (next < totalExamQuestions) {
+      setExamIndex(next);
+      setScreen("examQuiz");
+      return;
+    }
+
+    setScreen("result");
+  }
+
+  // ===== guard =====
+  if (!themes.length) {
+    return (
+      <div className="app">
+        <Topbar />
+        <main className="container">
+          <Card>
+            <h1 className="title">Turvallinen työvuoro</h1>
+            <p className="muted">Teemoja ei löydy. Tarkista src/data/teemat/index.js export.</p>
+          </Card>
+        </main>
+      </div>
+    );
+  }
+
+  const ending = getEnding(overallPct);
+  const examPct = percent(examCorrect, totalExamQuestions);
+  const examPassed = examPct >= EXAM_PASS_PERCENT;
+
+  return (
+    <div className="app">
+      <Topbar />
+
+   <main>
+
+  {/* ===== START SCREEN (FULL WIDTH HERO) ===== */}
+ {screen === "start" && (
+  <section
+    className="coverHero"
+    style={{ backgroundImage: "url(src/assets/tausta.png)" }}
+    onMouseMove={(e) => {
+      const r = e.currentTarget.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      e.currentTarget.style.setProperty("--mx", `${x}%`);
+      e.currentTarget.style.setProperty("--my", `${y}%`);
+    }}
+  >
+    <div className="coverHeroOverlay" />
+
+    {/* EKG taustakoriste */}
+<svg className="coverEKG" viewBox="0 0 1200 220" aria-hidden="true">
+  <path
+    d="M0,130
+       L420,130
+       L450,130
+       L480,40
+       L510,210
+       L540,130
+       L800,130
+       L830,40
+       L860,210
+       L890,130
+       L1600,130"
+    fill="none"
+  />
+</svg>
+    {/* pieni “status”-elementti (pelillinen, mutta asiallinen) */}
+    <div className="coverCorner">
+      <span className="coverDot" aria-hidden="true" />
+      <span>Koulutusmoduuli</span>
+    </div>
+
+    <div className="coverHeroInner">
+      <div className="coverPanel">
+        <div className="coverTopRow">
+          <div className="coverBadge">SOTE · KYBERTURVALLISUUS</div>
+        </div>
+
+        <h1 className="coverTitle">Kyberturvaopas</h1>
+
+        <p className="coverLead">
+          Opiskele työvuorossa tärkeimmät tietoturvakäytännöt ja testaa osaamisesi.
+          Suojaa potilastiedot ja toimi turvallisesti arjessa.
+        </p>
+
+        <div className="coverActions">
+          <button className="btn primary" onClick={startGame}>
+            Aloita koulutus
+          </button>
+        </div>
+
+        <div className="coverMeta">
+          <span className="pill">Opiskelumoduulit: {themes.length}</span>
+          <span className="pill">Kysymykset: {totalStudyQuestions}</span>
+          <span className="pill">Testi: {totalExamQuestions}</span>
+        </div>
+
+        {/* “progress teaser” = tuntuu peliltä, mutta näyttää yritysmäiseltä 
+        <div className="coverProgress">
+          <div className="coverProgressTop">
+            <span className="muted small">Valmiusaste</span>
+            <span className="muted small">0%</span>
+          </div>
+          <div className="bar" aria-hidden="true">
+            <div className="barFill" style={{ width: "0%" }} />
+          </div>
+        </div>*/}
+      </div> 
+    </div>
+  </section>
+)}
+
+{/* ===== MUUT NÄKYMÄT ===== */}
+{screen !== "start" && (
+  <div className="container">
+
+
+{/* ProgressBar = koko koulutuksen eteneminen */}
+{screen !== "start" && screen !== "result" && (
+  <ProgressBar
+    phaseLabel="Koko koulutus"
+    answeredCount={answeredAll}
+    totalQuestions={totalAllQuestions}
+    progressPct={overallProgressPct}
+  />
+)}
+
+   {/* ===== STUDY: SLIDES ===== */}
+{screen === "slides" && (
+  <Card>
+    <div className="lessonHeader">
+      <div className="lessonLeft">
+        <div className="kicker">
+          Opiskelu · Teema {themeIndex + 1}/{themes.length}
+        </div>
+        <h2 className="sceneTitle">{theme.title}</h2>
+      </div>
+
+  <div className="lessonRight">
+        <span className="tag">
+          Info {slideIndex + 1}/{slides.length}
+        </span>
+      </div>
+    </div>
+
+    <div className="lessonBody">
+      <div className="slideFrame">
+
+      {/* LEFT RAIL */}
+<aside className="slideRail">
+  <div className="slideRailTitle">MODUULIT</div>
+
+  <ModuleSidebar
+    themes={themes}
+    moduleProgress={moduleProgress}
+    activeIndex={themeIndex}
+    unlockedIndex={unlockedIndex}
+    onSelect={(i) => {
+      // sallitaan vain auki olevat
+      if (i > unlockedIndex) return;
+      setThemeIndex(i);
+      setSlideIndex(0);
+      setThemeQuestionIndex(0);
+      setScreen("slides");
+      resetAnswersForNext();
+    }}
+  />
+
+</aside>
+
+        {/* MAIN SURFACE */}
+        <section className="slideSurface">
+
+          {/* Stepper */}
+          <div className="stepper" aria-label="Info-sivut">
+            {slides.map((_, i) => (
+              <span
+                key={i}
+                className={`stepDot ${i < slideIndex ? "done" : ""} ${i === slideIndex ? "active" : ""}`}
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+
+          <h3 className="subtitle">{slides[slideIndex]?.title}</h3>
+
+          {/* BULLETS */}
+          {(slides[slideIndex]?.bullets ?? []).length > 0 && (
+           <div className="microCards">
+  {(slides[slideIndex]?.bullets ?? [])
+    .filter((b) => b && b.trim().length > 0)
+    .map((b, i) => (
+      <div key={i} className="microCard microBullet">
+        <div className="microBulletIcon" aria-hidden="true">•</div>
+        <div className="microText">{b}</div>
+      </div>
+    ))}
+</div>
+          )}
+
+          {/* LINES (✅ / ⚠️) */}
+{Array.isArray(slides?.[slideIndex]?.lines) && slides[slideIndex].lines.length > 0 && (
+  <div className="infoList" role="list">
+    {slides[slideIndex].lines.map((line, i) => {
+      const raw = typeof line === "string" ? line.trim() : "";
+      const isOk = raw.startsWith("✅");
+      const isWarn = raw.startsWith("⚠️");
+
+      const text = raw
+        .replace(/^✅\s?/, "")
+        .replace(/^⚠️\s?/, "")
+        .trim();
+
+      return (
+        <div
+          key={i}
+          className={`infoRow ${isOk ? "ok" : ""} ${isWarn ? "warn" : ""}`}
+          role="listitem"
+        >
+          <div className="infoMarker" aria-hidden="true">
+            {isOk ? "✓" : isWarn ? "!" : "•"}
+          </div>
+
+          <div className="infoContent">
+            <div className="infoText">{text || line}</div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+)}
+
+          {/* TEXT */}
+          {slides[slideIndex]?.text && (
+            <div className="slideText">{slides[slideIndex].text}</div>
+          )}
+
+          {/* CALLOUT */}
+          {slides[slideIndex]?.callout && (
+            <div className="callout calloutSoft">
+              <div className="calloutTitle">
+                <span className="calloutIcon" aria-hidden="true">
+                  {slides[slideIndex].callout.icon ?? "💡"}
+                </span>
+                <span>{slides[slideIndex].callout.label ?? "Tiesitkö?"}</span>
+              </div>
+              <div className="calloutText">{slides[slideIndex].callout.text}</div>
+            </div>
+          )}
+        </section>
+      </div>
+    </div>
+
+    <div className="cardFooter">
+      <button className="btn ghost" onClick={prevSlide}>Edellinen</button>
+      <button className="btn primary" onClick={nextSlide}>
+        {slideIndex + 1 >= slides.length ? "Siirry kysymyksiin" : "Seuraava"}
+      </button>
+    </div>
+  </Card>
+)}
+    {/* ===== STUDY QUIZ ===== */}
+{screen === "studyQuiz" && studyQ && (
+  <Card>
+    <div className="lessonHeader">
+      <div className="lessonLeft">
+        <div className="kicker">Opiskelu · {theme.title}</div>
+        <h2 className="sceneTitle">Kysymys</h2>
+      </div>
+      <div className="lessonRight">
+        <span className="tag">
+          Moduuli {themeQuestionIndex + 1}/{studyQuestionsInTheme.length}
+        </span>
+      </div>
+    </div>
+
+    <div className="lessonBody">
+      <div className="legendRow">
+        <span className="legendPill">
+          {studyQ.type === "multi"
+            ? "Valitse yksi tai useampi"
+            : studyQ.type === "drag_order"
+            ? "Järjestä kohdat"
+            : "Valitse yksi"}
+        </span>
+      </div>
+
+      <p className="prompt">{studyQ.question}</p>
+
+      {(studyQ.type === "single" || studyQ.type === "multi") && (
+        <div className="options">
+          {studyQ.options.map((opt, idx) => {
+            const checked = selected.includes(idx);
+            return (
+              <label
+                key={`${studyQ.id}-${idx}`}
+                className={`option optionPro ${checked ? "selected" : ""}`}
+              >
+                <input
+                  type={studyQ.type === "multi" ? "checkbox" : "radio"}
+                  name={`study-${studyQ.id}`}
+                  checked={checked}
+                  onChange={() =>
+                    studyQ.type === "multi"
+                      ? toggleMulti(idx)
+                      : selectSingle(idx)
+                  }
+                />
+                <span className="optionText">{opt}</span>
+              </label>
+            );
+          })}
+        </div>
+      )}
+
+      {studyQ.type === "drag_order" && (
+        <div className="dragProWrap">
+          <DragOrder items={studyQ.items} value={dragOrder} onChange={setDragOrder} />
+        </div>
+      )}
+    </div>
+
+    <div className="cardFooter">
+      <div />
+      <button className="btn primary" onClick={submitStudyAnswer}>Vastaa</button>
+    </div>
+  </Card>
+)}
+
+{/* ===== STUDY FEEDBACK ===== */}
+{screen === "studyFeedback" && studyQ && (
+  <Card>
+    <div className="lessonHeader">
+      <div className="lessonLeft">
+        <div className="kicker">Opiskelu · {theme.title}</div>
+        <h2 className="sceneTitle">Palaute</h2>
+      </div>
+
+      <div className="lessonRight">
+        <span className={`tag ${lastCorrect ? "tagOk" : "tagNo"}`}>
+          {lastCorrect ? "Oikein" : "Väärin"}
+        </span>
+      </div>
+    </div>
+
+    <div className="lessonBody">
+      <div className={`feedback feedbackPro ${lastCorrect ? "ok" : "no"}`} role="status" aria-live="polite">
+        <div className="feedbackTitle">{lastCorrect ? "✅ Oikein" : "❌ Väärin"}</div>
+        <div className="feedbackText">{studyQ.explanation}</div>
+      </div>
+    </div>
+
+    <div className="cardFooter">
+      <div />
+      <button className="btn primary" onClick={nextAfterStudyFeedback}>Seuraava</button>
+    </div>
+  </Card>
+)}
+  
+      {/* ===== STUDY DONE ===== */}
+{screen === "studyDone" && (
+  <Card>
+    <div className="lessonHeader">
+      <div className="lessonLeft">
+        <div className="kicker">Opiskelu</div>
+        <h2 className="sceneTitle">Opiskeluosio valmis</h2>
+      </div>
+      <div className="lessonRight">
+        <span className="tag">Seuraavaksi: Testi</span>
+      </div>
+    </div>
+
+    <div className="lessonBody">
+      <p className="muted" style={{ lineHeight: 1.7 }}>
+        Hyvä! Nyt voit siirtyä testiin ja varmistaa osaamisesi.
+      </p>
+
+      <div className="studyDoneSummary">
+  <div className="studyDoneRow">
+    <div>
+      <div className="strong">Moduulit</div>
+      <div className="muted small">
+        Suoritettu {doneCount}/{themes.length}
+      </div>
+    </div>
+
+    <button
+      className="btn ghost small"
+      type="button"
+      onClick={() => setShowModulesDone((s) => !s)}
+      aria-expanded={showModulesDone}
+    >
+      {showModulesDone ? "Piilota moduulit" : "Näytä moduulit"}
+    </button>
+  </div>
+
+  {showModulesDone && (
+    <div className="moduleMiniList" role="list">
+      {moduleProgress.map((m, i) => {
+        const done = moduleDone(m);
+        const pct = modulePct(m);
+
+        return (
+          <div key={m.id} className="moduleMiniItem" role="listitem">
+            <div className="moduleMiniLeft">
+              <span className={`moduleMiniIcon ${done ? "ok" : ""}`} aria-hidden="true">
+                {done ? "✅" : "•"}
+              </span>
+              <span className="moduleMiniTitle">{themes[i].title}</span>
+            </div>
+
+            <div className="moduleMiniRight muted small">
+              {m.answered}/{m.total} · {pct}%
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  )}
+</div>
+
+      <div className="callout calloutSoft" style={{ marginTop: 14 }}>
+        <div className="calloutTitle">
+          <span className="calloutIcon" aria-hidden="true">🧪</span>
+          <span>Testi</span>
+        </div>
+        <div className="calloutText">
+          Läpäisyraja on <b>{EXAM_PASS_PERCENT}%</b>. Vastaa rauhassa – palaute tulee jokaisen kysymyksen jälkeen.
+        </div>
+      </div>
+    </div>
+
+    <div className="cardFooter">
+      <div className="cardFooterLeft" />
+      <div className="cardFooterRight">
+        <button className="btn primary" onClick={beginExam}>
+          Tee testi
+        </button>
+      </div>
+    </div>
+  </Card>
+)}
+
+{/* ===== EXAM QUIZ ===== */}
+{screen === "examQuiz" && examQ && (
+  <Card>
+    <div className="lessonHeader">
+      <div className="lessonLeft">
+        <div className="kicker">Testi</div>
+        <h2 className="sceneTitle">
+          Kysymys {examIndex + 1}/{totalExamQuestions}
+        </h2>
+      </div>
+
+            <div className="lessonRight">
+        <span className="tag">Testi {examIndex + 1}/{totalExamQuestions}</span>
+      </div>
+    </div>
+
+    <div className="lessonBody">
+      <div className="legendRow">
+        <span className="legendPill">
+          {examQ.type === "multi"
+            ? "Valitse yksi tai useampi"
+            : examQ.type === "drag_order"
+            ? "Järjestä kohdat"
+            : "Valitse yksi"}
+        </span>
+      </div>
+
+      <p className="prompt">{examQ.question}</p>
+
+      {(examQ.type === "single" || examQ.type === "multi") && (
+        <div className="options">
+          {examQ.options.map((opt, idx) => {
+            const checked = selected.includes(idx);
+            return (
+              <label
+                key={`${examQ.id}-${idx}`}
+                className={`option optionPro ${checked ? "selected" : ""}`}
+              >
+                <input
+                  type={examQ.type === "multi" ? "checkbox" : "radio"}
+                  name={`exam-${examQ.id}`}
+                  checked={checked}
+                  onChange={() =>
+                    examQ.type === "multi"
+                      ? toggleMulti(idx)
+                      : selectSingle(idx)
+                  }
+                />
+                <span className="optionText">{opt}</span>
+              </label>
+            );
+          })}
+        </div>
+      )}
+
+      {examQ.type === "drag_order" && (
+        <div className="dragProWrap">
+          <DragOrder items={examQ.items} value={dragOrder} onChange={setDragOrder} />
+        </div>
+      )}
+    </div>
+
+    <div className="cardFooter">
+      <button className="btn primary" onClick={submitExamAnswer}>Vastaa</button>
+    </div>
+  </Card>
+)}
+
+{/* ===== EXAM FEEDBACK ===== */}
+{screen === "examFeedback" && examQ && (
+  <Card>
+    <div className="lessonHeader">
+      <div className="lessonLeft">
+        <div className="kicker">Testi</div>
+        <h2 className="sceneTitle">Palaute</h2>
+      </div>
+
+      <div className="lessonRight">
+        <span className={`tag ${lastCorrect ? "tagOk" : "tagNo"}`}>
+          {lastCorrect ? "Oikein" : "Väärin"}
+        </span>
+      </div>
+    </div>
+
+    <div className="lessonBody">
+      <div
+        className={`feedback feedbackPro ${lastCorrect ? "ok" : "no"}`}
+        role="status"
+        aria-live="polite"
+      >
+        <div className="feedbackTitle">{lastCorrect ? "✅ Oikein" : "❌ Väärin"}</div>
+        <div className="feedbackText">{examQ.explanation}</div>
+
+        {!lastCorrect && (
+          <div className="muted small" style={{ marginTop: 8 }}>
+            <b>Oikea vastaus:</b>{" "}
+            {(examQ.type === "single" || examQ.type === "multi") &&
+              examQ.correct.map((i) => examQ.options[i]).join(" · ")}
+            {examQ.type === "drag_order" &&
+              examQ.correctOrder.map((i) => examQ.items[i]).join(" → ")}
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div className="cardFooter">
+      <div />
+      <button className="btn primary" onClick={nextAfterExamFeedback}>
+        {examIndex + 1 >= totalExamQuestions ? "Näytä tulokset" : "Seuraava"}
+      </button>
+    </div>
+  </Card>
+)}
+
+{/* ===== RESULT ===== */}
+{screen === "result" && (
+  <Card>
+    <div className="lessonHeader">
+      <div className="lessonLeft">
+        <div className="kicker">Tulokset</div>
+        <h2 className="sceneTitle">Yhteenveto</h2>
+      </div>
+      <div className="lessonRight">
+        <span className="tag">Kokonais-%: {overallPct}%</span>
+      </div>
+    </div>
+
+    <div className="lessonBody">
+      <div className="resultHero">
+  <img
+    src={ending.image}
+    alt={ending.level}
+    className="resultCharacter"
+  />
+  <div>
+    <div className="resultLevel">{ending.level}</div>
+    <div className="muted">{ending.text}</div>
+  </div>
+</div>
+
+      <div className="statsRow">
+  <div className="stat">
+    <div className="statLabel">Opiskelu</div>
+    <div className="statValue">{percent(studyCorrect, totalStudyQuestions)}%</div>
+    <div className="statMeta">{studyCorrect}/{totalStudyQuestions} oikein</div>
+  </div>
+
+  <div className="stat">
+    <div className="statLabel">Testi</div>
+    <div className="statValue">{examPct}%</div>
+    <div className="statMeta">{examCorrect}/{totalExamQuestions} oikein</div>
+  </div>
+
+  <div className="stat">
+  <div className="statLabel">Läpäisty</div>
+
+  <div className="statValue statValuePass">
+    <span className={`passBadge ${examPassed ? "ok" : "no"}`} aria-hidden="true">
+      {examPassed ? "✓" : "✕"}
+    </span>
+    <span>{examPassed ? "Kyllä" : "Ei"}</span>
+  </div>
+
+  <div className="statMeta">Läpäisyraja {EXAM_PASS_PERCENT}%</div>
+</div>
+</div>
+    </div>
+
+    {/* ===== USER TESTING FEEDBACK ===== */}
+<div className="feedbackBox">
+  <div className="feedbackBoxText">
+    <div className="feedbackBoxTitle">
+      Kiitos osallistumisesta!
+    </div>
+
+    <div className="feedbackBoxDesc">
+      Haluaisitko auttaa kehittämään koulutusta? Vastaa lyhyeen käyttäjätestauksen kyselyyn.
+    </div>
+  </div>
+
+  <a
+    className="feedbackBoxLink"
+    href="https://forms.office.com/Pages/ResponsePage.aspx?id=b6ZgTI0KbkSawINqANhFQpRoH_Ujb25Iu_GvZyenDwRURFdEQkRSRlFMWTJaNDg4UFA3QTBTOTgwQS4u&origin=Invitation&channel=0I"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Vastaa kyselyyn →
+  </a>
+</div>
+
+    <div className="cardFooter">
+      <button className="btn ghost" onClick={() => setScreen("start")}>Etusivulle</button>
+      <button className="btn primary" onClick={startGame}>Pelaa uudelleen</button>
+    </div>
+  </Card>
+)}
+
+     </div>
+  )}
+</main>
+
+<footer className="footer">
+  <div className="container muted small">
+    Turvallinen työvuoro · React + Vite
+  </div>
+</footer>
+
+</div>
+);
+}
+
+
+// ===== UI components (pidetään samana tyylinä kuin sulla) =====
+function Topbar() {
+  return (
+    <header className="topbar">
+      <div className="topbarInner">
+        <span className="brandDot" aria-hidden="true" />
+        <span className="brandText">Turvallinen työvuoro</span>
+      </div>
+    </header>
+  );
+}
+
+function Card({ children }) {
+  return <section className="card">{children}</section>;
+}
+
+function ProgressBar({ phaseLabel, answeredCount, totalQuestions, progressPct }) {
+  const pct = clamp(progressPct, 0, 100);
+  return (
+    <div className="progressCard" role="region" aria-label="Edistyminen">
+      <div className="progressTop">
+        <div className="progressLeft">
+          <div className="small muted">{phaseLabel}</div>
+          <div className="strong">Edistyminen</div>
+        </div>
+        <div className="progressRight">
+          <div className="small muted">Kysymykset</div>
+          <div className="strong">{answeredCount}/{totalQuestions}</div>
+        </div>
+      </div>
+
+      <div className="bar" aria-hidden="true">
+        <div className="barFill" style={{ width: `${pct}%` }} />
+      </div>
+    </div>
+  );
+}
+
+function DragDropOrder({ items, value, onChange }) {
+
+
+  if (!Array.isArray(items) || items.length === 0) {
+    return <div className="muted">Drag-kysymyksen items puuttuu.</div>;
+  }
+
+  // value = drop-laatikossa olevien itemien indeksit (järjestyksessä)
+  const placed = Array.isArray(value) ? value : [];
+  const available = items.map((_, i) => i).filter((i) => !placed.includes(i));
+
+  function onDragStartFromPool(e, itemIndex) {
+    e.dataTransfer.setData("text/plain", JSON.stringify({ from: "pool", itemIndex }));
+  }
+
+  function onDragStartFromDrop(e, positionIndex) {
+    e.dataTransfer.setData("text/plain", JSON.stringify({ from: "drop", positionIndex }));
+  }
+
+  function allowDrop(e) {
+    e.preventDefault();
+  }
+
+  function dropIntoBox(e) {
+    e.preventDefault();
+    const data = JSON.parse(e.dataTransfer.getData("text/plain") || "{}");
+
+    // Jos vedetään poolista → lisää loppuun
+    if (data.from === "pool") {
+      const next = [...placed, data.itemIndex];
+      onChange(next);
+    }
+
+    // Jos vedetään dropista takaisin dropiin → ei tehdä mitään tässä
+  }
+
+  function dropIntoBoxAt(e, targetPos) {
+    e.preventDefault();
+    const data = JSON.parse(e.dataTransfer.getData("text/plain") || "{}");
+
+    // Poolista -> insert targetPos
+    if (data.from === "pool") {
+      const next = [...placed];
+      next.splice(targetPos, 0, data.itemIndex);
+      onChange(next);
+      return;
+    }
+
+    // Dropista -> reorder
+    if (data.from === "drop") {
+      const fromPos = data.positionIndex;
+      if (fromPos === targetPos) return;
+      const next = [...placed];
+      const [moved] = next.splice(fromPos, 1);
+      next.splice(targetPos, 0, moved);
+      onChange(next);
+    }
+  }
+
+  function removeFromBox(positionIndex) {
+    const next = [...placed];
+    next.splice(positionIndex, 1);
+    onChange(next);
+  }
+
+  return (
+    <div className="ddWrap">
+      <div className="muted small" style={{ marginBottom: 10 }}>
+        Vedä kortit laatikkoon oikeassa järjestyksessä. Klikkaa korttia poistaaksesi.
+      </div>
+
+      <div className="ddGrid">
+        {/* POOL */}
+        <div className="ddPanel">
+          <div className="ddTitle">Kortit</div>
+          <div className="ddPool">
+            {available.length === 0 && (
+              <div className="muted small">Kaikki kortit on siirretty.</div>
+            )}
+            {available.map((itemIndex) => (
+              <div
+                key={`pool-${itemIndex}`}
+                className="ddCard"
+                draggable
+                onDragStart={(e) => onDragStartFromPool(e, itemIndex)}
+              >
+                <span className="ddHandle" aria-hidden="true">⠿</span>
+                <span>{items[itemIndex]}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* DROP BOX */}
+        <div className="ddPanel">
+          <div className="ddTitle">Oikea järjestys</div>
+
+          <div className="ddBox" onDragOver={allowDrop} onDrop={dropIntoBox}>
+            {placed.length === 0 && (
+              <div className="ddEmpty">Pudota ensimmäinen vaihe tähän…</div>
+            )}
+
+            {placed.map((itemIndex, pos) => (
+              <div
+                key={`box-${itemIndex}-${pos}`}
+                className="ddCard placed"
+                draggable
+                onDragStart={(e) => onDragStartFromDrop(e, pos)}
+                onDragOver={allowDrop}
+                onDrop={(e) => dropIntoBoxAt(e, pos)}
+                onClick={() => removeFromBox(pos)}
+                title="Klikkaa poistaaksesi"
+              >
+                <span className="ddIndex">{pos + 1}</span>
+                <span>{items[itemIndex]}</span>
+              </div>
+            ))}
+          </div>
+
+          {placed.length > 0 && (
+            <button className="btn small" type="button" onClick={() => onChange([])} style={{ marginTop: 10 }}>
+              Tyhjennä laatikko
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ModuleSidebar({ themes, moduleProgress, activeIndex, unlockedIndex, onSelect }) {
+  return (
+    <nav className="moduleTimeline" aria-label="Moduulit">
+      <div className="moduleLine" aria-hidden="true" />
+
+      {themes.map((t, i) => {
+        const m = moduleProgress[i] || { answered: 0, total: 0 };
+        const done = m.total > 0 && m.answered >= m.total;
+        const locked = i > unlockedIndex;
+        const active = i === activeIndex;
+
+        const status = done ? "done" : locked ? "locked" : active ? "active" : "open";
+
+        return (
+          <button
+            key={t.id ?? i}
+            type="button"
+            className={`moduleNode ${status}`}
+            onClick={() => !locked && onSelect(i)}
+            disabled={locked}
+            aria-current={active ? "step" : undefined}
+            title={`${i + 1}. ${t.title} (${m.answered}/${m.total})`}
+          >
+            {/* piste */}
+            <span className="nodeDot" aria-hidden="true" />
+
+            {/* lukko vain jos locked */}
+            {locked && <span className="nodeLock" aria-hidden="true">🔒</span>}
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
+const DragOrder = DragDropOrder;
+
