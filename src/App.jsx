@@ -7,6 +7,8 @@ import perehtyjaImg from "./assets/perehtyja_temp.png";
 import osaajaImg from "./assets/osaaja_temp.png";
 import mestariImg from "./assets/mestari_temp.png";
 import taustaImg from "./assets/tausta.png";
+import correctSound from "./assets/correct.mp3";
+
 
 
 // ===== CONFIG =====
@@ -109,7 +111,7 @@ export default function App() {
   const [interactiveChoice, setInteractiveChoice] = useState(null);
   const [activeWarningSpot, setActiveWarningSpot] = useState(null);
 
- useEffect(() => {
+  useEffect(() => {
   setInteractiveChoice(null);
   setActiveWarningSpot(null);
 }, [themeIndex, slideIndex, screen]);
@@ -196,6 +198,8 @@ export default function App() {
 );
 
   }
+
+
 
 
 
@@ -287,6 +291,7 @@ function handleMatchRightClick(index) {
     setMatchedPairs((prev) => [...prev, index]);
     setMatchFeedback("correct");
     triggerPopMessage("✨ Hyvä havainto");
+    playCorrectSound();
   } else {
     setMatchFeedback("wrong");
   }
@@ -355,9 +360,10 @@ function validateBeforeSubmit(q) {
   setStudyAnswered((n) => n + 1);
 
   if (correct) {
-    setCorrectAll((n) => n + 1);
-    setStudyCorrect((n) => n + 1);
-  }
+  setCorrectAll((n) => n + 1);
+  setStudyCorrect((n) => n + 1);
+  playCorrectSound();
+}
 
   setModuleProgress((prev) =>
   prev.map((m, i) =>
@@ -458,6 +464,12 @@ function validateBeforeSubmit(q) {
       </div>
     );
   }
+
+  function playCorrectSound() {
+  const audio = new Audio(correctSound);
+  audio.volume = 0.4;
+  audio.play().catch(() => {});
+}
 
   const ending = getEnding(overallPct);
   const examPct = percent(examCorrect, totalExamQuestions);
@@ -714,7 +726,8 @@ function validateBeforeSubmit(q) {
   onClick={() => {
     setInteractiveChoice(idx);
     if (currentInteractive.highlight === idx) {
-      triggerPopMessage("✨ Hyvä havainto");
+     triggerPopMessage("✨ Hyvä havainto");
+     playCorrectSound();
     }
   }}
 >
