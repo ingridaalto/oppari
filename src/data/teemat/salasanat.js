@@ -5,8 +5,7 @@ const salasanat = {
 
   {
     title: "Tunnistautuminen on osa ammatillista vastuuta",
-    text:
-      "Sote-ympäristössä tunnuksilla ei vain 'kirjauduta sisään'. Niillä avataan pääsy potilastietoihin ja tehdään kirjauksia, jotka yhdistyvät yksilöityyn käyttäjään. Jokainen katselu ja muutos lokitetaan. Tunnusten suojaaminen on osa potilasturvallisuutta ja myös työntekijän omaa oikeusturvaa, koska lokitietojen avulla voidaan nähdä kuka on käyttänyt järjestelmää ja milloin."
+    text:"Sosiaali- ja terveydenhuollon työympäristössä käyttäjätunnuksia ei käytetä ainoastaan järjestelmiin kirjautumiseen, vaan niiden avulla hallitaan pääsyä potilastietoihin. Tunnuksiin liitetään käyttäjän tekemät kirjaukset, jotka tallentuvat osaksi järjestelmän lokitietoja. Tunnusten asianmukainen suojaaminen on keskeinen osa potilasturvallisuutta sekä työntekijän oikeuturvaa, sillä lokitietojen avulla voidaan jälkikäteen todentaa, kuka on käyttänyt järjestelmää ja milloin."
   },
 
   {

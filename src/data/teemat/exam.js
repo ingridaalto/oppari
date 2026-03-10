@@ -1,6 +1,6 @@
 // src/data/teemat/exam.js
 const exam = [
-  {
+  /*{
     id: "ex1",
     type: "single",
     question:
@@ -222,7 +222,42 @@ const exam = [
     correct: [1],
     explanation:
       "Haitallinen liite + tiedostojen avautumattomuus viittaa kiristyshaittaohjelmaan, joka voi levitä ja häiritä verkkoa."
-  } 
+  } , */
+
+  {
+  id: "ex15",
+  type: "categorize",
+  question: "Yhdistä oikeat ilmiöt oikeaan kyberuhkaan.",
+  categories: [
+    {
+      id: "ddos",
+      label: "DDoS",
+      correctItems: [0, 1]
+    },
+    {
+      id: "phishing",
+      label: "Phishing",
+      correctItems: [2, 3]
+    },
+    {
+      id: "ransomware",
+      label: "Ransomware",
+      correctItems: [4, 5]
+    }
+  ],
+  items: [
+    "Järjestelmä hidastuu merkittävästi",
+    "Palvelu ei ole käyttäjien saatavilla suuren kuormituksen vuoksi",
+    "Viestissä luodaan kiireen tuntua",
+    "Epäilyttävä linkki tai kirjautumispyyntö sähköpostissa",
+    "Tiedostoja ei voi avata",
+    "Näytölle ilmestyy lunnasviesti"
+  ],
+  explanation:
+    "DDoS näkyy usein palvelun hidastumisena tai estymisenä. Phishingiin liittyy kiire, huijausviestit ja linkit. Ransomware puolestaan salaa tiedostoja ja vaatii usein lunnaita."
+}
 ];
+
+
 
 export default exam;

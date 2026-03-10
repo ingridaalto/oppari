@@ -62,9 +62,37 @@ const tietosuoja_sote = {
       title: "Kuka vastaa tietosuojasta?",
       text:
         "Vaikka organisaatiolla on johto, tietosuojavastaava ja IT-asiantuntijat, tietosuoja toteutuu arjessa jokaisen työntekijän toiminnassa. Huolellinen kirjautuminen, oikeiden vastaanottajien tarkistaminen ja ohjeiden noudattaminen ovat osa jokaisen ammatillista vastuuta. Tietosuoja ei siis ole vain johdon tai IT-osaston tehtävä, vaan jokainen työntekijä vaikuttaa omalla toiminnallaan siihen, pysyvätkö tiedot turvassa."
-    }
+    },
 
+  {
+  title: "Valkohattuhakkeri ja haavoittuvuus",
+  text:  "Valkohattuhakkeri on tietoturva-asiantuntija tai harrastaja, joka etsii järjestelmistä haavoittuvuuksia hyväntahtoisesti ja luvallisesti. Hänen tarkoituksensa ei ole varastaa tietoja tai aiheuttaa haittaa, vaan auttaa organisaatiota korjaamaan heikkouksia ennen kuin rikolliset ehtivät hyödyntää niitä. Valkohattuhakkerit voivat osallistua esimerkiksi tietoturvatestaukseen, haavoittuvuuksien raportointiin ja järjestelmien turvallisuuden parantamiseen.",
+  interactive: {
+    type: "choice_reveal",
+    prompt: "Valkohattuhakkeri löytää potilastietojärjestelmästä haavoittuvuuden. Mitä hän tekee?",
+    options: [
+      {
+        label: "Raportoi haavoittuvuuden organisaatiolle",
+        feedback:
+          "Kyllä. Valkohattuhakkerin tehtävä on ilmoittaa löydöksestä, jotta se voidaan korjata."
+      },
+      {
+        label: "Käyttää haavoittuvuutta testatakseen kuinka paljon tietoa saa ulos",
+        feedback:
+          "Ei. Haavoittuvuuden hyödyntäminen ilman lupaa ei kuulu eettiseen tietoturvatyöhön."
+      },
+      {
+        label: "Myy tiedon haavoittuvuudesta verkossa",
+        feedback:
+          "Ei. Tämä olisi rikollista toimintaa."
+      }
+    ],
+    highlight: 0
+  }
+}
+ 
   ],
+
 
   questions: [
 

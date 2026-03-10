@@ -5,7 +5,7 @@ const yleinen = {
 
     // 1) AINOA bullet-slide
     {
-      title: "Mitä kyberturvallisuus suojaa?",
+      title: "Mitä kyberturvallisuudella suojataan",
       bullets: [
         "Potilas- ja asiakastiedot: luottamuksellisuus, oikeellisuus ja turvallinen käsittely.",
         "Järjestelmät ja palvelut: käytettävyys myös häiriötilanteissa ja hyökkäysten aikana.",
@@ -17,7 +17,7 @@ const yleinen = {
     {
       title: "Mitä kyberturvallisuus tarkoittaa sote-alalla?",
       text:
-        "Kyberturvallisuus tarkoittaa digitaalisen tiedon, järjestelmien ja palveluiden suojaamista luvattomalta käytöltä, muutoksilta ja häiriöiltä. Sote-alalla kyse ei ole vain tekniikasta, vaan myös ihmisten turvallisuudesta: potilasturvallisuus ja luottamus riippuvat siitä, että tiedot ovat oikein, saatavilla oikeaan aikaan ja vain oikeiden henkilöiden käytössä."
+        "Kyberturvallisuudella tarkoitetaan digitaalisen tiedon, tietojärjestelmien ja palveluiden suojaamista luvattomalta käytöltä, muutoksilta sekä toiminnan häiriöiltä. Sosiaali- ja terveydenhuollon toimintaympäristössä kyberturvallisuus ei rajoitu pelkästään teknisiin ratkaisuihin, vaan sillä on suora yhteys myös ihmisten turvallisuuteen. Potilasturvallisuus ja luottamuksellisuus perustuvat siihen, että potilastiedot säilyvät eheinä, ovat saatavilla oikeaan aikaan hoidon toteuttamiseksi ja ovat ainoastaan siihen oikeutettujen henkilöiden käytettävissä."
     },
 
     // 3) y2 + y5 + y4
@@ -49,7 +49,7 @@ const yleinen = {
     {
       title: "Ihmisten toiminta on keskeinen osa kyberturvaa",
       text:
-        "Tekniikka auttaa, mutta arjen toimintatavat ratkaisevat paljon. Huolellinen kirjautuminen, turvallinen salasanojen käyttö, ohjeiden noudattaminen ja epäselvien tilanteiden varmistaminen vähentävät riskejä merkittävästi. Hyvä kyberturva tarkoittaa myös sitä, että työntekijä uskaltaa kysyä ja ilmoittaa poikkeamista ajoissa, koska nopea reagointi voi estää suuremman vahingon.",
+        "Tekniikka auttaa, mutta arjen toimintatavat ratkaisevat paljon. Huolellinen kirjautuminen, turvallinen salasanojen käyttö, ohjeiden noudattaminen ja epäselvien tilanteiden varmistaminen vähentävät riskejä merkittävästi. Hyvä kyberturva tarkoittaa myös sitä, että työntekijä uskaltaa kysyä ja ilmoittaa poikkeamista ajoissa, koska nopea reagointi voi estää suuremman vahingon syntymisen.",
       callout: {
         label: "Tapaus",
         icon: "💡",

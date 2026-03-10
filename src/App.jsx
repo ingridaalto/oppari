@@ -8,6 +8,7 @@ import osaajaImg from "./assets/osaaja_temp.png";
 import mestariImg from "./assets/mestari_temp.png";
 import taustaImg from "./assets/tausta.png";
 import correctSound from "./assets/correct.mp3";
+import wrongSound from "./assets/wrong.mp3";
 
 
 
@@ -88,6 +89,7 @@ export default function App() {
   // selections
   const [selected, setSelected] = useState([]);
   const [dragOrder, setDragOrder] = useState([]); // sisältää item-indeksit järjestyksessä
+  const [categorized, setCategorized] = useState({});
 
 
   // counters
@@ -270,6 +272,7 @@ function triggerPopMessage(message) {
 function resetAnswersForNext() {
   setSelected([]);
   setDragOrder([]);
+  setCategorized({});
   setLastCorrect(null);
   setInteractiveChoice(null);
   setActiveWarningSpot(null);
@@ -287,13 +290,14 @@ function handleMatchRightClick(index) {
   if (activeMatchLeft === null) return;
   if (matchedPairs.includes(index)) return;
 
-  if (activeMatchLeft === index) {
+    if (activeMatchLeft === index) {
     setMatchedPairs((prev) => [...prev, index]);
     setMatchFeedback("correct");
     triggerPopMessage("✨ Hyvä havainto");
     playCorrectSound();
   } else {
     setMatchFeedback("wrong");
+    playWrongSound();
   }
 
   setActiveMatchLeft(null);
@@ -316,7 +320,14 @@ function gradeQuestion(q) {
     return isOrderEqual(dragOrder, q.correctOrder);
   }
 
-  // tulevaisuudessa: drag_drop matching tms
+  if (q.type === "categorize") {
+    // tarkistetaan että jokaisessa kategoriassa on täsmälleen oikeat itemit
+    return q.categories.every((cat) => {
+      const userItems = categorized[cat.id] || [];
+      return arraysEqualAsSets(userItems, cat.correctItems);
+    });
+  }
+
   return false;
 }
 
@@ -344,10 +355,19 @@ function validateBeforeSubmit(q) {
     }
   }
 
+  if (q.type === "categorize") {
+    const allPlaced = q.categories.reduce((sum, cat) => {
+      return sum + ((categorized[cat.id] || []).length);
+    }, 0);
+
+    if (allPlaced !== q.items.length) {
+      alert("Sijoita kaikki kohdat laatikoihin ennen vastaamista.");
+      return false;
+    }
+  }
+
   return true;
 }
-
-
   function submitStudyAnswer() {
   if (!studyQ) return;
 
@@ -360,22 +380,23 @@ function validateBeforeSubmit(q) {
   setStudyAnswered((n) => n + 1);
 
   if (correct) {
-  setCorrectAll((n) => n + 1);
-  setStudyCorrect((n) => n + 1);
-  playCorrectSound();
-}
+    setCorrectAll((n) => n + 1);
+    setStudyCorrect((n) => n + 1);
+    playCorrectSound();
+  } else {
+    playWrongSound();
+  }
 
   setModuleProgress((prev) =>
-  prev.map((m, i) =>
-    i === themeIndex
-      ? { ...m, answered: Math.min(m.total, m.answered + 1) }
-      : m
-  )
-);
+    prev.map((m, i) =>
+      i === themeIndex
+        ? { ...m, answered: Math.min(m.total, m.answered + 1) }
+        : m
+    )
+  );
 
   setScreen("studyFeedback");
 }
-
 
   function nextAfterStudyFeedback() {
     resetAnswersForNext();
@@ -410,6 +431,7 @@ function validateBeforeSubmit(q) {
 
   function beginExam() {
     setSelected([]);
+    setCategorized({});
     setLastCorrect(null);
     setExamIndex(0);
     setScreen("examQuiz");
@@ -431,6 +453,9 @@ function validateBeforeSubmit(q) {
   if (correct) {
     setCorrectAll((n) => n + 1);
     setExamCorrect((n) => n + 1);
+    playCorrectSound();
+  } else {
+    playWrongSound();
   }
 
   setScreen("examFeedback");
@@ -467,6 +492,12 @@ function validateBeforeSubmit(q) {
 
   function playCorrectSound() {
   const audio = new Audio(correctSound);
+  audio.volume = 0.4;
+  audio.play().catch(() => {});
+}
+
+function playWrongSound() {
+  const audio = new Audio(wrongSound);
   audio.volume = 0.4;
   audio.play().catch(() => {});
 }
@@ -528,9 +559,7 @@ function validateBeforeSubmit(q) {
         <h1 className="coverTitle">Kyberturvaopas</h1>
 
         <p className="coverLead">
-  Tämä kyberturvaopas on suunnattu sote-työntekijöille. Ensin käydään läpi
-  tärkeimmät aiheet teoriaosuuksien ja kysymysten avulla. Lopuksi tehdään testi,
-  josta tulee saada vähintään 80 % oikein.
+  Tämä kyberturvaoppaana toimiva peli on suunnattu sosiaali- ja terveysalan työntekijöille. Koulutus etenee aiheen teoriaosuuksilla, joiden ymmärtämistä testataan kouluttavilla monivalintakysymyksillä. Peli päättyy tenttiin, jonka läpipääsemiseksi vähintään 80% on oltava oikein.
 </p>
 
         <div className="coverActions">
@@ -724,12 +753,14 @@ function validateBeforeSubmit(q) {
   type="button"
   className={`infoChoiceBtn ${selected ? "selected" : ""} ${highlight ? "highlight" : ""}`}
   onClick={() => {
-    setInteractiveChoice(idx);
-    if (currentInteractive.highlight === idx) {
-     triggerPopMessage("✨ Hyvä havainto");
-     playCorrectSound();
-    }
-  }}
+  setInteractiveChoice(idx);
+  if (currentInteractive.highlight === idx) {
+    triggerPopMessage("✨ Hyvä havainto");
+    playCorrectSound();
+  } else {
+    playWrongSound();
+  }
+}}
 >
   {option.label}
 </button>
@@ -907,12 +938,14 @@ function validateBeforeSubmit(q) {
     <div className="lessonBody">
       <div className="legendRow">
         <span className="legendPill">
-          {studyQ.type === "multi"
-            ? "Valitse yksi tai useampi"
-            : studyQ.type === "drag_order"
-            ? "Järjestä kohdat"
-            : "Valitse yksi"}
-        </span>
+  {examQ.type === "multi"
+    ? "Valitse yksi tai useampi"
+    : examQ.type === "drag_order"
+    ? "Järjestä kohdat"
+    : examQ.type === "categorize"
+    ? "Vedä oikeisiin laatikoihin"
+    : "Valitse yksi"}
+</span>
       </div>
 
       <p className="prompt">{studyQ.question}</p>
@@ -1100,37 +1133,48 @@ function validateBeforeSubmit(q) {
 
       <p className="prompt">{examQ.question}</p>
 
-      {(examQ.type === "single" || examQ.type === "multi") && (
-        <div className="options">
-          {examQ.options.map((opt, idx) => {
-            const checked = selected.includes(idx);
-            return (
-              <label
-                key={`${examQ.id}-${idx}`}
-                className={`option optionPro ${checked ? "selected" : ""}`}
-              >
-                <input
-                  type={examQ.type === "multi" ? "checkbox" : "radio"}
-                  name={`exam-${examQ.id}`}
-                  checked={checked}
-                  onChange={() =>
-                    examQ.type === "multi"
-                      ? toggleMulti(idx)
-                      : selectSingle(idx)
-                  }
-                />
-                <span className="optionText">{opt}</span>
-              </label>
-            );
-          })}
-        </div>
-      )}
+    {(examQ.type === "single" || examQ.type === "multi") && (
+  <div className="options">
+    {examQ.options.map((opt, idx) => {
+      const checked = selected.includes(idx);
+      return (
+        <label
+          key={`${examQ.id}-${idx}`}
+          className={`option optionPro ${checked ? "selected" : ""}`}
+        >
+          <input
+            type={examQ.type === "multi" ? "checkbox" : "radio"}
+            name={`exam-${examQ.id}`}
+            checked={checked}
+            onChange={() =>
+              examQ.type === "multi"
+                ? toggleMulti(idx)
+                : selectSingle(idx)
+            }
+          />
+          <span className="optionText">{opt}</span>
+        </label>
+      );
+    })}
+  </div>
+)}
 
-      {examQ.type === "drag_order" && (
-        <div className="dragProWrap">
-          <DragOrder items={examQ.items} value={dragOrder} onChange={setDragOrder} />
-        </div>
-      )}
+{examQ.type === "drag_order" && (
+  <div className="dragProWrap">
+    <DragOrder items={examQ.items} value={dragOrder} onChange={setDragOrder} />
+  </div>
+)}
+
+{examQ.type === "categorize" && (
+  <div className="dragProWrap">
+    <CategorizeQuestion
+      categories={examQ.categories}
+      items={examQ.items}
+      value={categorized}
+      onChange={setCategorized}
+    />
+  </div>
+)}
     </div>
 
     <div className="cardFooter">
@@ -1165,14 +1209,27 @@ function validateBeforeSubmit(q) {
         <div className="feedbackText">{examQ.explanation}</div>
 
         {!lastCorrect && (
-          <div className="muted small" style={{ marginTop: 8 }}>
-            <b>Oikea vastaus:</b>{" "}
-            {(examQ.type === "single" || examQ.type === "multi") &&
-              examQ.correct.map((i) => examQ.options[i]).join(" · ")}
-            {examQ.type === "drag_order" &&
-              examQ.correctOrder.map((i) => examQ.items[i]).join(" → ")}
+  <div className="muted small" style={{ marginTop: 8 }}>
+    <b>Oikea vastaus:</b>{" "}
+
+    {(examQ.type === "single" || examQ.type === "multi") &&
+      examQ.correct.map((i) => examQ.options[i]).join(" · ")}
+
+    {examQ.type === "drag_order" &&
+      examQ.correctOrder.map((i) => examQ.items[i]).join(" → ")}
+
+    {examQ.type === "categorize" && (
+      <div style={{ marginTop: 8 }}>
+        {examQ.categories.map((cat) => (
+          <div key={cat.id} style={{ marginBottom: 6 }}>
+            <b>{cat.label}:</b>{" "}
+            {cat.correctItems.map((i) => examQ.items[i]).join(" · ")}
           </div>
-        )}
+        ))}
+      </div>
+    )}
+  </div>
+)}
       </div>
     </div>
 
@@ -1497,6 +1554,157 @@ function ModuleSidebar({ themes, moduleProgress, activeIndex, unlockedIndex, onS
       })}
     </nav>
   );
+}
+
+function CategorizeQuestion({ categories, items, value, onChange }) {
+  const placedMap = value || {};
+
+  const placedIds = Object.values(placedMap).flat();
+  const available = items
+    .map((text, index) => ({ index, text }))
+    .filter((item) => !placedIds.includes(item.index));
+
+  function allowDrop(e) {
+    e.preventDefault();
+  }
+
+  function onDragStartFromPool(e, itemIndex) {
+    e.dataTransfer.setData(
+      "text/plain",
+      JSON.stringify({ from: "pool", itemIndex })
+    );
+  }
+
+  function onDragStartFromCategory(e, categoryId, itemIndex) {
+    e.dataTransfer.setData(
+      "text/plain",
+      JSON.stringify({ from: "category", categoryId, itemIndex })
+    );
+  }
+
+  function dropIntoCategory(e, targetCategoryId) {
+    e.preventDefault();
+    const data = JSON.parse(e.dataTransfer.getData("text/plain") || "{}");
+
+    // poolista laatikkoon
+    if (data.from === "pool") {
+      const current = placedMap[targetCategoryId] || [];
+      if (current.includes(data.itemIndex)) return;
+
+      onChange({
+        ...placedMap,
+        [targetCategoryId]: [...current, data.itemIndex]
+      });
+      return;
+    }
+
+    // kategoriasta toiseen
+    if (data.from === "category") {
+      const sourceCategory = data.categoryId;
+      const itemIndex = data.itemIndex;
+
+      if (sourceCategory === targetCategoryId) return;
+
+      const sourceItems = (placedMap[sourceCategory] || []).filter(
+        (id) => id !== itemIndex
+      );
+      const targetItems = placedMap[targetCategoryId] || [];
+
+      onChange({
+        ...placedMap,
+        [sourceCategory]: sourceItems,
+        [targetCategoryId]: [...targetItems, itemIndex]
+      });
+    }
+  }
+
+  function dropBackToPool(e) {
+    e.preventDefault();
+    const data = JSON.parse(e.dataTransfer.getData("text/plain") || "{}");
+
+    if (data.from === "category") {
+      const sourceCategory = data.categoryId;
+      const itemIndex = data.itemIndex;
+
+      onChange({
+        ...placedMap,
+        [sourceCategory]: (placedMap[sourceCategory] || []).filter(
+          (id) => id !== itemIndex
+        )
+      });
+    }
+  }
+
+  function removeFromCategory(categoryId, itemIndex) {
+    onChange({
+      ...placedMap,
+      [categoryId]: (placedMap[categoryId] || []).filter((id) => id !== itemIndex)
+    });
+  }
+
+  return (
+  <div className="categorizeWrap">
+    <div className="muted small" style={{ marginBottom: 6 }}>
+      Vedä jokainen ilmiö oikeaan kategoriaan.
+    </div>
+
+    <div className="categorizeTopPool">
+      {available.length === 0 && (
+        <div className="ddEmpty">Kaikki kohdat on sijoitettu.</div>
+      )}
+
+      {available.map((item) => (
+        <div
+          key={item.index}
+          className="ddCard categorizeChip"
+          draggable
+          onDragStart={(e) => onDragStartFromPool(e, item.index)}
+        >
+          <span className="ddHandle" aria-hidden="true">⠿</span>
+          <span>{item.text}</span>
+        </div>
+      ))}
+    </div>
+
+    <div className="categorizeBottomRow">
+      {categories.map((cat) => {
+        const catItems = placedMap[cat.id] || [];
+
+        return (
+          <div key={cat.id} className="categorizePanel compact">
+            <div className="ddTitle">{cat.label}</div>
+
+            <div
+              className="categorizeDropZone compact"
+              onDragOver={allowDrop}
+              onDrop={(e) => dropIntoCategory(e, cat.id)}
+            >
+              {catItems.length === 0 && (
+                <div className="ddEmpty">Pudota tähän…</div>
+              )}
+
+              {catItems.map((itemIndex) => (
+                <div
+                  key={`${cat.id}-${itemIndex}`}
+                  className="ddCard placed categorizeChip"
+                  draggable
+                  onDragStart={(e) =>
+                    onDragStartFromCategory(e, cat.id, itemIndex)
+                  }
+                  onClick={() => removeFromCategory(cat.id, itemIndex)}
+                  title="Klikkaa poistaaksesi"
+                >
+                  <span className="ddHandle" aria-hidden="true">⠿</span>
+                  <span>{items[itemIndex]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+);
 }
 
 const DragOrder = DragDropOrder;
