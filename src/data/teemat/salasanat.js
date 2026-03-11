@@ -12,7 +12,7 @@ const salasanat = {
   title: "Vahva salasana: pituus ja ainutlaatuisuus",
   lines: [
     "✅ Suosi pitkää salasanaa tai useasta sanasta muodostettua lausetta (vähintään 14–16 merkkiä).",
-    "✅ Käytä eri salasanaa eri palveluissa – näin estät ketjuvuodot, jos yksi palvelu vaarantuu.",
+    "✅ Käytä eri salasanaa eri palveluissa, sillä näin estät ketjuvuodot, jos jokin palvelu vaarantuu.",
     "⚠️ Älä käytä henkilötietoja, työpaikan nimeä tai syntymävuosia.",
     "⚠️ Älä kirjoita salasanaa näkyville tai säilytä sitä helposti löydettävässä paikassa."
   ],
@@ -31,7 +31,7 @@ const salasanat = {
     },
     {
       label: "Kuu!Joki7-Lasi?Metsä92",
-      feedback: "Tämä on selvästi vahvempi vaihtoehto. Se on pitkä, siinä on vaihtelua, eikä se perustu henkilötietoihin tai helposti arvattavaan sanaan. Tällainen pitkä ja ainutlaatuinen salasana tai salalause tukee paremmin turvallista tunnistautumista."
+      feedback: "Tämä on selvästi vahvempi vaihtoehto. Se on pitkä, siinä on vaihtelua, eikä se perustu henkilötietoihin tai helposti arvattavaan sanaan. Tällainen pitkä ja ainutlaatuinen salasana tukee paremmin turvallista tunnistautumista."
     }
   ],
   highlight: 2
@@ -52,7 +52,7 @@ const salasanat = {
   {
   title: "Monivaiheinen tunnistautuminen (MFA)",
   text:
-    "MFA tarkoittaa, että kirjautuminen varmistetaan kahdella tai useammalla tekijällä (esim. salasana + kertakäyttökoodi tai hyväksyntä sovelluksessa). Tämä vähentää riskiä, että pelkkä vuotanut salasana riittäisi kirjautumiseen. Hyväksy vahvistus vain silloin, kun itse olet kirjautumassa – odottamaton hyväksyntäpyyntö voi olla merkki hyökkäyksestä.",
+    "MFA tarkoittaa, että kirjautuminen varmistetaan kahdella tai useammalla tekijällä (esim. salasana + kertakäyttökoodi tai hyväksyntä sovelluksessa). Tämä vähentää riskiä, että pelkkä vuotanut salasana riittäisi kirjautumiseen. Hyväksy vahvistus vain silloin, kun itse olet kirjautumassa. Odottamaton hyväksyntäpyyntö voi olla merkki hyökkäyksestä.",
   interactive: {
     type: "choice_reveal",
     prompt: "Saat puhelimeesi kirjautumisen hyväksyntäpyynnön, vaikka et itse ole kirjautumassa.",
@@ -122,7 +122,7 @@ const salasanat = {
       ],
       correct: [1],
       explanation:
-        "MFA tarkoittaa, että kirjautumisessa tarvitaan vähintään kaksi vahvistusta (esim. salasana + kertakäyttökoodi tai hyväksyntä sovelluksessa). Biometria voi olla yksi tunnistustapa, mutta MFA ei tarkoita automaattisesti biometriaa. VPN taas liittyy yhteyden suojaamiseen, ei käyttäjän tunnistamiseen."
+        "MFA tarkoittaa, että kirjautumisessa tarvitaan vähintään kaksi vahvistusta (esim. salasana + kertakäyttökoodi tai hyväksyntä sovelluksessa). Biometria voi olla yksi tunnistustapa, mutta MFA ei tarkoita automaattisesti biometriaa."
     },
 
     {
@@ -162,7 +162,7 @@ const salasanat = {
       options: ["PIN-koodi", "Käyttäjätunnus", "Sormenjälkitunnistus", "VPN-yhteys"],
       correct: [2],
       explanation:
-        "Sormenjälkitunnistus on biometrinen tunnistustapa, koska se perustuu fyysiseen ominaisuuteen. PIN-koodi ja käyttäjätunnus ovat tietoon perustuvia (ei-biometrisiä) tunnisteita. VPN ei ole tunnistautumismenetelmä vaan yhteystapa."
+        "Sormenjälkitunnistus on biometrinen tunnistustapa, koska se perustuu fyysiseen ominaisuuteen. PIN-koodi ja käyttäjätunnus ovat tietoon perustuvia (ei-biometrisiä) tunnisteita."
     }
   ]
 };

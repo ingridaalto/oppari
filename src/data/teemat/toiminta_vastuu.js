@@ -27,7 +27,7 @@ const toiminta_vastuu = {
         label: "Ammatillinen vastuu",
         icon: "📂",
         text:
-          "Potilastietojärjestelmissä kaikki katselut ja muutokset lokitetaan käyttäjätunnuksen mukaan. Tunnusten suojaaminen on myös oman ammatillisen vastuun suojaamista."
+          "Potilastietojärjestelmissä kaikki katselut ja muutokset tallentuvat käyttäjätunnuksen mukaan. Tunnusten suojaaminen on myös oman ammatillisen vastuun suojaamista."
       }
     },
 
@@ -41,7 +41,7 @@ const toiminta_vastuu = {
       title: "Huolellisuus on paras suoja",
       bullets: [
         "Huolimattomuus on yksi merkittävimmistä kyberturvariskeistä.",
-        "Turvallinen toiminta ei hidasta työtä – se suojaa sitä.",
+        "Turvallinen toiminta ei hidasta työtä, vaan se suojaa sitä.",
         "Kysy mieluummin kuin arvaa, jos olet epävarma.",
         "Nopea raportointi vähentää vahinkoja."
       ]
@@ -92,7 +92,7 @@ const toiminta_vastuu = {
       ],
       correct: [2],
       explanation:
-        "Epäilyttävää viestiä ei tule avata tai vastata siihen. Oikea toimintatapa on olla klikkaamatta linkkejä, raportoida viesti organisaation ohjeen mukaan ja poistaa se ohjeiden mukaisesti."
+        "Epäilyttävää viestiä ei tule avata eikä siihen tule vastata. Oikea toimintatapa on olla klikkaamatta linkkejä, raportoida viesti organisaation ohjeen mukaan ja poistaa se ohjeiden mukaisesti."
     },
 
     {

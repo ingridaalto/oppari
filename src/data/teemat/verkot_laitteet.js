@@ -29,7 +29,7 @@ const verkot_laitteet = {
     label: "Ilmiö",
     icon: "📡",
     text:
-      "Hyökkääjä voi luoda julkiseen tilaan vale-Wi-Fi-verkon, jonka nimi muistuttaa oikeaa verkkoa (ns. 'evil twin'). Kun käyttäjä yhdistää siihen, liikennettä voidaan seurata tai ohjata huijaussivuille."
+      "Hyökkääjä voi luoda julkiseen tilaan vale-Wi-Fi-verkon, jonka nimi muistuttaa oikeaa verkkoa (ns. evil twin). Kun käyttäjä yhdistää siihen, liikennettä voidaan seurata tai ohjata huijaussivuille."
   }
 },
 

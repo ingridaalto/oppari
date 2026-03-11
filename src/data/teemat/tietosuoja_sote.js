@@ -6,7 +6,7 @@ const tietosuoja_sote = {
     {
       title: "Tietosuoja on osa potilasturvallisuutta",
       text:
-        "Tietosuoja tarkoittaa henkilötietojen suojaamista ja asianmukaista käsittelyä. Sosiaali- ja terveysalalla käsitellään erityisen arkaluonteisia tietoja, kuten terveystietoja ja sosiaalihuollon asiakastietoja. Tietosuoja ei ole vain lakisääteinen velvollisuus – se on osa luottamusta ja potilasturvallisuutta. Jos tietoja käsitellään huolimattomasti, seuraukset voivat koskea sekä yksityisyyttä että hoidon laatua."
+        "Tietosuoja tarkoittaa henkilötietojen suojaamista ja asianmukaista käsittelyä. Sosiaali- ja terveysalalla käsitellään erityisen arkaluonteisia tietoja, kuten terveystietoja ja sosiaalihuollon asiakastietoja. Tietosuoja ei ole vain lakisääteinen velvollisuus, vaan osa luottamusta ja potilasturvallisuutta. Jos tietoja käsitellään huolimattomasti, seuraukset voivat koskea sekä yksityisyyttä että hoidon laatua."
     },
 
     {

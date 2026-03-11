@@ -1073,8 +1073,8 @@ function playWrongSound() {
             </div>
 
             <div className="moduleMiniRight muted small">
-              {m.answered}/{m.total} · {pct}%
-            </div>
+  {pct}%
+</div>
           </div>
         );
       })}
@@ -1250,9 +1250,6 @@ function playWrongSound() {
         <div className="kicker">Tulokset</div>
         <h2 className="sceneTitle">Yhteenveto</h2>
       </div>
-      <div className="lessonRight">
-        <span className="tag">Kokonais-%: {overallPct}%</span>
-      </div>
     </div>
 
     <div className="lessonBody">
@@ -1308,14 +1305,15 @@ function playWrongSound() {
     </div>
   </div>
 
-  <a
-    className="feedbackBoxLink"
-    href="https://forms.office.com/Pages/ResponsePage.aspx?id=b6ZgTI0KbkSawINqANhFQpRoH_Ujb25Iu_GvZyenDwRURFdEQkRSRlFMWTJaNDg4UFA3QTBTOTgwQS4u&origin=Invitation&channel=0I"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Vastaa kyselyyn →
-  </a>
+ <a
+  className="feedbackBoxLink"
+  href="https://forms.office.com/Pages/ResponsePage.aspx?id=b6ZgTI0KbkSawINqANhFQpRoH_Ujb25Iu_GvZyenDwRURFdEQkRSRlFMWTJaNDg4UFA3QTBTOTgwQS4u&origin=Invitation&channel=0I"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Vastaa kyselyyn
+  <span className="feedbackArrow">→</span>
+</a>
 </div>
 
     <div className="cardFooter">

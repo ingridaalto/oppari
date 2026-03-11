@@ -1,6 +1,6 @@
 // src/data/teemat/exam.js
 const exam = [
-  /*{
+   {
     id: "ex1",
     type: "single",
     question:
@@ -36,7 +36,7 @@ const exam = [
     id: "ex3",
     type: "single",
     question:
-      "Osastonhoitajalta näyttävä videopuhelu pyytää lähettämään potilaslistan \"välittömästi auditointiin\". Mikä on olennaisin riskitekijä?",
+      "Osastonhoitajalta näyttävä videopuhelu pyytää lähettämään potilaslistan välittömästi auditointiin. Mikä on olennaisin riskitekijä?",
     options: [
       "Tietojen kiireellinen siirto ilman varmistusta",
       "Videoyhteyden huono laatu",
@@ -222,7 +222,7 @@ const exam = [
     correct: [1],
     explanation:
       "Haitallinen liite + tiedostojen avautumattomuus viittaa kiristyshaittaohjelmaan, joka voi levitä ja häiritä verkkoa."
-  } , */
+  } , 
 
   {
   id: "ex15",
@@ -237,21 +237,22 @@ const exam = [
     {
       id: "phishing",
       label: "Phishing",
-      correctItems: [2, 3]
+      correctItems: [2, 4]
     },
     {
       id: "ransomware",
       label: "Ransomware",
-      correctItems: [4, 5]
+      correctItems: [3, 5]
     }
   ],
   items: [
-    "Järjestelmä hidastuu merkittävästi",
     "Palvelu ei ole käyttäjien saatavilla suuren kuormituksen vuoksi",
+    "Järjestelmä hidastuu merkittävästi",
     "Viestissä luodaan kiireen tuntua",
+    "Näytölle ilmestyy lunnasviesti",
     "Epäilyttävä linkki tai kirjautumispyyntö sähköpostissa",
     "Tiedostoja ei voi avata",
-    "Näytölle ilmestyy lunnasviesti"
+    
   ],
   explanation:
     "DDoS näkyy usein palvelun hidastumisena tai estymisenä. Phishingiin liittyy kiire, huijausviestit ja linkit. Ransomware puolestaan salaa tiedostoja ja vaatii usein lunnaita."

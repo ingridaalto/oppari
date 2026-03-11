@@ -5,7 +5,7 @@ const uhat_laitteet_ulkoiset = {
     {
       title: "Ulkoiset uhat – miksi tämä koskee myös sote-alaa?",
       text:
-        "Ulkoiset uhat ovat hyökkäyksiä, jotka tulevat organisaation ulkopuolelta: verkon kautta, huijausten avulla tai fyysisten laitteiden kautta. Hyökkääjät voivat yrittää häiritä palveluita, päästä käsiksi tietoihin tai hyödyntää järjestelmiä muihin hyökkäyksiin. Sote-ympäristössä vaikutus voi näkyä nopeasti palvelun saatavuudessa, esimerkiksi ajanvarauksen, viestinnän tai potilastietojärjestelmien toiminnassa. Ulkoiset uhat eivät aina kohdistu suoraan yksittäiseen työntekijään, mutta käyttäjän huolellinen toiminta – kuten epäilyttävien laitteiden välttäminen ja ohjeiden noudattaminen – vähentää riskiä merkittävästi."
+        "Ulkoiset uhat ovat hyökkäyksiä, jotka tulevat organisaation ulkopuolelta: verkon kautta, huijausten avulla tai fyysisten laitteiden kautta. Hyökkääjät voivat yrittää häiritä palveluita, päästä käsiksi tietoihin tai hyödyntää järjestelmiä muihin hyökkäyksiin. Sote-ympäristössä vaikutus voi näkyä nopeasti palvelun saatavuudessa, esimerkiksi ajanvarauksen, viestinnän tai potilastietojärjestelmien toiminnassa. Ulkoiset uhat eivät aina kohdistu suoraan yksittäiseen työntekijään, mutta käyttäjän huolellinen toiminta, kuten epäilyttävien laitteiden välttäminen ja ohjeiden noudattaminen, vähentää riskiä merkittävästi."
     },
 
    {
@@ -29,7 +29,7 @@ const uhat_laitteet_ulkoiset = {
       lines: [
         "✅ Tuntematon USB voi sisältää haittaohjelman tai käynnistää haitallisen toiminnon automaattisesti.",
         "✅ Toimi aina ohjeen mukaan: ilmoita löydöstä IT-tuelle / tietoturvalle.",
-        "⚠️ Älä testaa laitetta omalla työasemalla tai 'vain katso mitä siellä on'.",
+        "⚠️ Älä testaa laitetta omalla työasemalla tai katso mitä siellä on.",
         "⚠️ Älä anna sitä kollegalle kokeiltavaksi tai vie kotiin."
       ]
     },

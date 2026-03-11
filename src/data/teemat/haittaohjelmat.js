@@ -5,7 +5,7 @@ const haittaohjelmat = {
   {
     title: "Mitä haittaohjelmat ovat?",
     text:
-      "Haittaohjelma on ohjelma, jonka tarkoitus on vahingoittaa järjestelmää tai kerätä tietoa ilman lupaa. Sote-ympäristössä haitta voi kohdistua potilastietoihin, työasemien toimintaan ja palveluiden saatavuuteen. Haittaohjelma ei ole vain 'tekninen ongelma' – se voi häiritä hoidon ja palvelun jatkuvuutta."
+      "Haittaohjelma on ohjelma, jonka tarkoitus on vahingoittaa järjestelmää tai kerätä tietoja luvatta. Sosiaali- ja terveysalan työympäristössä haitta voi kohdistua potilastietoihin, työasemien toimintaan ja palveluiden saatavuuteen. Haittaohjelma ei ole vain tekninen ongelma vaan se voi häiritä hoidon ja palvelun luotettavuutta ja jatkuvuutta."
   },
 
   {
@@ -21,7 +21,7 @@ const haittaohjelmat = {
   {
     title: "Ransomware (kiristyshaittaohjelma)",
     text:
-      "Ransomware on haittaohjelma, joka salaa tiedostoja tai estää pääsyn järjestelmiin ja vaatii lunnaita palauttamisesta. Sote-alalla seuraukset voivat näkyä nopeasti: ajanvaraukset, kirjaaminen ja hoitotiedon saatavuus voivat häiriintyä. Maksaminen ei takaa tietojen palautumista eikä poista riskiä, vaan tärkeintä on ennaltaehkäisy ja varautuminen."
+      "Ransomware on haittaohjelma, joka salaa tiedostoja tai estää pääsyn järjestelmiin, vaatien lunnaita niiden palauttamiseksi. Sosiaali- ja terveysalalla sen seuraukset voivat näkyä nopeastikin, jos esimerkiksi ajanvaraukset, kirjaamiset ja hoitotietojen saavutettavuus häiriintyvät. Maksaminen ei kuitenkaan takaa tietojen palautumista eikä poista riskiä, vaan tärkeintä on ennaltaehkäisy ja varautuminen kyberuhkiin."
   },
 
   {
@@ -29,16 +29,16 @@ const haittaohjelmat = {
     bullets: [
       "Keylogger tallentaa näppäilyt (esim. salasanat ja kirjautumistiedot).",
       "Vakoiluohjelma kerää tietoa taustalla (esim. selaintiedot, viestit, asiakastiedot).",
-      "Nämä voivat olla vaikeita huomata, koska laite voi näyttää toimivan 'normaalisti'."
+      "Nämä voivat olla vaikeita huomata, koska laite voi näyttää toimivan normaalisti."
     ]
   },
 
  {
   title: "Toimi oikein, jos epäilet haittaohjelmaa",
   lines: [
-    "✅ Lopeta toiminta ja ilmoita välittömästi organisaation ohjeen mukaan (IT-tuki / tietoturva).",
-    "✅ Noudata annettuja ohjeita – älä tee teknisiä toimenpiteitä omin päin.",
-    "⚠️ Älä yritä korjata tai 'testata lisää' (voi levittää haittaa).",
+    "✅ Lopeta toiminta ja ilmoita havainnoista välittömästi organisaatioiden ohjeiden mukaisesti (IT-tuki / tietoturva).",
+    "✅ Noudata annettuja ohjeita, älä tee teknisiä toimenpiteitä omin päin.",
+    "⚠️ Älä yritä itse ratkaista tai testata tilannetta (voi levittää haittaa).",
     "⚠️ Älä syötä salasanoja tai kirjautumiskoodeja, jos laite tai ikkuna vaikuttaa poikkeavalta."
   ]
 }
@@ -56,7 +56,7 @@ const haittaohjelmat = {
     ],
     correct: [3],
     explanation:
-      "Haittaohjelma on ohjelma, joka on suunniteltu vahingoittamaan laitetta tai järjestelmää, häiritsemään toimintaa tai keräämään tietoa ilman lupaa. Sote-ympäristössä se voi vaarantaa potilastietojen luottamuksellisuuden ja palveluiden jatkuvuuden."
+      "Haittaohjelma on ohjelma, joka on suunniteltu vahingoittamaan tai häiritsemään laitetta tai järjestelmiä. Haittaohjelmaa saatetaan käyttää myös tiedon luvattomaan keräämiseen. Sosiaali- ja terveysalan työympäristössä se voi vaarantaa potilastietojen luottamuksellisuuden, eheyden ja jatkuvuuden."
   },
 
   {
@@ -66,7 +66,7 @@ const haittaohjelmat = {
     options: ["Vakoiluohjelma", "Kiristyshaittaohjelma", "Virustorjuntaohjelma", "VPN"],
     correct: [1],
     explanation:
-      "Ransomware (kiristyshaittaohjelma) on haittaohjelma, joka estää pääsyn tietoihin tai järjestelmiin, tyypillisesti salaamalla tiedostoja, ja vaatii lunnaita palauttamisesta. Se ei ole VPN eikä pelkkä vakoiluohjelma."
+      "Ransomware (kiristyshaittaohjelma) on haittaohjelma, joka estää pääsyn tietoihin tai järjestelmiin, tyypillisesti salaamalla tiedostoja, ja vaatii lunnaita palauttamisesta."
   },
 
   {
@@ -81,7 +81,7 @@ const haittaohjelmat = {
     ],
     correct: [1],
     explanation:
-      "Ransomware salaa tiedostoja tai lukitsee järjestelmän ja vaatii lunnaita, jotta pääsy palautettaisiin. Siksi varmuuskopiot, päivitykset ja nopea ilmoittaminen ovat keskeisiä suojakeinoja – lunnasmaksu ei takaa palautusta."
+      "Ransomware salaa tiedostoja tai lukitsee järjestelmän ja vaatii lunnaita, jotta pääsy tietoihin ja järjestelmiin palautettaisiin. Siksi varmuuskopiot, päivitykset ja nopea ilmoittaminen ovat keskeisiä suojakeinoja sillä lunnasmaksu ei takaa palautusta."
   },
 
   {

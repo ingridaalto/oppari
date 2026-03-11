@@ -752,31 +752,28 @@ main{
   margin-top:14px;
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:10px;
   max-width:74ch;
 }
 
 .microCard{
   padding:0;
   border:none;
-  background:transparent;
+  background:none;
   box-shadow:none;
 }
 
 .microBullet{
   display:grid;
-  grid-template-columns:20px 1fr;
-  gap:12px;
+  grid-template-columns:18px 1fr;
+  gap:10px;
   align-items:start;
-  padding:8px 0 8px 12px;
-  border-left:2px solid rgba(121,194,255,.18);
 }
 
 .microBulletIcon{
   color:rgba(121,194,255,.95);
   font-size:18px;
-  line-height:1.2;
-  margin-top:2px;
+  line-height:1.4;
 }
 
 .microText{
@@ -785,69 +782,66 @@ main{
   font-size:15.5px;
 }
 /* ===== Info rows ===== */
+/* ===== Info rows ===== */
 .infoList{
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:16px;
   margin-top:18px;
   max-width:78ch;
 }
 
 .infoRow{
   display:grid;
-  grid-template-columns:32px 1fr;
-  gap:12px;
+  grid-template-columns:40px 1fr;
+  gap:14px;
   align-items:start;
-  padding:14px 16px;
-  border-radius:16px;
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.07);
-}
-
-.infoMarker{
-  width:28px;
-  height:28px;
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-  font-weight:700;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.10);
-  color:rgba(255,255,255,.9);
+  padding:0;
+  border:none;
+  background:none;
 }
 
 .infoContent{
   min-width:0;
+  padding-top:2px;
 }
 
 .infoText{
-  font-size:1.05rem;
-  line-height:1.6;
+  font-size:1.02rem;
+  line-height:1.7;
+  color:rgba(255,255,255,.9);
+}
+
+/* ikoni */
+.infoMarker{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  font-weight:800;
+  line-height:1;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
   color:rgba(255,255,255,.92);
+  flex-shrink:0;
+  margin-top:1px;
 }
 
-.infoRow.ok{
-  background:rgba(90,180,140,.07);
-  border-color:rgba(90,180,140,.22);
-}
-
+/* vihreä */
 .infoRow.ok .infoMarker{
-  background:rgba(90,180,140,.14);
-  border-color:rgba(90,180,140,.28);
+  background:rgba(90,180,140,.12);
+  border-color:rgba(90,180,140,.22);
   color:#dff7ea;
 }
 
-.infoRow.warn{
-  background:rgba(210,170,80,.06);
-  border-color:rgba(210,170,80,.20);
-}
-
+/* punertava */
 .infoRow.warn .infoMarker{
-  background:rgba(210,170,80,.14);
-  border-color:rgba(210,170,80,.28);
-  color:#fff1cc;
+  background:rgba(255,127,143,.12);
+  border-color:rgba(255,127,143,.22);
+  color:#ffe3e8;
 }
 
 /* ===== Quiz ===== */
@@ -1182,21 +1176,53 @@ main{
 }
 
 .feedbackBoxLink{
-  font-size:.9rem;
-  font-weight:600;
-  color:#8edcff;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  padding:10px 14px;
+  min-height:40px;
+
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.02);
+
+  color:rgba(231,238,252,.88);
   text-decoration:none;
-  padding:6px 12px;
-  border-radius:999px;
-  background:rgba(142,220,255,.08);
-  border:1px solid rgba(142,220,255,.18);
-  transition:all .15s ease;
+  font-size:.92rem;
+  font-weight:600;
+  line-height:1;
+  white-space:nowrap;
+
+  transition:
+    background .16s ease,
+    border-color .16s ease,
+    color .16s ease,
+    transform .16s ease,
+    box-shadow .16s ease;
 }
 
 .feedbackBoxLink:hover{
-  background:rgba(142,220,255,.16);
-  border-color:rgba(142,220,255,.35);
-  color:white;
+  background:rgba(255,255,255,.05);
+  border-color:rgba(121,194,255,.24);
+  color:#ffffff;
+  transform:translateY(-1px);
+  box-shadow:0 8px 20px rgba(0,0,0,.16);
+}
+
+.feedbackBoxLink:active{
+  transform:translateY(0);
+}
+
+.feedbackArrow{
+  font-size:13px;
+  opacity:.72;
+  transition:transform .16s ease, opacity .16s ease;
+}
+
+.feedbackBoxLink:hover .feedbackArrow{
+  transform:translate(1px, -1px);
+  opacity:1;
 }
 
 /* ===== Responsive ===== */

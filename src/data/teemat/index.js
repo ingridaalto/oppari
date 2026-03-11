@@ -31,7 +31,7 @@ export const themes = [
   theme4,
   theme5,
   theme6,
-  theme13, 
+  theme13,
   theme7,
   /* 
   theme7,
