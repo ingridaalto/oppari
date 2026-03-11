@@ -166,6 +166,13 @@ export default function App() {
   setMatchFeedback(null);
 }, [themeIndex, slideIndex, screen]);
 
+useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}, [screen, themeIndex, slideIndex, themeQuestionIndex, examIndex]);
+
   // missä asti moduulit ovat "auki" (lineaarinen eteneminen):
   // - kaikki indeksit <= themeIndex ovat auki
   const unlockedIndex = themeIndex;
