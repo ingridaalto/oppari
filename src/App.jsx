@@ -566,7 +566,7 @@ function playWrongSound() {
         <h1 className="coverTitle">Kyberturvaopas</h1>
 
         <p className="coverLead">
-  Tämä kyberturvaoppaana toimiva peli on suunnattu sosiaali- ja terveysalan työntekijöille. Koulutus etenee aiheen teoriaosuuksilla, joiden ymmärtämistä testataan kouluttavilla monivalintakysymyksillä. Peli päättyy tenttiin, jonka läpipääsemiseksi vähintään 80% on oltava oikein.
+  Tämä kyberturvaoppaana toimiva peli on suunnattu sosiaali- ja terveysalan työntekijöille. Koulutus etenee aiheen teoriaosuuksilla, joiden ymmärtämistä testataan kouluttavilla monivalintakysymyksillä. Peli päättyy tenttiin, jonka läpipääsemiseksi vähintään 80% vastauksista on oltava oikein.
 </p>
 
         <div className="coverActions">

@@ -15,7 +15,7 @@ const yleinen = {
 
     // 2) y1 + y3
     {
-      title: "Kyberturvallisuus sosiaali- ja terveydenhuolto alalla",
+      title: "Kyberturvallisuus sosiaali- ja terveydenhuoltoalalla",
       text:
         "Kyberturvallisuudella tarkoitetaan digitaalisen tiedon, tietojärjestelmien ja palveluiden suojaamista luvattomalta käytöltä, muutoksilta sekä toiminnan häiriöiltä. Sosiaali- ja terveydenhuollon toimintaympäristössä kyberturvallisuus ei rajoitu pelkästään teknisiin ratkaisuihin, vaan sillä on suora yhteys myös ihmisten turvallisuuteen. Potilasturvallisuus ja luottamuksellisuus perustuvat siihen, että potilastiedot säilyvät eheinä, ovat saatavilla oikeaan aikaan hoidon toteuttamiseksi ja ovat ainoastaan siihen oikeutettujen henkilöiden käytettävissä."
     },
@@ -24,7 +24,7 @@ const yleinen = {
    {
   title: "Kyberuhka, haavoittuvuus ja päivitykset",
   text:
-    "Kyberuhka on mahdollinen haitallinen tapahtuma, kuten kalasteluviesti, haittaohjelma tai luvaton kirjautumisyritys. Haavoittuvuus taas on järjestelmässä, ohjelmistossa tai toimintatavassa oleva heikkous, jota uhka voi hyödyntää toteutuakseen. Säännölliset päivitykset ovat tärkeä osa suojautumista, koska ne muun muassa korjaavat huomattuja tietoturva-aukkoja ennen kuin niitä ehditään käyttää väärin.",
+    "Kyberuhka on mahdollinen haitallinen tapahtuma, kuten kalasteluviesti, haittaohjelma tai luvaton kirjautumisyritys. Haavoittuvuus taas on järjestelmässä, ohjelmistossa tai toimintatavassa oleva heikkous, jota uhka voi hyödyntää toteutuakseen. Säännölliset päivitykset ovat tärkeä osa suojautumista, koska ne muun muassa korjaavat huomattuja tietoturva-aukkoja ennen kuin niitä ehditään käyttämään väärin.",
 
   interactive: {
     type: "match",
