@@ -21,7 +21,7 @@ const verkot_laitteet = {
   },
 
  {
-  title: "Julkiset Wi-Fi-verkot – mitä riskejä?",
+  title: "Julkiset Wi-Fi-verkot ja niiden riskit",
   text:
     "Avoimissa Wi-Fi-verkoissa (esim. kahviloissa, hotelleissa tai lentoasemilla) liikenne voi olla suojaamatonta. Hyökkääjä voi yrittää kaapata tietoliikennettä, ohjata käyttäjän huijaussivulle tai esiintyä valheellisena verkon tarjoajana. Arkaluonteisia potilas- tai asiakastietoja ei tule käsitellä julkisessa verkossa ilman organisaation hyväksymää suojattua yhteyttä. Etätyötilanteissa on erityisen tärkeää varmistaa, että käytössä on suojattu ja organisaation ohjeistuksen mukainen verkkoyhteys. Jos verkkosivulla käytetään HTTPS-yhteyttä, selaimen ja palvelun välinen liikenne on suojatumpaa, mutta se ei yksin tee julkisesta verkosta täysin turvallista."
   ,

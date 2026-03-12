@@ -54,7 +54,7 @@ interactive: {
 
     // 3 — Sote-konteksti
     {
-      title: "Miksi sote-ympäristö on erityinen kohde?",
+      title: "Sote-ympäristöä voidaan pitää erityisenä kohteena",
       text:
         "Sosiaali- ja terveydenhuollossa käsitellään arkaluonteisia henkilötietoja, joten onnistunut huijaus voi aiheuttaa vakavaa haittaa sekä organisaatiolle että yksittäisille ihmisille. Kiireinen työympäristö ja luottamukseen perustuva viestintäkulttuuri voivat lisätä riskiä reagoida nopeasti ilman tarkistusta. Hyökkääjä voi vedota potilasturvallisuuteen, kiireeseen tai organisaation sisäiseen auktoriteettiin, jotta viesti tuntuisi tavallista uskottavammalta."
     },
@@ -68,7 +68,7 @@ interactive: {
 
     // 5 — Käytännön toimintatapa
     {
-      title: "Miten toimia epäilyttävässä tilanteessa?",
+      title: "Toiminta epäilyttävässä tilanteessa?",
       lines: [
         "✅ Tarkista lähettäjä ja viestin sisältö ennen linkkien avaamista.",
         "✅ Varmista poikkeava pyyntö esihenkilöltä tai IT-tuelta.",

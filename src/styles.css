@@ -13,6 +13,8 @@
   --no:#ff7f8f;
 }
 
+
+
 *{box-sizing:border-box}
 
 html, body, #root{
@@ -1362,30 +1364,51 @@ main{
   text-align: left;
   padding: 14px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.055);
   color: var(--text);
   cursor: pointer;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+  transition: background .14s ease, border-color .14s ease, transform .14s ease;
 }
 
-.matchItem:hover:not(:disabled) {
+.matchItem {
+  width: 100%;
+  text-align: left;
+  padding: 14px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.055);
+  color: var(--text);
+  cursor: pointer;
+  transition: background .14s ease, border-color .14s ease, transform .14s ease;
+}
+
+.matchItem:hover:not(:disabled):not(.active):not(.matched) {
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(121,194,255,0.24);
   transform: translateY(-1px);
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(121,194,255,0.22);
 }
 
 .matchItem.active {
-  border-color: rgba(121,194,255,0.38);
-  box-shadow: 0 0 0 2px rgba(121,194,255,0.10);
-  background: rgba(121,194,255,0.08);
+  background: rgba(121,194,255,0.10);
+  border-color: rgba(121,194,255,0.34);
 }
 
 .matchItem.matched {
+  background: rgba(123,255,183,0.10);
   border-color: rgba(123,255,183,0.28);
-  background: rgba(123,255,183,0.08);
   color: rgba(255,255,255,0.92);
-  cursor: default;
+}
+
+.matchItem.active {
+  background: rgba(121,194,255,0.10);
+  border-color: rgba(121,194,255,0.34);
+}
+
+.matchItem.matched {
+  background: rgba(123,255,183,0.10);
+  border-color: rgba(123,255,183,0.28);
+  color: rgba(255,255,255,0.92);
 }
 
 .matchFeedback {
@@ -1460,28 +1483,27 @@ main{
   text-align: left;
   padding: 13px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.055);
   color: var(--text);
   cursor: pointer;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+  transition: background .14s ease, border-color .14s ease, transform .14s ease;
 }
 
 .infoChoiceBtn:hover {
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(121,194,255,0.24);
   transform: translateY(-1px);
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(121,194,255,0.22);
 }
 
 .infoChoiceBtn.selected {
-  border-color: rgba(121,194,255,0.35);
-  background: rgba(121,194,255,0.08);
-  box-shadow: 0 0 0 2px rgba(121,194,255,0.08);
+  background: rgba(121,194,255,0.10);
+  border-color: rgba(121,194,255,0.34);
 }
 
 .infoChoiceBtn.highlight {
-  border-color: rgba(123,255,183,0.30);
-  background: rgba(123,255,183,0.08);
+  background: rgba(123,255,183,0.10);
+  border-color: rgba(123,255,183,0.28);
 }
 
 .infoChoiceFeedback {
@@ -1551,29 +1573,30 @@ main{
 }
 
 .warningSpotBtn {
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.055);
   color: var(--text);
   padding: 9px 12px;
   border-radius: 999px;
   cursor: pointer;
   font-size: 14px;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+  transition: background .14s ease, border-color .14s ease, transform .14s ease;
 }
 
 .warningSpotBtn:hover {
-  background: rgba(70, 190, 120, 0.08);
-  border-color: rgba(70, 190, 120, 0.35);
-  color: rgba(220,255,235,0.95);
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(121,194,255,0.24);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
 .warningSpotBtn.selected {
-  background: rgba(70, 190, 120, 0.18);
-  border-color: rgba(70, 190, 120, 0.45);
-  color: #c8ffd9;
-  box-shadow: 0 0 0 1px rgba(70,190,120,0.35);
+  background: linear-gradient(
+    180deg,
+    rgba(123,255,183,0.16),
+    rgba(123,255,183,0.08)
+  );
+  border-color: rgba(123,255,183,0.40);
+  color: #eafff3;
 }
 
 .warningFeedback {

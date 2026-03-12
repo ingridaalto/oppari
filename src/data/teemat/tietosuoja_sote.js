@@ -20,7 +20,7 @@ const tietosuoja_sote = {
     },
 
     {
-  title: "Tietovuoto ja tietomurto – mitä eroa?",
+  title: "Tietovuodon ja tietomurron erot",
   text:
     "Tietovuoto tarkoittaa tilannetta, jossa henkilötietoja päätyy vääriin käsiin tai tulee julki ilman lupaa. Tietomurto on luvaton tunkeutuminen tietojärjestelmään. Tietomurto voi johtaa tietovuotoon, mutta tietovuoto voi syntyä myös inhimillisen virheen seurauksena, esimerkiksi väärälle vastaanottajalle lähetetystä viestistä. Siksi kaikki tietosuojaongelmat eivät johdu hakkeroinnista, vaan myös arjen huolimattomuus voi aiheuttaa vakavan tilanteen.",
   interactive: {
@@ -48,7 +48,7 @@ const tietosuoja_sote = {
 },
 
     {
-      title: "Miten tietovuoto voi vaikuttaa sote-alalla?",
+      title: "Tietovuodon seuraukset sote-alalla",
       lines: [
         "✅ Potilaan tai asiakkaan yksityisyys voi vaarantua.",
         "✅ Luottamus organisaatioon voi heikentyä.",
@@ -59,7 +59,7 @@ const tietosuoja_sote = {
     },
 
     {
-      title: "Kuka vastaa tietosuojasta?",
+      title: "Tietosuojavastuut organisaatiossa",
       text:
         "Vaikka organisaatiolla on johto, tietosuojavastaava ja IT-asiantuntijat, tietosuoja toteutuu arjessa jokaisen työntekijän toiminnassa. Huolellinen kirjautuminen, oikeiden vastaanottajien tarkistaminen ja ohjeiden noudattaminen ovat osa jokaisen ammatillista vastuuta. Tietosuoja ei siis ole vain johdon tai IT-osaston tehtävä, vaan jokainen työntekijä vaikuttaa omalla toiminnallaan siihen, pysyvätkö tiedot turvassa."
     },

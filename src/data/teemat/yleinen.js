@@ -5,7 +5,7 @@ const yleinen = {
 
     // 1) AINOA bullet-slide
     {
-      title: "Mitä kyberturvallisuudella suojataan",
+      title: "Kyberturvallisuudella suojataan",
       bullets: [
         "Potilas- ja asiakastiedot: luottamuksellisuus, oikeellisuus ja turvallinen käsittely.",
         "Järjestelmät ja palvelut: käytettävyys myös häiriötilanteissa ja hyökkäysten aikana.",
@@ -15,7 +15,7 @@ const yleinen = {
 
     // 2) y1 + y3
     {
-      title: "Mitä kyberturvallisuus tarkoittaa sosiaali- ja terveydenhuolto alalla",
+      title: "Kyberturvallisuus sosiaali- ja terveydenhuolto alalla",
       text:
         "Kyberturvallisuudella tarkoitetaan digitaalisen tiedon, tietojärjestelmien ja palveluiden suojaamista luvattomalta käytöltä, muutoksilta sekä toiminnan häiriöiltä. Sosiaali- ja terveydenhuollon toimintaympäristössä kyberturvallisuus ei rajoitu pelkästään teknisiin ratkaisuihin, vaan sillä on suora yhteys myös ihmisten turvallisuuteen. Potilasturvallisuus ja luottamuksellisuus perustuvat siihen, että potilastiedot säilyvät eheinä, ovat saatavilla oikeaan aikaan hoidon toteuttamiseksi ja ovat ainoastaan siihen oikeutettujen henkilöiden käytettävissä."
     },

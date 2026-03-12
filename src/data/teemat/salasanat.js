@@ -39,7 +39,7 @@ const salasanat = {
   },
 
   {
-    title: "Milloin salasana vaihdetaan?",
+    title: "Salasana tulee vaihtaa jos: ",
     bullets: [
       "Jos epäilet kirjautuneesi huijaussivulle tai kalasteluviestiin.",
       "Jos saat odottamattoman kirjautumisvahvistuksen.",

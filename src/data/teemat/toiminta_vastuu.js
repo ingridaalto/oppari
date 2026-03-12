@@ -10,7 +10,7 @@ const toiminta_vastuu = {
     },
 
     {
-      title: "Mitä käyttäjän vastuu tarkoittaa?",
+      title: "Käyttäjän vastuu tietoturvassa",
       lines: [
         "✅ Noudata organisaation ohjeita ja käytä hyväksyttyjä järjestelmiä.",
         "✅ Käsittele potilas- ja asiakastietoja vain työtehtävän edellyttämässä laajuudessa.",
@@ -20,7 +20,7 @@ const toiminta_vastuu = {
     },
 
     {
-      title: "Pääsynhallinta – miksi kaikilla ei ole samoja oikeuksia?",
+      title: "Pääsynhallinta ja käyttöoikeudet",
       text:
         "Pääsynhallinta tarkoittaa käyttöoikeuksien määrittelyä siten, että työntekijä pääsee vain niihin tietoihin ja järjestelmiin, joita hän tarvitsee työtehtävässään. Tämä vähentää vahinkojen riskiä ja suojaa arkaluonteisia tietoja. Liialliset käyttöoikeudet lisäävät tietovuodon tai väärinkäytön mahdollisuutta. Jokaisen tulee kirjautua vain omilla tunnuksillaan. Tunnuksia ei saa luovuttaa kollegalle edes kiireessä, sillä kaikki toimenpiteet järjestelmässä yhdistyvät käyttäjätunnukseen. Pääsynhallinnan perusajatus on siis se, että oikeudet annetaan tarpeen mukaan, ei varmuuden vuoksi.",
       callout: {

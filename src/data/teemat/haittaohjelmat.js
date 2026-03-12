@@ -3,13 +3,13 @@ const haittaohjelmat = {
   title: "Haittaohjelmat",
   slides: [
   {
-    title: "Mitä haittaohjelmat ovat?",
+    title: "Haittaohjelmien määritelmä",
     text:
       "Haittaohjelma on ohjelma, jonka tarkoitus on vahingoittaa järjestelmää tai kerätä tietoja luvatta. Sosiaali- ja terveysalan työympäristössä haitta voi kohdistua potilastietoihin, työasemien toimintaan ja palveluiden saatavuuteen. Haittaohjelma ei ole vain tekninen ongelma vaan se voi häiritä hoidon ja palvelun luotettavuutta ja jatkuvuutta."
   },
 
   {
-    title: "Miten haittaohjelmat yleensä pääsevät sisään?",
+    title: "Haittaohjelmien yleiset leviämistavat",
     lines: [
       "✅ Huijausviestin liite tai linkki (sähköposti, tekstiviesti, viestisovellus).",
       "✅ Haitallinen lataus tai ohjelma, joka näyttää hyödylliseltä.",
