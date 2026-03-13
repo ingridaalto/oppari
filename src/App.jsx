@@ -668,8 +668,11 @@ function playWrongSound() {
               />
             ))}
           </div>
-
-          <h3 className={`subtitle ${slides[slideIndex]?.image ? "subtitleWithImage" : ""}`}>
+<h3
+  className={`subtitle 
+    ${slides[slideIndex]?.image ? "subtitleWithImage" : ""} 
+    ${slides[slideIndex]?.type ? `subtitle-${slides[slideIndex].type}` : ""}`}
+>
   {slides[slideIndex]?.title}
 </h3>
 

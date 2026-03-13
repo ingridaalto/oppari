@@ -1940,6 +1940,18 @@ main{
   opacity: 1;
 }
 
+.subtitle-ikoni1 {
+  margin-bottom: -50px;
+}
+
+.slide-ikoni1 .microCards {
+  margin-top: -20px;
+}
+
+.slide-ikoni1 .bulletIllustration img {
+  width: 380px;
+  transform: translateY(-35px);
+}
 /* MOBILE */
 @media (max-width: 760px) {
   .bulletSlide.hasImage {
