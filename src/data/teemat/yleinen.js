@@ -14,7 +14,7 @@ const yleinen = {
         "Toiminnan jatkuvuus: hoito ja palvelut eivät saa pysähtyä teknisten ongelmien vuoksi."
       ],
 
-      image: "/public/ikoni1.png",
+      image: "/ikoni1.png",
       type: "ikoni1",
     
     },

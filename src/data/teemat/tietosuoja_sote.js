@@ -20,7 +20,7 @@ const tietosuoja_sote = {
         "Organisaation on pystyttävä osoittamaan, että tietosuojaa noudatetaan."
       ],
 
-      image: "/public/gpdr.png",
+      image: "/gpdr.png",
       type: "gdpr",
     },
 

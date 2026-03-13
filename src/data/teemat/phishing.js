@@ -53,7 +53,7 @@ interactive: {
         "Huijaukset voivat tulla sähköpostilla, tekstiviestillä, puheluna tai viestisovelluksissa."
       ],
 
-     image: "/public/rosvo1.png",
+     image: "/rosvo1.png",
      type: "phishingImg",
     },
 
