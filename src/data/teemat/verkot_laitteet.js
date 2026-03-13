@@ -98,7 +98,7 @@ const verkot_laitteet = {
     options: ["Se on salatumpi", "Se on hitaampi", "Se ei vaadi tunnuksia tai tunnistautumista", "Se on ilmainen käyttäjälle"],
     correct: [0],
     explanation:
-      "Mobiilidata on yleensä salattu operaattorin verkossa, eikä sitä jaeta muiden käyttäjien kanssa samalla tavalla kuin avointa Wi-Fi-verkkoa. Siksi riski tietojen kaappaamiseen on usein pienempi."
+      "Mobiilidata on yleensä salattu operaattorin verkossa, eikä sitä jaeta muiden käyttäjien kanssa samalla tavalla kuin avointa Wi-Fi-verkkoa, siksi riski tietojen kaappaamiseen on usein pienempi."
   }
 ]
 };

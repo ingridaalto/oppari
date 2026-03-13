@@ -1913,36 +1913,21 @@ main{
 
 .bulletIllustration img {
   height: auto;
-  width: 300px;
+  width: 350px;
   opacity: 1;
   transform: translateY(-30px);
-  
-  
 }
 
-@media (max-width: 760px) {
-
-  .bulletSlide.hasImage {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .bulletIllustration img {
-    width: 180px;
-    opacity: 1;
-  }
-
+.subtitleWithImage {
+  margin-top: 20px;
+  margin-bottom: -10px;
 }
 
-  .subtitleWithImage {
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
+.bulletSlide.hasImage .microCards {
+  margin-top: 0px;
+}
 
- .bulletSlide.hasImage .microCards {
-    margin-top: 8px;
-  }
-
+/* DESKTOP / iso näyttö */
 .slide-phishing .bulletIllustration img {
   width: 300px;
   transform: translateY(-30px);
@@ -1951,6 +1936,39 @@ main{
 
 .slide-gdpr .bulletIllustration img {
   width: 350px;
-  opacity: 1;
   transform: translateY(-25px);
+  opacity: 1;
 }
+
+/* MOBILE */
+@media (max-width: 760px) {
+  .bulletSlide.hasImage {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .bulletIllustration img {
+    width: 180px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .slide-phishing .bulletIllustration img {
+    width: 300px;
+    transform: translateY(-10px);
+    opacity: 0.95;
+  }
+
+  .slide-gdpr .bulletIllustration img {
+    width: 320px;
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+@media (max-width: 760px) {
+  .subtitleWithImage {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  }

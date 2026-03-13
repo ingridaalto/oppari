@@ -87,7 +87,7 @@ const toiminta_vastuu = {
       options: [
         "Avata liite ja tarkistaa viestin sisältö rauhallisesti",
         "Vastata heti sen enempää miettimättä",
-        "Raportoida viesti ja poistaa se ohjeen mukaan.",
+        "Raportoida viesti ja poistaa se ohjeen mukaisesti.",
         "Jakaa eteenpäin työkavereille, jotta muut voivat kertoa sinulle viestin sisällöstä"
       ],
       correct: [2],
@@ -118,7 +118,7 @@ const toiminta_vastuu = {
       ],
       correctOrder: [1, 2, 3, 0],
       explanation:
-        "Ensimmäinen ja tärkein vaihe on olla klikkaamatta linkkejä tai liitteitä. Sen jälkeen tarkistetaan lähettäjä, raportoidaan viesti organisaation ohjeen mukaisesti ja lopuksi poistetaan viesti ohjeiden mukaan."
+        "Ensimmäinen ja tärkein vaihe on olla klikkaamatta linkkejä tai liitteitä. Sen jälkeen tarkistetaan lähettäjä, raportoidaan viesti organisaation ohjeen mukaisesti ja lopuksi poistetaan viesti."
     }
 
   ]

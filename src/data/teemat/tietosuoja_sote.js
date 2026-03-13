@@ -1,3 +1,6 @@
+
+import gdpr from "../../assets/gpdr.png";
+
 const tietosuoja_sote = {
   id: "tietosuoja_sote",
   title: "Tietosuoja",
@@ -18,14 +21,14 @@ const tietosuoja_sote = {
         "Organisaation on pystyttävä osoittamaan, että tietosuojaa noudatetaan."
       ],
 
-      image: "src/assets/gpdr.png",
+      image: gdpr,
       type: "gdpr"
     },
 
     {
   title: "Tietovuodon ja tietomurron erot",
   text:
-    "Tietovuoto tarkoittaa tilannetta, jossa henkilötietoja päätyy vääriin käsiin tai tulee julki ilman lupaa. Tietomurto on luvaton tunkeutuminen tietojärjestelmään. Tietomurto voi johtaa tietovuotoon, mutta tietovuoto voi syntyä myös inhimillisen virheen seurauksena, esimerkiksi väärälle vastaanottajalle lähetetystä viestistä. Siksi kaikki tietosuojaongelmat eivät johdu hakkeroinnista, vaan myös arjen huolimattomuus voi aiheuttaa vakavan tilanteen.",
+    "Tietovuoto tarkoittaa tilannetta, jossa henkilötietoja päätyy vääriin käsiin tai tulee julki ilman lupaa. Tietomurto on luvaton tunkeutuminen tietojärjestelmään. Tietomurto voi johtaa tietovuotoon, mutta tietovuoto voi syntyä myös inhimillisen virheen seurauksena, esimerkiksi väärälle vastaanottajalle lähetetystä viestistä, siksi kaikki tietosuojaongelmat eivät johdu hakkeroinnista, vaan myös arjen huolimattomuus voi aiheuttaa vakavan tilanteen.",
   interactive: {
     type: "choice_reveal",
     prompt: "Työntekijä lähettää vahingossa potilastietoja väärälle vastaanottajalle. Mistä on kyse?",

@@ -5,7 +5,7 @@ const uhat_laitteet_ulkoiset = {
     {
       title: "Ulkoisten uhkien merkitys sote-alalla",
       text:
-        "Ulkoiset uhat ovat hyökkäyksiä, jotka tulevat organisaation ulkopuolelta: verkon kautta, huijausten avulla tai fyysisten laitteiden kautta. Hyökkääjät voivat yrittää häiritä palveluita, päästä käsiksi tietoihin tai hyödyntää järjestelmiä muihin hyökkäyksiin. Sote-ympäristössä vaikutus voi näkyä nopeasti palvelun saatavuudessa, esimerkiksi ajanvarauksen, viestinnän tai potilastietojärjestelmien toiminnassa. Ulkoiset uhat eivät aina kohdistu suoraan yksittäiseen työntekijään, mutta käyttäjän huolellinen toiminta, kuten epäilyttävien laitteiden välttäminen ja ohjeiden noudattaminen vähentää riskiä merkittävästi."
+        "Ulkoiset uhkat ovat hyökkäyksiä, jotka tulevat organisaation ulkopuolelta: verkon kautta, huijausten avulla tai fyysisten laitteiden kautta. Hyökkääjät voivat yrittää häiritä palveluita, päästä käsiksi tietoihin tai hyödyntää järjestelmiä muihin hyökkäyksiin. Sote-ympäristössä vaikutus voi näkyä nopeasti palvelun saatavuudessa, esimerkiksi ajanvarauksen, viestinnän tai potilastietojärjestelmien toiminnassa. Ulkoiset uhkat eivät aina kohdistu suoraan yksittäiseen työntekijään, mutta käyttäjän huolellinen toiminta, kuten epäilyttävien laitteiden välttäminen ja ohjeiden noudattaminen vähentävät riskiä merkittävästi."
     },
 
    {
@@ -21,7 +21,7 @@ const uhat_laitteet_ulkoiset = {
     {
       title: "Identiteettivarkaus – luottamuksen väärinkäyttöä",
       text:
-        "Identiteettivarkaudessa rikollinen käyttää toisen henkilöllisyyttä tai henkilötietoja esimerkiksi kirjautumiseen, tilausten tekemiseen tai huijauksiin. Työympäristössä tämä voi tarkoittaa myös sitä, että hyökkääjä esiintyy työntekijänä, IT-tukena tai yhteistyökumppanina ja yrittää saada käyttöoikeuksia, tietoja tai rahansiirtoja. Tällaisissa tilanteissa hyökkääjä pyrkii usein hyödyntämään luottamusta tai kiirettä. Siksi on tärkeää tarkistaa poikkeavat pyynnöt ja varmistaa henkilöllisyys ennen kuin luovuttaa tietoja tai tekee muutoksia järjestelmiin."
+        "Identiteettivarkaudessa rikollinen käyttää toisen henkilöllisyyttä tai henkilötietoja esimerkiksi kirjautumiseen, tilausten tekemiseen tai huijauksiin. Työympäristössä tämä voi tarkoittaa myös sitä, että hyökkääjä esiintyy työntekijänä, IT-tukena tai yhteistyökumppanina ja yrittäen saada käyttöoikeuksia, tietoja tai rahaa. Tällaisissa tilanteissa hyökkääjä pyrkii usein hyödyntämään luottamusta tai kiirettä, siksi on tärkeää tarkistaa poikkeavat pyynnöt ja varmistaa henkilöllisyys ennen kuin luovuttaa tietoja tai tekee muutoksia järjestelmiin."
     },
 
     {
@@ -37,7 +37,7 @@ const uhat_laitteet_ulkoiset = {
    {
      title: "IoT-laitteet sairaalaympäristössä",
      text:
-       "IoT (Internet of Things) tarkoittaa verkkoon liitettyjä fyysisiä laitteita. Sairaalassa tällaisia voivat olla esimerkiksi potilasmonitorit, infuusiopumput, kuvantamislaitteet, kulunvalvontajärjestelmät ja älykkäät kiinteistöjärjestelmät. Monet näistä laitteista ovat yhteydessä verkkoon huollon, etävalvonnan ja tiedonsiirron vuoksi. Jos laitteiden ohjelmistot eivät ole ajan tasalla tai etähallinta on heikosti suojattu, laitteita voidaan yrittää käyttää hyökkäyksissä tai häiriön aiheuttamiseen. Verkkoon liitettyjä laitteita voidaan myös käyttää bottiverkoissa esimerkiksi palvelunestohyökkäysten toteuttamiseen. Sairaalaympäristössä kyse ei ole vain tietosuojasta, vaan myös fyysisen ympäristön ja hoitoprosessien toimivuudesta. Siksi laitteiden verkottaminen, päivitykset ja käyttöoikeuksien hallinta ovat osa potilasturvallisuutta.",
+       "IoT (Internet of Things) tarkoittaa verkkoon liitettyjä fyysisiä laitteita. Sairaalassa tällaisia voivat olla esimerkiksi potilasmonitorit, infuusiopumput, kuvantamislaitteet, kulunvalvontajärjestelmät ja älykkäät kiinteistöjärjestelmät. Monet näistä laitteista ovat yhteydessä verkkoon huollon, etävalvonnan ja tiedonsiirron vuoksi. Jos laitteiden ohjelmistot eivät ole ajantasalla tai etähallinta on heikosti suojattu, laitteita voidaan yrittää käyttää hyökkäyksissä tai häiriön aiheuttamiseen. Verkkoon liitettyjä laitteita voidaan myös käyttää bottiverkoissa esimerkiksi palvelunestohyökkäysten toteuttamiseen. Sairaalaympäristössä kyse ei ole vain tietosuojasta, vaan myös fyysisen ympäristön ja hoitoprosessien toimivuudesta, siksi laitteiden verkottaminen, päivitykset ja käyttöoikeuksien hallinta ovat osa potilasturvallisuutta.",
       callout: {
         label: "Tapausesimerkki",
         icon: "🚰",
@@ -80,7 +80,7 @@ const uhat_laitteet_ulkoiset = {
       options: ["Se voi olla rikki", "Se voi sisältää haittaohjelman", "Se hidastaa automaattisesti tietokonetta", "Se vie tallennustilaa"],
       correct: [1],
       explanation:
-        "Tuntematon USB-laite voi sisältää haittaohjelman tai käynnistää haitallisen toiminnon. Siksi sitä ei tule liittää työasemaan, vaan toimia organisaation ohjeen mukaisesti."
+        "Tuntematon USB-laite voi sisältää haittaohjelman tai käynnistää haitallisen toiminnon, siksi sitä ei tule liittää työasemaan, vaan toimia organisaation ohjeen mukaisesti."
     },
 
     {

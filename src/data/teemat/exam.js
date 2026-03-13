@@ -8,12 +8,12 @@ const exam = [
     options: [
       "Kirjaudun ulos ja jatkan työskentelyä",
       "Käytän tilannetta hyväkseni tarkistaakseni yhden potilaan tiedot",
-      "Lukitsen työaseman ja ilmoitan tilanteesta ohjeen mukaan",
+      "Lukitsen työaseman ja ilmoitan tilanteesta ohjeiden mukaisesti",
       "Jätän asian huomiotta"
     ],
     correct: [2],
     explanation:
-      "Avoin työasema on tietosuojariski. Lukitse työasema ja ilmoita tilanteesta organisaation ohjeen mukaan."
+      "Avoin työasema on tietosuojariski. Lukitse työasema ja ilmoita tilanteesta organisaation ohjeen mukaisesti."
   },
 
   {

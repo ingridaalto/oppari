@@ -12,6 +12,7 @@ import wrongSound from "./assets/wrong.mp3";
 
 
 
+
 // ===== CONFIG =====
 
 const EXAM_PASS_PERCENT = 80;    // testissä vaadittu läpäisy

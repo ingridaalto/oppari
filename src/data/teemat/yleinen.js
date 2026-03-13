@@ -1,3 +1,5 @@
+import ikoni1 from "../../assets/ikoni1.png";
+
 const yleinen = {
   id: "yleinen",
   title: "Kyberturvallisuuden perusteet sote-alalla",
@@ -12,7 +14,9 @@ const yleinen = {
         "Toiminnan jatkuvuus: hoito ja palvelut eivät saa pysähtyä teknisten ongelmien vuoksi."
       ],
 
-      image: "src/assets/ikoni1.PNG" 
+      image: ikoni1, 
+      type: "ikoni1",
+    
     },
 
     // 2) y1 + y3
