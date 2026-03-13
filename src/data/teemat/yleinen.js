@@ -1,4 +1,4 @@
-import ikoni1 from "../../assets/ikoni1.png";
+
 
 const yleinen = {
   id: "yleinen",
@@ -14,7 +14,7 @@ const yleinen = {
         "Toiminnan jatkuvuus: hoito ja palvelut eivät saa pysähtyä teknisten ongelmien vuoksi."
       ],
 
-      image: ikoni1, 
+      image: "/images/ikoni1.png",
       type: "ikoni1",
     
     },

@@ -1,5 +1,4 @@
 
-import gdpr from "../../assets/gpdr.png";
 
 const tietosuoja_sote = {
   id: "tietosuoja_sote",
@@ -21,8 +20,8 @@ const tietosuoja_sote = {
         "Organisaation on pystyttävä osoittamaan, että tietosuojaa noudatetaan."
       ],
 
-      image: gdpr,
-      type: "gdpr"
+      image: "/images/gppr.png",
+      type: "gdpr",
     },
 
     {

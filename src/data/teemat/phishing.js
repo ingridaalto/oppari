@@ -1,7 +1,5 @@
 
 
-import phishingImg from "../../assets/rosvo1.png";
-
 // src/data/themes/theme_phishing.js
 const phishing = {
   id: "phishing",
@@ -55,8 +53,8 @@ interactive: {
         "Huijaukset voivat tulla sähköpostilla, tekstiviestillä, puheluna tai viestisovelluksissa."
       ],
 
-      image: phishingImg,
-      type: "phishingImg"
+     image: "/images/rosvo1.png",
+     type: "phishingImg",
     },
 
     // 3 — Sote-konteksti
