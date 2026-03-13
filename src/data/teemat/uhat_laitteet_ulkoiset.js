@@ -5,7 +5,7 @@ const uhat_laitteet_ulkoiset = {
     {
       title: "Ulkoisten uhkien merkitys sote-alalla",
       text:
-        "Ulkoiset uhat ovat hyökkäyksiä, jotka tulevat organisaation ulkopuolelta: verkon kautta, huijausten avulla tai fyysisten laitteiden kautta. Hyökkääjät voivat yrittää häiritä palveluita, päästä käsiksi tietoihin tai hyödyntää järjestelmiä muihin hyökkäyksiin. Sote-ympäristössä vaikutus voi näkyä nopeasti palvelun saatavuudessa, esimerkiksi ajanvarauksen, viestinnän tai potilastietojärjestelmien toiminnassa. Ulkoiset uhat eivät aina kohdistu suoraan yksittäiseen työntekijään, mutta käyttäjän huolellinen toiminta, kuten epäilyttävien laitteiden välttäminen ja ohjeiden noudattaminen, vähentää riskiä merkittävästi."
+        "Ulkoiset uhat ovat hyökkäyksiä, jotka tulevat organisaation ulkopuolelta: verkon kautta, huijausten avulla tai fyysisten laitteiden kautta. Hyökkääjät voivat yrittää häiritä palveluita, päästä käsiksi tietoihin tai hyödyntää järjestelmiä muihin hyökkäyksiin. Sote-ympäristössä vaikutus voi näkyä nopeasti palvelun saatavuudessa, esimerkiksi ajanvarauksen, viestinnän tai potilastietojärjestelmien toiminnassa. Ulkoiset uhat eivät aina kohdistu suoraan yksittäiseen työntekijään, mutta käyttäjän huolellinen toiminta, kuten epäilyttävien laitteiden välttäminen ja ohjeiden noudattaminen vähentää riskiä merkittävästi."
     },
 
    {

@@ -5,7 +5,7 @@ const haittaohjelmat = {
   {
     title: "Haittaohjelmien määritelmä",
     text:
-      "Haittaohjelma on ohjelma, jonka tarkoitus on vahingoittaa järjestelmää tai kerätä tietoja luvatta. Sosiaali- ja terveysalan työympäristössä haitta voi kohdistua potilastietoihin, työasemien toimintaan ja palveluiden saatavuuteen. Haittaohjelma ei ole vain tekninen ongelma vaan se voi häiritä hoidon ja palvelun luotettavuutta ja jatkuvuutta."
+      "Haittaohjelma on ohjelma, jonka tarkoitus on vahingoittaa järjestelmää tai kerätä tietoja luvatta. Sosiaali- ja terveysalan työympäristössä haitta voi kohdistua potilastietoihin, työasemien toimintaan ja palveluiden saatavuuteen. Haittaohjelma ei ole vain tekninen ongelma vaan se voi häiritä hoidon ja palvelun luotettavuutta sekä jatkuvuutta."
   },
 
   {
@@ -81,7 +81,7 @@ const haittaohjelmat = {
     ],
     correct: [1],
     explanation:
-      "Ransomware salaa tiedostoja tai lukitsee järjestelmän ja vaatii lunnaita, jotta pääsy tietoihin ja järjestelmiin palautettaisiin. Siksi varmuuskopiot, päivitykset ja nopea ilmoittaminen ovat keskeisiä suojakeinoja sillä lunnasmaksu ei takaa palautusta."
+      "Ransomware salaa tiedostoja tai lukitsee järjestelmän, vaatien lunnaita, jotta pääsy tietoihin ja järjestelmiin palautettaisiin. Tämän takia varmuuskopioinnit, päivitykset ja nopea reagointi ovat keskeisiä suojautumiskeinoja sillä lunnasmaksu ei takaa palautusta."
   },
 
   {

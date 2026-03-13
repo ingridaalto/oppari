@@ -13,10 +13,10 @@ const verkot_laitteet = {
     title: "Palomuuri, VPN ja HTTPS – eri tarkoitukset",
     bullets: [
       "Palomuuri valvoo ja rajoittaa verkkoliikennettä ennalta määriteltyjen sääntöjen mukaan.",
-      "Se estää luvattomia yhteyksiä organisaation verkkoon.",
+      "Palomuuri estää luvattomia yhteyksiä organisaation verkkoon.",
       "VPN luo salatun yhteyden käyttäjän ja organisaation verkon välille.",
+      "VPN on erityisen tärkeä etätyössä ja julkisissa verkoissa.",
       "HTTPS suojaa selaimen ja verkkopalvelun välistä yhteyttä.",
-      "VPN on erityisen tärkeä etätyössä ja julkisissa verkoissa."
     ]
   },
 

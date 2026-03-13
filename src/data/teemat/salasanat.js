@@ -39,12 +39,12 @@ const salasanat = {
   },
 
   {
-    title: "Salasana tulee vaihtaa jos: ",
+    title: "Salasana tulee vaihtaa: ",
     bullets: [
       "Jos epäilet kirjautuneesi huijaussivulle tai kalasteluviestiin.",
       "Jos saat odottamattoman kirjautumisvahvistuksen.",
       "Jos laite katoaa tai varastetaan.",
-      "Kun organisaation ohjeistus sitä edellyttää.",
+      "Jos organisaation ohjeistus sitä edellyttää.",
       "Jos huomaat tilillä toimintaa, jota et tunnista."
     ]
   },
@@ -74,7 +74,7 @@ const salasanat = {
   {
     title: "Biometria ja jaetut työasemat",
     text:
-      "Biometrinen tunnistautuminen (esim. sormenjälki tai kasvojentunnistus) voi nopeuttaa kirjautumista ja helpottaa turvallista käyttöä. Se ei kuitenkaan poista vastuuta laitteen lukitsemisesta. Sote-ympäristössä jaetut työasemat ovat erityinen riski: jos laite jää auki, seuraava käyttäjä voi toimia edellisen tunnuksilla ja tehdä kirjauksia hänen nimissään."
+      "Biometrinen tunnistautuminen (esim. sormenjälki tai kasvojentunnistus) voi nopeuttaa kirjautumista ja helpottaa turvallista käyttöä. Se ei kuitenkaan poista vastuuta laitteen lukitsemisesta. Sote-ympäristössä jaetut työasemat ovat erityinen riski, sillä jos laite jää auki, seuraava käyttäjä voi vahingossa toimia edellisen käyttäjän tunnuksilla, tehden kirjauksia hänen nimissään."
   }
 
 ],
@@ -92,7 +92,7 @@ const salasanat = {
       ],
       correct: [2],
       explanation:
-        "Vahvin vaihtoehto on pitkä salasana (tai salalause), jossa on riittävästi vaihtelua. Lyhyet ja henkilökohtaisiin tietoihin perustuvat salasanat (kuten nimi ja syntymävuosi) arvataan tai murretaan helposti. Myös käyttäjätunnuksen käyttäminen salasanana on erittäin riskialtista."
+        "Vahvin vaihtoehto on pitkä salasana (tai salalause), jossa on riittävästi vaihtelua. Lyhyet ja henkilökohtaisiin tietoihin perustuvat salasanat (kuten nimi ja syntymävuosi) arvataan ja murretaan helposti. Myös käyttäjätunnuksen käyttäminen salasanana on erittäin riskialtista."
     },
 
     {
@@ -152,7 +152,7 @@ const salasanat = {
       ],
       correct: [2],
       explanation:
-        "Biometrinen tunnistautuminen perustuu ihmisen ominaisuuksiin (kuten sormenjälki, kasvonpiirteet tai iiris). Se ei ole sama asia kuin salasana tai kertakäyttökoodi, vaikka biometriaa voidaan käyttää osana monivaiheista tunnistautumista."
+        "Biometrinen tunnistautuminen perustuu ihmisen ominaisuuksiin (kuten sormenjälki, kasvonpiirteet tai iiris). Se ei ole sama asia kuin salasana tai kertakäyttökoodi, vaikka biometriaa voidaankin käyttää osana monivaiheista tunnistautumista."
     },
 
     {

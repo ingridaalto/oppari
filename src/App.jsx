@@ -668,21 +668,40 @@ function playWrongSound() {
             ))}
           </div>
 
-          <h3 className="subtitle">{slides[slideIndex]?.title}</h3>
+          <h3 className={`subtitle ${slides[slideIndex]?.image ? "subtitleWithImage" : ""}`}>
+  {slides[slideIndex]?.title}
+</h3>
 
           {/* BULLETS */}
-          {(slides[slideIndex]?.bullets ?? []).length > 0 && (
-           <div className="microCards">
-  {(slides[slideIndex]?.bullets ?? [])
-    .filter((b) => b && b.trim().length > 0)
-    .map((b, i) => (
-      <div key={i} className="microCard microBullet">
-        <div className="microBulletIcon" aria-hidden="true">•</div>
-        <div className="microText">{b}</div>
-      </div>
-    ))}
+         <div className={`bulletSlide 
+  ${slides[slideIndex]?.image ? "hasImage" : ""} 
+  ${slides[slideIndex]?.type ? `slide-${slides[slideIndex].type}` : ""}`}
+>
+
+  {/* BULLETS */}
+  {(slides[slideIndex]?.bullets ?? []).length > 0 && (
+    <div className="microCards">
+      {(slides[slideIndex]?.bullets ?? [])
+        .filter((b) => b && b.trim().length > 0)
+        .map((b, i) => (
+          <div key={i} className="microCard microBullet">
+            <div className="microBulletIcon" aria-hidden="true">•</div>
+            <div className="microText">{b}</div>
+          </div>
+        ))}
+    </div>
+  )}
+
+  {/* IMAGE */}
+  {slides[slideIndex]?.image && (
+    <div className="bulletIllustration">
+      <img src={slides[slideIndex].image} alt="" />
+    </div>
+  )}
+
 </div>
-          )}
+
+          
 
           {/* LINES (✅ / ⚠️) */}
 {Array.isArray(slides?.[slideIndex]?.lines) && slides[slideIndex].lines.length > 0 && (

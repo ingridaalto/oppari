@@ -16,7 +16,10 @@ const tietosuoja_sote = {
         "Se määrittelee, miten henkilötietoja tulee käsitellä ja suojata.",
         "Sote-alalla käsitellään erityisiin henkilötietoryhmiin kuuluvia tietoja (esim. terveystiedot).",
         "Organisaation on pystyttävä osoittamaan, että tietosuojaa noudatetaan."
-      ]
+      ],
+
+      image: "src/assets/gpdr.png",
+      type: "gdpr"
     },
 
     {

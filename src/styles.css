@@ -1897,3 +1897,60 @@ main{
     justify-content:space-between;
   }
 }
+
+.bulletSlide.hasImage {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 40px;
+  align-items: center;
+}
+
+.bulletIllustration {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.bulletIllustration img {
+  height: auto;
+  width: 300px;
+  opacity: 1;
+  transform: translateY(-30px);
+  
+  
+}
+
+@media (max-width: 760px) {
+
+  .bulletSlide.hasImage {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .bulletIllustration img {
+    width: 180px;
+    opacity: 1;
+  }
+
+}
+
+  .subtitleWithImage {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+ .bulletSlide.hasImage .microCards {
+    margin-top: 8px;
+  }
+
+.slide-phishing .bulletIllustration img {
+  width: 300px;
+  transform: translateY(-30px);
+  opacity: 0.9;
+}
+
+.slide-gdpr .bulletIllustration img {
+  width: 350px;
+  opacity: 1;
+  transform: translateY(-25px);
+}

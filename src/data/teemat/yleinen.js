@@ -10,7 +10,9 @@ const yleinen = {
         "Potilas- ja asiakastiedot: luottamuksellisuus, oikeellisuus ja turvallinen käsittely.",
         "Järjestelmät ja palvelut: käytettävyys myös häiriötilanteissa ja hyökkäysten aikana.",
         "Toiminnan jatkuvuus: hoito ja palvelut eivät saa pysähtyä teknisten ongelmien vuoksi."
-      ]
+      ],
+
+      image: "src/assets/ikoni1.PNG" 
     },
 
     // 2) y1 + y3

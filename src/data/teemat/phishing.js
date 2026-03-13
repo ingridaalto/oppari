@@ -7,7 +7,7 @@ const phishing = {
     // 1 — Roskaposti + peruskäsite
     {
       title: "Roskaposti ja tietojenkalastelu",
-      text:"Roskaposti tarkoittaa häiritsevää tai ei-toivottua viestintää, jota lähetetään usein suurelle joukolle vastaanottajia. Kaikki roskaposti ei ole vaarallista, mutta osa siitä toimii huijausten välineenä. Tietojenkalastelu on tällainen huijausyritys: sen tarkoitus on saada käyttäjä luovuttamaan tietojaan, kuten salasanoja, kirjautumiskoodeja tai muita luottamuksellisia tietoja. Hyökkääjä esiintyy usein luotettavana tahona, esimerkiksi IT-tukena, viranomaisena tai organisaation sisäisenä toimijana. Viesteissä voidaan myös korostaa kiirettä tai uhata käyttöoikeuden vanhenemisella, jotta vastaanottaja toimisi nopeasti ilman tarkistamista.",
+      text:"Roskaposti tarkoittaa häiritsevää tai ei-toivottua viestintää, jota lähetetään usein suurelle joukolle vastaanottajia. Kaikki roskaposti ei ole vaarallista, mutta osa siitä toimii huijausten välineenä. Muun muassa tietojenkalasteluviestien tarkoitus on saada käyttäjä luovuttamaan tietojaan, kuten salasanoja, kirjautumiskoodeja tai muita luottamuksellisia tietoja. Hyökkääjä esiintyy usein luotettavana tahona, esimerkiksi IT-tukena, viranomaisena tai organisaation sisäisenä toimijana. Viesteissä voidaan myös korostaa kiirettä tai uhata käyttöoikeuden vanhenemisella, jotta vastaanottaja toimisi nopeasti ilman tarkistamista.",
 
 interactive: {
   type: "warning_spots",
@@ -49,7 +49,10 @@ interactive: {
         "Phishing: laajalle joukolle lähetetty yleinen huijausviesti.",
         "Spear phishing: kohdennettu huijaus tietylle henkilölle tai yksikölle.",
         "Huijaukset voivat tulla sähköpostilla, tekstiviestillä, puheluna tai viestisovelluksissa."
-      ]
+      ],
+
+      image: "src/assets/rosvo1.png",
+      type: "phishing"
     },
 
     // 3 — Sote-konteksti
