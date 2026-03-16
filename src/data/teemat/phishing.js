@@ -6,7 +6,7 @@ const phishing = {
   title: "Huijaukset ja tietojenkalastelu",
   slides: [
 
-    // 1 — Roskaposti + peruskäsite
+  
     {
       title: "Roskaposti ja tietojenkalastelu",
       text:"Roskaposti tarkoittaa häiritsevää tai ei-toivottua viestintää, jota lähetetään usein suurelle joukolle vastaanottajia. Kaikki roskaposti ei ole vaarallista, mutta osa siitä toimii huijausten välineenä. Muun muassa tietojenkalasteluviestien tarkoitus on saada käyttäjä luovuttamaan tietojaan, kuten salasanoja, kirjautumiskoodeja tai muita luottamuksellisia tietoja. Hyökkääjä esiintyy usein luotettavana tahona, esimerkiksi IT-tukena, viranomaisena tai organisaation sisäisenä toimijana. Viesteissä voidaan myös korostaa kiirettä tai uhata käyttöoikeuden vanhenemisella, jotta vastaanottaja toimisi nopeasti ilman tarkistamista.",
@@ -44,7 +44,7 @@ interactive: {
 }
     },
 
-    // 2 — Muodot
+
     {
       title: "Huijausten eri muodot",
       bullets: [
@@ -57,21 +57,21 @@ interactive: {
      type: "phishingImg",
     },
 
-    // 3 — Sote-konteksti
+    
     {
       title: "Sote-ympäristöä voidaan pitää erityisenä kohteena",
       text:
         "Sosiaali- ja terveydenhuollossa käsitellään arkaluonteisia henkilötietoja, joten onnistunut huijaus voi aiheuttaa vakavaa haittaa sekä organisaatiolle että yksittäisille ihmisille. Kiireinen työympäristö ja luottamukseen perustuva viestintäkulttuuri voivat lisätä riskiä reagoida nopeasti ilman tarkistusta. Hyökkääjä voi vedota potilasturvallisuuteen, kiireeseen tai organisaation sisäiseen auktoriteettiin, jotta viesti tuntuisi tavallista uskottavammalta."
     },
 
-    // 4 — Deepfake
+   
     {
       title: "Deepfake ja tekoälypohjaiset huijaukset",
       text:
         "Deepfake tarkoittaa tekoälyn avulla tuotettua väärennettyä ääni-, kuva- tai videomateriaalia. Työympäristössä tämä voi tarkoittaa esimerkiksi esihenkilöltä vaikuttavaa puhelua tai videoviestiä, jossa pyydetään kiireellisesti toimimaan. Tekninen laatu voi olla uskottava, vaikka sisältö on väärennös. Siksi pelkkä tuttu ääni, kasvot tai viestin tyyli ei aina riitä todisteeksi siitä, että yhteydenotto on aito."
     },
 
-    // 5 — Käytännön toimintatapa
+   
     {
       title: "Toiminta epäilyttävässä tilanteessa?",
       lines: [

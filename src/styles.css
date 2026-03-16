@@ -350,7 +350,7 @@ main{
   color:#ffe0e0;
 }
 
-/* ===== Start hero ===== */
+/* ===== Start  ===== */
 .coverHero{
   position:relative;
   width:min(1180px, calc(100% - 32px));
@@ -783,7 +783,7 @@ main{
   line-height:1.7;
   font-size:15.5px;
 }
-/* ===== Info rows ===== */
+
 /* ===== Info rows ===== */
 .infoList{
   display:flex;
@@ -1984,3 +1984,11 @@ main{
     margin-bottom: 20px;
   }
   }
+
+  @media (max-width: 760px) {
+  .slide-ikoni1 .bulletIllustration img {
+    width: 160px;
+    max-width: 100%;
+    transform: translateY(0);
+  }
+}

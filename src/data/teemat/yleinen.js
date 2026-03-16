@@ -5,7 +5,7 @@ const yleinen = {
   title: "Kyberturvallisuuden perusteet sote-alalla",
   slides: [
 
-    // 1) AINOA bullet-slide
+    
     {
       title: "Kyberturvallisuudella suojataan",
       bullets: [
@@ -19,14 +19,14 @@ const yleinen = {
     
     },
 
-    // 2) y1 + y3
+    
     {
       title: "Kyberturvallisuus sosiaali- ja terveydenhuoltoalalla",
       text:
         "Kyberturvallisuudella tarkoitetaan digitaalisen tiedon, tietojärjestelmien ja palveluiden suojaamista luvattomalta käytöltä, muutoksilta sekä toiminnan häiriöiltä. Sosiaali- ja terveydenhuollon toimintaympäristössä kyberturvallisuus ei rajoitu pelkästään teknisiin ratkaisuihin, vaan sillä on suora yhteys myös ihmisten turvallisuuteen. Potilasturvallisuus ja luottamuksellisuus perustuvat siihen, että potilastiedot säilyvät eheinä, ovat saatavilla oikeaan aikaan hoidon toteuttamiseksi ja ovat ainoastaan siihen oikeutettujen henkilöiden käytettävissä."
     },
 
-    // 3) y2 + y5 + y4
+
    {
   title: "Kyberuhka, haavoittuvuus ja päivitykset",
   text:
@@ -51,7 +51,7 @@ const yleinen = {
     ]
   }
 },
-    // 4) y6
+  
     {
       title: "Ihmisten toiminta on keskeinen osa kyberturvaa",
       text:

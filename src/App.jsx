@@ -57,11 +57,9 @@ function getEnding(pct) {
   };
 }
 export default function App() {
-  // ===== Flatten opiskeluosion kysymykset teemoista (järjestyksessä) =====
+  // ===== opiskeluosion kysymykset teemoista (järjestyksessä) =====
   const studyFlow = useMemo(() => {
-    // luo lista "askelista": slide-step tai question-step
-    // Mutta koska haluat: info → teeman kysymykset → seuraava teema,
-    // me pidämme teemaindeksit erikseen kuten ennen, ja vain rajoitamme study-kysymysten määrän 50:een.
+
     return null;
   }, []);
 
@@ -76,7 +74,6 @@ export default function App() {
 
   // ===== game state =====
   // screens:
-  // start | slides | studyQuiz | studyFeedback | studyDone | examQuiz | examFeedback | result
   const [screen, setScreen] = useState("start");
 
   // opiskelu: teema/slide/kysymys
@@ -174,8 +171,6 @@ useEffect(() => {
   });
 }, [screen, themeIndex, slideIndex, themeQuestionIndex, examIndex]);
 
-  // missä asti moduulit ovat "auki" (lineaarinen eteneminen):
-  // - kaikki indeksit <= themeIndex ovat auki
   const unlockedIndex = themeIndex;
   // ===== actions =====
   function startGame() {
@@ -410,13 +405,13 @@ function validateBeforeSubmit(q) {
     resetAnswersForNext();
 
 
-    // Jos opiskeluosio jo täynnä (50), lopeta siihen
+    // Jos opiskeluosio jo täynnä, lopeta siihen
   if (studyAnswered >= totalStudyQuestions) {
   setScreen("studyDone");
   return;
 }
 
-    // siirry seuraavaan kysymykseen teemassa, tai seuraavaan teemaan (infoon)
+    // siirry seuraavaan kysymykseen teemassa, tai seuraavaan teemaan
     const nextQ = themeQuestionIndex + 1;
     if (nextQ < studyQuestionsInTheme.length) {
       setThemeQuestionIndex(nextQ);
@@ -424,7 +419,7 @@ function validateBeforeSubmit(q) {
       return;
     }
 
-    // teema loppui → seuraava teema → info-slidet
+    // teema loppui, seuraava teema, info-slidet
         const nextTheme = themeIndex + 1;
     if (nextTheme < themes.length) {
       setThemeIndex(nextTheme);
@@ -433,7 +428,7 @@ function validateBeforeSubmit(q) {
       setScreen("slides");
       return;
     }
-    // jos teemat loppuivat ennen 50, mennään silti studyDone
+    // jos teemat loppuivat ennen, mennään silti studyDone
     setScreen("studyDone");
   }
 
@@ -520,7 +515,7 @@ function playWrongSound() {
 
    <main>
 
-  {/* ===== START SCREEN (FULL WIDTH HERO) ===== */}
+  {/* ===== START SCREEN  ===== */}
  {screen === "start" && (
  <section
   className="coverHero"
@@ -552,7 +547,7 @@ function playWrongSound() {
     fill="none"
   />
 </svg>
-    {/* pieni “status”-elementti (pelillinen, mutta asiallinen) */}
+    {/* “status”-elementti */}
     <div className="coverCorner">
       <span className="coverDot" aria-hidden="true" />
       <span>Koulutusmoduuli</span>
@@ -582,7 +577,7 @@ function playWrongSound() {
           <span className="pill">Testi: {totalExamQuestions}</span>
         </div>
 
-        {/* “progress teaser” = tuntuu peliltä, mutta näyttää yritysmäiseltä 
+        {/* “progress teaser” = vähän turha process homma
         <div className="coverProgress">
           <div className="coverProgressTop">
             <span className="muted small">Valmiusaste</span>
@@ -602,7 +597,7 @@ function playWrongSound() {
   <div className="container">
 
 
-{/* ProgressBar = koko koulutuksen eteneminen */}
+{/* progress bar, koko koulutuksen eteneminen */}
 {screen !== "start" && screen !== "result" && (
   <ProgressBar
     phaseLabel="Koko koulutus"
