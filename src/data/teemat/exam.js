@@ -36,7 +36,7 @@ const exam = [
     id: "ex3",
     type: "single",
     question:
-      "Osastonhoitajalta näyttävä videopuhelu pyytää lähettämään potilaslistan välittömästi auditointiin. Mikä on olennaisin riskitekijä?",
+      "Videopuhelussa osastonhoitajalta näyttävä henkilö pyytää lähettämään potilaslistan välittömästi auditointia varten. Mikä on olennaisin riskitekijä?",
     options: [
       "Tietojen kiireellinen siirto ilman varmistusta",
       "Videoyhteyden huono laatu",
