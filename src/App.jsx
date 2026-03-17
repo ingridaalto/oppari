@@ -963,11 +963,11 @@ function playWrongSound() {
     <div className="lessonBody">
       <div className="legendRow">
         <span className="legendPill">
-  {examQ.type === "multi"
+  {studyQ.type === "multi"
     ? "Valitse yksi tai useampi"
-    : examQ.type === "drag_order"
+    : studyQ.type === "drag_order"
     ? "Järjestä kohdat"
-    : examQ.type === "categorize"
+    : studyQ.type === "categorize"
     ? "Vedä oikeisiin laatikoihin"
     : "Valitse yksi"}
 </span>
