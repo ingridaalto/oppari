@@ -1,12 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import "./styles.css";
-import { themes } from "./data/teemat"; // <-- sinun polku
-import  exam  from "./data/teemat/exam";
+import { themes } from "./data/teemat"; // opiskeltavat teemat
+import  exam  from "./data/teemat/exam";//tenttikysymykset
 
+//kuvat eri lopputuloksia varten
 import perehtyjaImg from "./assets/perehtyja_temp.png";
 import osaajaImg from "./assets/osaaja_temp.png";
 import mestariImg from "./assets/mestari_temp.png";
 import taustaImg from "./assets/tausta.png";
+
+//äänet oikea/väärä
 import correctSound from "./assets/correct.mp3";
 import wrongSound from "./assets/wrong.mp3";
 
@@ -18,14 +21,19 @@ import wrongSound from "./assets/wrong.mp3";
 const EXAM_PASS_PERCENT = 80;    // testissä vaadittu läpäisy
 
 // ===== helpers =====
+
+// Pitää luvun aina annetun minimi- ja maksimiarvon välissä
 function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
 
+// Laskee prosenttiosuuden oikeista vastauksista
 function percent(correct, total) {
   if (!total) return 0;
   return Math.round((correct / total) * 100);
 }
+
+//tarkistaa ovatko kaksi taulukkoa samat, järjestyksellä ei ole väliä mutta sisällöt pitää olla samat
 function arraysEqualAsSets(a, b) {
   const aa = [...a].sort((x, y) => x - y);
   const bb = [...b].sort((x, y) => x - y);
@@ -33,6 +41,8 @@ function arraysEqualAsSets(a, b) {
   for (let i = 0; i < aa.length; i++) if (aa[i] !== bb[i]) return false;
   return true;
 }
+
+//palauttaa lopputuloksen, nimen, kuvan ja tekstin kokonaisprosentin mukaan
 function getEnding(pct) {
   if (pct === 100) {
     return {
@@ -57,7 +67,8 @@ function getEnding(pct) {
   };
 }
 export default function App() {
-  // ===== opiskeluosion kysymykset teemoista (järjestyksessä) =====
+  // ===== opiskeluosion kysymykset teemoista (järjestyksessä)
+  // ei käytössä tällä hetkellä =====
   const studyFlow = useMemo(() => {
 
     return null;

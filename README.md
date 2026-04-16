@@ -1,16 +1,88 @@
-# React + Vite
+# Turvallinen työvuoro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Turvallinen työvuoro on selainpohjainen oppimispeli, joka on suunnattu sosiaali- ja terveydenhuoltoalalle. Pelin tavoitteena on opettaa käyttäjälle tietoturvallisia toimintatapoja erilaisissa työtilanteissa. 
 
-Currently, two official plugins are available:
+Peli on toteutettu opinnäytetyönä ja keskittyy käytännönläheiseen oppimiseen. Peli on testattu sosiaali- ja terveydenhuollon ammattilaisten kesken. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Yleiskuvaus
 
-## React Compiler
+Pelaaja etenee pelissä lukien infoja erilaisista kyberturvallisuuden uhista. Pelissä on monivalintakysymyksiä sekä interaktiivisia elementtejä.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Pelin avulla käyttäjä oppii tunnistamaan turvallisia ja riskialttiita toimintatapoja sosiaali- ja terveydenhuollon ympäristössä.
 
-## Expanding the ESLint configuration
+## Pelin pääominaisuudet
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Peli koostuu seuraavista osista:
+
+1. Aloitusnäkymä  
+   - Pelin esittely  
+   - Mahdollisuus aloittaa peli  
+
+2. Pelinäkymä  
+   - Tilannekohtaisia tietoturvatehtäviä  
+   - Monivalinta- tai päätöspohjaisia kysymyksiä  
+   - Välitön palaute vastauksista 
+   - Lopussa on tenttiosuus jonka läpäisy prosentti on 80%.
+
+3. Tulokset / palaute  
+   - Näyttää pelaajan suoriutumisen  
+   
+
+## Pelin aiheet
+
+Peli käsittelee esimerkiksi seuraavia tietoturva-aiheita:
+
+- yleistietoa kyberturvallisuudesta 
+- vahvat salasanat ja tunnistautuminen  
+- tietojenkalastelun tunnistaminen  
+- haittaohjelmat 
+- tietosuoja 
+- tosielämän työtilanteita
+
+## Demo / linkki
+
+Voit kokeilla peliä täällä:  
+👉 <(https://opinnaytetyo.netlify.app/)>
+
+
+## Teknologiat
+
+Projektissa on käytetty seuraavia teknologioita:
+
+- React  
+- Vite  
+- JavaScript  
+- HTML  
+- CSS  
+
+## Kehityksestä
+
+Peli on toteutettu osana opinnäytetyötä sosiaali- ja terveydenhuoltoalalle.
+
+Tavoitteena oli kehittää helppokäyttöinen ja pedagoginen työkalu, joka tukee tietoturvan oppimista käytännön tilanteiden kautta.
+
+## Projektin rakenne
+
+```bash
+src/
+  assets/
+  data/
+  App.css
+  App.jsx
+  index.css
+  main.jsx
+  styles.css
+
+Tuleva kehitys
+lisää tilanteita ja kysymyksiä
+pisteytysjärjestelmä
+eri vaikeustasot
+visuaaliset parannukset ja animaatiot
+mobiilioptimointi
+Tekijä
+
+Ingrid Aalto
+
+Lisenssi
+
+Tämä projekti on tehty opinnäytetyönä ja opiskelukäyttöön.
